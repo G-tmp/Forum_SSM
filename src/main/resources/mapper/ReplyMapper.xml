@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为ActivityDao接口方法提供sql语句配置 -->
+<mapper namespace="com.xd.mapper.ReplyMapper">
+    <resultMap id="baseResult" type="com.xd.pojo.Reply">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getReplysByPostid" resultType="com.xd.pojo.Reply">
+        select * from reply where post_id = #{id}
+    </select>
+
+    <insert id="publishReply">
+        insert into reply (content,user_id,post_id,reply_id) values (#{content},#{user.id},#{post.id},#{replyTo.id})
+    </insert>
+
+</mapper>

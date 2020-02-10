@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为ActivityDao接口方法提供sql语句配置 -->
+<mapper namespace="com.xd.mapper.UserMapper">
+
+    <resultMap id="baseResult" type="com.xd.pojo.User">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="email" column="email" jdbcType="VARCHAR" />
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="introduction" column="introduction" jdbcType="VARCHAR" />
+        <result property="nickname" column="nickname" jdbcType="VARCHAR" />
+        <result property="profile" column="profile" jdbcType="VARCHAR" />
+        <result property="isAdmin" column="is_admin" jdbcType="INTEGER" />
+        <result property="isBanned" column="is_banned" jdbcType="INTEGER" />
+        <result property="registerTime" column="register_time" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <select id="login" resultMap="baseResult" parameterType="com.xd.pojo.User">
+        select * from `user` where binary email=#{email} ;
+    </select>
+
+    <insert id="register" parameterType="com.xd.pojo.User">
+        insert into `user` (email,password,nickname) values (#{email},#{password},#{nickname});
+    </insert>
+
+    <select id="checkNickname" resultMap="baseResult">
+        select * from `user` where nickname = #{nickName};
+    </select>
+
+    <select id="checkEmail" resultMap="baseResult">
+        select * from `user` where binary email=#{email};
+    </select>
+
+    <select id="getUserByNickname" resultMap="baseResult">
+        select * from `user` where binary nickname = #{nickname}
+    </select>
+
+
+</mapper>

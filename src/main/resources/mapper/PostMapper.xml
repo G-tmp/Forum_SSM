@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为ActivityDao接口方法提供sql语句配置 -->
+<mapper namespace="com.xd.mapper.PostMapper">
+    <resultMap id="baseResult" type="com.xd.pojo.Post">
+        <id     property="id"           column="id"           jdbcType="INTEGER"/>
+        <result property="content"      column="content"      jdbcType="VARCHAR"/>
+        <result property="hit"          column="hit"          jdbcType="INTEGER"/>
+        <result property="isBanned"     column="is_banned"    jdbcType="INTEGER"/>
+        <result property="publishTime"  column="publish_time" jdbcType="TIMESTAMP"/>
+        <result property="title"        column="title"        jdbcType="VARCHAR"/>
+       
+        <association property="block" javaType="com.xd.pojo.Block">
+            <id     property="id"       column="blockid"        jdbcType="INTEGER"/>
+            <result property="name"     column="name"           jdbcType="VARCHAR"/>
+            <result property="ename"    column="ename"          jdbcType="VARCHAR" />
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+        </association>
+
+        <association property="user" javaType="com.xd.pojo.User" >
+            <id     property="id"           column="userid"         jdbcType="INTEGER"/>
+            <result property="isBanned"     column="is_banned"      jdbcType="INTEGER"/>
+            <result property="isAdmin"      column="is_admin"       jdbcType="INTEGER" />
+            <result property="registerTime" column="register_time"  jdbcType="TIMESTAMP"/>
+            <result property="nickname"     column="nickname"       jdbcType="VARCHAR" />
+            <result property="introduction" column="introduction"   jdbcType="VARCHAR" />
+            <result property="email"        column="email"          jdbcType="VARCHAR" />
+            <result property="password"     column="password"       jdbcType="VARCHAR" />
+            <result property="profile"      column="profile"        jdbcType="VARCHAR" />
+        </association>
+    </resultMap>
+
+
+    <select id="getAllPosts" resultMap="baseResult">
+        SELECT post.* , block.* , `user`.* , block.`id` 'blockid' , user.`id`  'userid' 
+        FROM post  , block  ,`user`  
+        WHERE post.`block_id` = block.`id` AND `user`.`id` = post.`user_id`;
+    </select>
+
+    <select id="getAllPostsNew" resultMap="baseResult">
+        SELECT post.* , block.* , `user`.* , block.`id` 'blockid' , user.`id`  'userid' 
+        FROM post  , block  ,`user`  
+        WHERE post.`block_id` = block.`id` AND `user`.`id` = post.`user_id`
+		ORDER BY post.publish_time DESC;
+    </select>
+    
+    <select id="getPostById" resultMap="baseResult">
+        select post.* , block.* ,`user`.* , block.id as blockid ,`user`.id as userid
+            from `post` 
+            left join block 
+            on post.block_id = block.id  
+            left join `user` 
+            on post.user_id = user.id 
+        where post.id=#{id} 
+    </select>
+
+    <insert id="publishPost" parameterType="com.xd.pojo.Post" >
+        insert into `post` (title,content,user_id,block_id)
+         values (#{title},#{content},#{user.id},#{block.id} )
+    </insert>
+    
+
+
+</mapper>

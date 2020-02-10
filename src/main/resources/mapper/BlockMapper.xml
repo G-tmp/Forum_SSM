@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为ActivityDao接口方法提供sql语句配置 -->
+<mapper namespace="com.xd.mapper.BlockMapper">
+
+
+    <resultMap id="baseResult" type="com.xd.pojo.Block">
+        <id     property="id"           column="id"         jdbcType="INTEGER"/>
+        <result property="name"         column="name"       jdbcType="VARCHAR"/>
+        <result property="ename"        column="ename"      jdbcType="VARCHAR" />
+        <result property="description"  column="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="association" type="com.xd.pojo.Block">
+        <id     property="id"           column="id"         jdbcType="INTEGER"/>
+        <result property="name"         column="name"       jdbcType="VARCHAR"/>
+        <result property="ename"        column="ename"      jdbcType="VARCHAR" />
+        <result property="description"  column="description" jdbcType="VARCHAR"/>
+        
+        <collection property="posts" ofType="com.xd.pojo.Post">
+            <id     property="id"       column="postid"         jdbcType="INTEGER" />
+            <result property="isBanned" column="is_banned"      jdbcType="INTEGER"/>
+            <result property="title"    column="title"          jdbcType="VARCHAR" />
+            <result property="content"  column="content"        jdbcType="VARCHAR" />
+            <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP" />
+            <result property="hit"      column="hit"            jdbcType="INTEGER" />
+        
+            <association property="user" javaType="com.xd.pojo.User">
+                <id     property="id"           column="userid"       jdbcType="INTEGER"/>
+                <result property="email"        column="email"        jdbcType="VARCHAR" />
+                <result property="password"     column="password"     jdbcType="VARCHAR"/>
+                <result property="introduction" column="introduction" jdbcType="VARCHAR" />
+                <result property="nickname"     column="nickname"     jdbcType="VARCHAR" />
+                <result property="profile"      column="profile"      jdbcType="VARCHAR" />
+                <result property="isAdmin"      column="is_admin"     jdbcType="INTEGER" />
+                <result property="isBanned"     column="is_banned"    jdbcType="INTEGER" />
+                <result property="registerTime" column="register_time" jdbcType="TIMESTAMP" />
+            </association> 
+        </collection>
+    </resultMap>
+    
+    
+    <select id="getAllBlock" resultMap="baseResult">
+        select * from block;
+    </select>
+
+    <select id="getBlockByEname" resultMap="association">
+        SELECT block.* , post.* , `user`.* , post.`id` `postid`  , user.`id` `userid`
+            FROM block
+            LEFT JOIN post
+            ON block.`id` = post.`block_id`
+            LEFT JOIN `user`
+            ON user.`id` = post.`user_id`
+        where block.ename = #{ename};
+    </select>
+
+
+</mapper>

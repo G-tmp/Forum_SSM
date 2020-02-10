@@ -1,0 +1,209 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <!--  Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!--  Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Title</title>
+</head>
+
+<body style=" background-color: #d1d9e0;">
+
+
+<script>
+    
+    var  flagEmail = true;
+    var  flagNick = true;
+
+
+    function checkEmail() {
+        var email=$("#email").val();
+        var url="check_email";
+
+        var data={
+            email:email
+        };
+
+
+        //去空格
+        if(email.trim().length == 0) {
+            flagEmail = false;
+            $("#checkResult1").html("");
+        }else{
+            $.ajax({
+                type: "get",
+                data: data,
+                dataType: "json",
+                url: url,
+                success: function (result) {
+                    if (result["msg"] == "duplicate"){
+                        flagEmail = false;
+                        $("#checkResult1").html("<font color='red'>抱歉，该邮箱已被注册，请更换！</font>");
+                    }else if (result["msg"] == "unique"){
+                        flagEmail = true;
+                        $("#checkResult1").html("<font color='#7fffd4' '>naisuuuuuuu!</font>");
+                    }
+                }
+            });
+        }
+
+        disableButt();
+    }
+    
+    
+    function checkName() {
+        var nickname=$("#nickname").val();
+        var url="check_nickname";
+
+        var data={
+            nickname:nickname
+        };
+
+        //去空格
+        if(nickname.trim().length == 0) {
+            flagNick = false;
+            $("#confirmButton").attr("disabled","disabled");
+        }else{
+            $.ajax({
+                type: "get",
+                data: data,
+                dataType: "json",
+                url: url,
+                success: function (result) {
+                    if (result["msg"] == "duplicate"){
+                        flagNick = false;
+                        $("#checkResult2").html("<font color='red'>抱歉，该昵称已被注册，请更换！</font>");
+                    }else if (result["msg"] == "unique") {
+                        flagNick = true;
+                        $("#checkResult2").html("<font color='#7fffd4' '>naisuuuuuuu!</font>");
+                    }
+                }
+            });
+        }
+
+        disableButt();
+    }
+    
+
+
+    function register() {
+        var url="register";
+
+        var nickname=$("#nickname").val();
+        var email=$("#email").val();
+        var password=$("#password").val();
+        var password2=$("#password2").val();
+        
+        if (password != password2){
+            alert("密码不一致")
+            return;
+        }
+
+        var user={
+            nickname:nickname,
+            email:email,
+            password:password
+        };
+
+        // alert(JSON.stringify(user));
+
+        $.ajax({
+            data:JSON.stringify(user),
+            type:"post",
+            dataType:"json",
+            url:url,
+            contentType : "application/json;charset=UTF-8",
+            success:function (result) {
+                if (result["msg"] == "success")
+                    alert("success")
+            },
+            error:function () {
+                alert("error")
+            }
+        });
+    }
+    
+    
+    function disableButt() {
+        // alert("email : "+flagEmail+"\n"+"nick : "+flagNick);
+        if (flagEmail && flagNick){
+            $("#confirmButton").removeAttr("disabled");
+        }else{
+            $("#confirmButton").attr("disabled","disabled");
+        }
+    }
+    
+</script>
+
+
+<%@ include file="commoms/navbar.jsp"%>
+
+
+<div class="container">
+    <div style="padding-top: 200px;"></div>
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                注册
+            </h3>
+        </div>
+        
+        <div class="panel-body">
+            <form class="form-horizontal" role="form">
+
+                <!-- E-mail -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">E-mail</label>
+                    <div class="col-sm-8">
+                        <input type="text " onkeyup="checkEmail()"  id="email"  name="email" placeholder="请输入E-mail" class="form-control"  required >
+                        <span id="checkResult1"></span>
+                    </div>
+                </div>
+
+                <!-- nickname -->
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">昵称</label>
+                    <div class="col-sm-8">
+                        <input type="text " onkeyup="checkName()"  name="nickname" id="nickname" placeholder="请输入昵称" class="form-control" required >
+                        <span id="checkResult2"></span>
+                    </div>
+                </div>
+
+                <!-- password -->
+                <div class="form-group">
+                    <label  class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-8">
+                        <input type="password " name="password" id="password"  placeholder="请输入密码" class="form-control" required >
+                    </div>
+                </div>
+
+                <!-- password again -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">确认密码</label>
+                    <div class="col-sm-8">
+                        <input type="password"  name="password2" id="password2"  placeholder="确认密码" class="form-control" required >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="button" onclick="register()" id="confirmButton" class="btn btn-success"  value="注册">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+</div>
+
+</body>
+</html>
