@@ -7,6 +7,9 @@
         <id property="id" column="id" jdbcType="INTEGER"/>
     </resultMap>
 
+
+
+
     <select id="getReplysByPostid" resultType="com.xd.pojo.Reply">
         select * from reply where post_id = #{id}
     </select>
@@ -14,5 +17,11 @@
     <insert id="publishReply">
         insert into reply (content,user_id,post_id,reply_id) values (#{content},#{user.id},#{post.id},#{replyTo.id})
     </insert>
+
+
+    <select id="getReplyById" resultType="com.xd.pojo.Reply">
+        select * from reply where id = #{id};
+    </select>
+
 
 </mapper>

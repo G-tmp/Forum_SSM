@@ -12,5 +12,9 @@ public interface ReplyMapper {
     
     
     Integer publishReply(Reply reply);
-    
+
+
+    Reply getReplyById(Integer id);
+
+
 }

@@ -1,6 +1,7 @@
 package com.xd.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.xd.pojo.Reply;
 import com.xd.pojo.User;
 import com.xd.service.ReplyService;
@@ -23,10 +24,17 @@ public class ReplyController {
     @ResponseBody
     @RequestMapping("/publishReply")
     public String publishReply(@RequestBody  Reply reply, HttpSession session){
-        
-        System.out.println(reply);
+        JSONObject json = new JSONObject();
+
         User u = (User) session.getAttribute("user");
-        
+
+        //do not login
+        if(u == null){
+            json.put("msg","unlogin");
+            return json.toString();
+        }
+
+
         reply.setUser(u);
         
 //        Reply r = new Reply();
@@ -36,7 +44,10 @@ public class ReplyController {
 
         replyService.publishReply(reply);
 
-        return "{msg:success}";
+
+        json.put("msg","success");
+
+        return json.toString();
     }
 
 }

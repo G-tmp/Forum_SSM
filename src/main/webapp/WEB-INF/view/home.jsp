@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<!DOCTYPE html>
 <html>
 <head>
 
@@ -21,7 +20,7 @@
     <!--  Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>index</title>
+    <title>home</title>
 
 </head>
 <body style=" background-color: #d1d9e0;">
@@ -43,21 +42,23 @@
 
         $.ajax({
             type : "post",
-            url : "publishPost",
+            url : "/forum/publishPost",
             data : JSON.stringify(data),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
             success : function (result) {
                 if (result["msg"] == "success") {
                     alert("发帖成功");
-                    window.location.href = "home";
+                    window.location.href = "/forum/home";
+                }else if(result["msg"] == "unlogin"){
+                    alert("请先登陆");
+                    return;
                 }
             },
             error : function (result) {
                 alert("error")
             }
         });
-        
     };
     
 </script>
@@ -116,10 +117,10 @@
                     </div>
 
                     <div style="width: 900px; height: 20px;">
-                        <div style="float: left; width: 100px;padding-left: 200px;">
+                        <div style="float: left; width: 100px;padding-left: 200px;padding-top: 10px;">
 								<span class="label label-info">
                                     <a style="font-size: 12px; color: #222222;"
-                                        href="block/${post.block.ename}"
+                                        href="b/${post.block.ename}"
                                         class="text-info">${post.block.name }
                                     </a>
                                 </span>

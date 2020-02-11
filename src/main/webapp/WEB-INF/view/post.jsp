@@ -1,10 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 
     <!--  Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -15,60 +19,63 @@
     <!--  Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <%--    <script src="/js/jquery.min.js"></script>--%>
-
     <title>sign in</title>
 
 </head>
 <body style="background-color: #d1d9e0;">
 
 <script>
-    
+
     function submit_button() {
         // document.getElementById('reply_form').submit();
         // $("#reply_form").submit();
-
+        
         var postid = $("#postid").val();
         var content = $("#reply_textarea").val();
-        
+
         if (content==null || content.trim()==""){
             alert("不能为空");
             return;
         }
-        
+
         var data = {
             post : postid,
             content : content,
             replyTo:"0"
         };
 
-        alert(JSON.stringify(data));
+        // alert(JSON.stringify(data));
 
         $.ajax({
             type : "POST",
-            url : "/Forum/publishReply",
+            url : "/forum/publishReply",
             data : JSON.stringify(data),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
+
             success : function (result) {
                 if (result["msg"] == "success") {
-                    alert("发帖成功");
-                    window.location.href = "/Forum/post/"+postid;
+                    alert("回复成功");
+                    window.location.href = "/forum/post/"+postid;
+                }else if(result["msg"] == "unlogin"){
+                    alert("请先登陆");
+
+                    return;
                 }
             },
             error : function (result) {
-                alert("error")
+                alert("error"+result)
             }
         });
-        
+
     }
-    
+
 
 
     function report(postid,replyid){
         var reason=prompt("reason");
-        
-        if(reason!=null && reason.trim()!=""){
+
+        if(reason!=null  &&  reason.trim()!=""){
             if(replyid==undefined)
                 window.location.href="report?"+"pid="+postid+"&reason="+String(reason);
             else
@@ -76,11 +83,15 @@
         }
     }
 
+
+
     function confirm_delete(){
         if(confirm("确定删除？"))
             return true;
         return false;
     }
+
+
 
     function to_reply(user,rid){
         // publish_reply?pid=${post.id}
@@ -88,14 +99,18 @@
         action+="&to_reply="+String(rid);
         document.getElementById('reply_form').action=action;
 
-        //&quot;&quot; == " " 
+        //&quot;&quot; == " "
         var at='@'+user;
         document.getElementById('myModalLabelOne').innerHTML=at;
     }
 
+
+
     function reset_modal(){
         document.getElementById('myModalLabelOne').innerHTML="发布回复";
     }
+
+
 
     function appear_reply(obj,obj_this,content,time,username){
         var top=obj_this.getBoundingClientRect().top;
@@ -201,20 +216,31 @@
     <c:forEach var="reply" items="${replies}">
         <div class="panel panel-default" style="box-shadow: 5px 5px 5px gray;">
             <div class="panel-body" style="padding-top: 2px;">
+
+                <div style="float: left;width: 100px;">
+                    <div>
+                        <img src="${pageContext.request.contextPath }/img_profile/${reply.user.profile }" class="img-rounded" width="50px" >
+                    </div>
+
+                        <%--                    <a href="profile/${reply.user.id }"  style="color: #ed5736">${reply.user.nickname }</a>--%>
+                    <div>
+                        <a href="profile/${reply.user.id }"  style="color: #ed5736">nickname</a>
+                    </div>
+                </div>
                 
-                
-                    <img src="${pageContext.request.contextPath }/img_profile/${reply.user.profile }" class="img-rounded" width="50px" height="50px">
-                    <a href="profile/${reply.user.id }"  style="color: #ed5736">${reply.user.nickname }</a>
+                <div style="float: left;">
                     <c:if test="${reply.replyTo!=null }">
-                        <a style="color: #0c8918" href="#" onclick="test(this)" onmouseenter="appear_reply(document.getElementById('float'),this,&quot;${reply.to_reply.content }&quot;,&quot;${reply.to_reply.publishTime}&quot;,&quot;${reply.to_reply.user.username }&quot;)" >@${ reply.to_reply.user.username}</a>
+                        <a style="color: #0c8918" href="#" onclick="test(this)" onmouseenter="appear_reply(document.getElementById('float'),this,&quot;${reply.to_reply.content }&quot; , &quot;${reply.to_reply.publishTime}&quot;,&quot;${reply.to_reply.user.username }&quot;)" >@${ reply.to_reply.user.username}</a>
                     </c:if>
 
-                    <strong style="width: 800px;"> ${reply.content } </strong>
+                    <strong style="width: 800px;white-space: pre-wrap ;background-color: #e74c3c"> ${reply.content } </strong>
 
                     ${reply.publishTime }
 <%--                    ${reply.replyTo.floor }--%>
+                </div>
 
-                
+
+
 <%--                <c:if test="${reply.isBanned==1 }">--%>
 <%--                    <img src="image/" class="img-rounded" width="50px">--%>
 <%--                    <a>無</a>--%>

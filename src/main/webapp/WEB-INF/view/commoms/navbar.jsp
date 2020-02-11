@@ -23,7 +23,7 @@
 
 <body>
 	<!--  navbar  -->
-    		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"  style="padding-left: 350px;padding-right: 350px ;font-size: 17px;background-color: #ffffff;box-shadow: 5px 5px 10px gray;">
+    		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"  style="padding-left: 150px;padding-right: 150px ;font-size: 17px;background-color: #ffffff;box-shadow: 5px 5px 10px gray;">
 				<!--  -->
     			<div class="container-fluid">
     				<div class="navbar-header">
@@ -42,6 +42,7 @@
     							</ul>
     						</li>
     					</ul>
+
     					<!-- search   -->
     					<form action="search" method="get" class="navbar-form navbar-left" role="search">
     						<div class="form-group">
@@ -49,6 +50,7 @@
     						</div>
     						<input type="submit" class="btn btn-default" value="Search">
     					</form>
+
     					<!-- login & register -->
     					<c:if test="${sessionScope.user==null }">
 	    					<ul class="nav navbar-nav navbar-right">
@@ -56,7 +58,8 @@
 	    						<li><a href="<%=path%>/login" class="btn btn-lg " ><span class="glyphicon glyphicon-log-in">登录</span></a></li>
 	    					</ul>
     					</c:if>
-    					
+
+    					<!-- had been login -->
     					<c:if test="${sessionScope.user!=null }">
     						<ul class="nav navbar-nav navbar-right">
 <%--    							<c:if test="${user.status==7}">--%>
@@ -72,7 +75,7 @@
 <%--							<li><a href="<%=path%>/register" class="btn btn-lg"><span class="glyphicon glyphicon-user">注册</span></a></li>--%>
 <%--							<li><a href="<%=path%>/login" class="btn btn-lg " ><span class="glyphicon glyphicon-log-in">登录</span></a></li>--%>
 <%--						</ul>--%>
-						
+
     				</div>
     			</div>
     		</nav>

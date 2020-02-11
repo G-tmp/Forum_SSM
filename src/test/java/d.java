@@ -33,24 +33,13 @@ public class d {
     
     @Test
     public void asdfg(){
-        Reply reply = new Reply();
-        reply.setContent("c");
-        
-        Post p = new Post();
-        p.setId(1);
-      
-        User u = new User();
-        u.setId(1);
-        
-        Reply r = new Reply();
-        r.setId(0);
-        
-        reply.setReplyTo(r);
-        reply.setUser(u);
-        reply.setPost(p);
-        
-        Integer q = replyService.publishReply(reply);
-        System.out.println(q);
+
+        Reply re = replyService.getReplyById(10);
+
+        for(char e:re.getContent().toCharArray()){
+            System.out.println((int)e);
+        }
+
     }
     
 }

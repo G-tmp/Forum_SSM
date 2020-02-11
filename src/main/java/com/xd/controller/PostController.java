@@ -71,17 +71,27 @@ public class PostController {
         
         return  "post";
     }
-    
+
+
+
     @ResponseBody
     @RequestMapping(value = "/publishPost",method = RequestMethod.POST)
     public String addPost(@RequestBody Post post, HttpSession session){
-        
-        User u = (User) session.getAttribute("user");
-        post.setUser(u);
-        
-        postService.publishPost(post);
 
         JSONObject json = new JSONObject();
+
+        User u = (User) session.getAttribute("user");
+
+        if (u == null){
+            json.put("msg","unlogin");
+            return json.toString();
+        }
+
+
+        post.setUser(u);
+
+        postService.publishPost(post);
+
         json.put("msg","success");
         
         

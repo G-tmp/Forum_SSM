@@ -10,7 +10,9 @@
         <result property="isBanned"     column="is_banned"    jdbcType="INTEGER"/>
         <result property="publishTime"  column="publish_time" jdbcType="TIMESTAMP"/>
         <result property="title"        column="title"        jdbcType="VARCHAR"/>
-       
+        <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
+
+
         <association property="block" javaType="com.xd.pojo.Block">
             <id     property="id"       column="blockid"        jdbcType="INTEGER"/>
             <result property="name"     column="name"           jdbcType="VARCHAR"/>
@@ -30,6 +32,9 @@
             <result property="profile"      column="profile"        jdbcType="VARCHAR" />
         </association>
     </resultMap>
+
+
+
 
 
     <select id="getAllPosts" resultMap="baseResult">

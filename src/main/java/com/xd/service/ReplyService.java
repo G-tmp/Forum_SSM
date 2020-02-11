@@ -11,4 +11,7 @@ public interface ReplyService {
 
 
     Integer publishReply(Reply reply);
+
+
+    Reply getReplyById(Integer id);
 }
