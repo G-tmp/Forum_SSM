@@ -6,15 +6,19 @@ import java.util.List;
 
 public interface PostService {
 
-    //get all
+    //get all posts
     List<Post> getAllPosts();
 
-    //get all sort by time
+    //get all posts sort by publish time
     List<Post> getAllPostsNew();
 
-    //get one
+    //get a post
     Post getPostById(Integer id);
 
-    //add one 
+    //add a post
     Integer publishPost(Post post);
+
+    // increase one
+    void IncreaseReplyCount(Integer id);
+
 }

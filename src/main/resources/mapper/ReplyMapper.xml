@@ -18,7 +18,6 @@
         insert into reply (content,user_id,post_id,reply_id) values (#{content},#{user.id},#{post.id},#{replyTo.id})
     </insert>
 
-
     <select id="getReplyById" resultType="com.xd.pojo.Reply">
         select * from reply where id = #{id};
     </select>

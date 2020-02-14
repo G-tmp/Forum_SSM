@@ -29,11 +29,11 @@
     </select>
 
     <select id="checkEmail" resultMap="baseResult">
-        select * from `user` where binary email=#{email};
+        select * from `user` where  email=#{email};
     </select>
 
     <select id="getUserByNickname" resultMap="baseResult">
-        select * from `user` where binary nickname = #{nickname}
+        select * from `user` where  nickname = #{nickname}
     </select>
 
 

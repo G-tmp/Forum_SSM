@@ -35,4 +35,9 @@ public class PostServiceImpl implements PostService {
     public Integer publishPost(Post post) {
         return postMapper.publishPost(post);
     }
+
+    @Override
+    public void IncreaseReplyCount(Integer id) {
+        postMapper.IncreaseReplyCount(id);
+    }
 }

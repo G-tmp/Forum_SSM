@@ -4,6 +4,7 @@ package com.xd.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.xd.pojo.Reply;
 import com.xd.pojo.User;
+import com.xd.service.PostService;
 import com.xd.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ public class ReplyController {
     @Autowired
     private ReplyService replyService;
 
+    @Autowired
+    private PostService postService;
     
     
     @ResponseBody
@@ -43,6 +46,7 @@ public class ReplyController {
         System.out.println(reply.getReplyTo());
 
         replyService.publishReply(reply);
+        postService.IncreaseReplyCount(reply.getPost().getId());
 
 
         json.put("msg","success");

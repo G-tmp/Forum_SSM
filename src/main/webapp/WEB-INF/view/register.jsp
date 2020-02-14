@@ -10,7 +10,7 @@
     <!--  Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>Title</title>
+    <title>Sign up</title>
 </head>
 
 <body style=" background-color: #d1d9e0;">
@@ -18,8 +18,8 @@
 
 <script>
     
-    var  flagEmail = true;
-    var  flagNick = true;
+    var  flagEmail = false;
+    var  flagNick = false;
 
 
     function checkEmail() {
@@ -31,10 +31,12 @@
         };
 
 
-        //去空格
-        if(email.trim().length == 0) {
-            flagEmail = false;
+        //校验空格
+        if (email == null || email == ""){
             $("#checkResult1").html("");
+        }else if(!blank(email)) {
+            flagEmail = false;
+            $("#checkResult1").html("<font color='red'>不能包含空格</font>");
         }else{
             $.ajax({
                 type: "get",
@@ -53,7 +55,7 @@
             });
         }
 
-        disableButt();
+        disableButton();
     }
     
     
@@ -65,10 +67,12 @@
             nickname:nickname
         };
 
-        //去空格
-        if(nickname.trim().length == 0) {
+        //校验空格
+        if (nickname == null  ||  nickname==""){
+            $("#checkResult2").html("");
+        } if(!blank(nickname)) {
             flagNick = false;
-            $("#confirmButton").attr("disabled","disabled");
+            $("#checkResult2").html("<font color='red'>不能包含空格</font>");
         }else{
             $.ajax({
                 type: "get",
@@ -87,7 +91,7 @@
             });
         }
 
-        disableButt();
+        disableButton();
     }
     
 
@@ -130,12 +134,22 @@
     }
     
     
-    function disableButt() {
+    function disableButton() {
+        alert(flagNick);
         // alert("email : "+flagEmail+"\n"+"nick : "+flagNick);
-        if (flagEmail && flagNick){
+        if (flagNick){
             $("#confirmButton").removeAttr("disabled");
         }else{
             $("#confirmButton").attr("disabled","disabled");
+        }
+    }
+
+
+    function blank(str) {
+        if (str.indexOf(" ") == -1){
+            return true;
+        } else {
+            return false;
         }
     }
     
@@ -195,7 +209,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <input type="button" onclick="register()" id="confirmButton" class="btn btn-success"  value="注册">
+                        <input type="button" onclick="register()" id="confirmButton" class="btn btn-success"  value="注册" disabled="disabled">
                     </div>
                 </div>
             </form>

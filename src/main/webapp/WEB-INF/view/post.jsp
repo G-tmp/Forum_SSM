@@ -64,7 +64,7 @@
                 }
             },
             error : function (result) {
-                alert("error"+result)
+                alert("error"+result);
             }
         });
 

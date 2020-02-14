@@ -6,10 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<meta charset="utf-8"> 
-	    <title>index</title>
-	    <!-- 包含头部信息用于适应不同设备 -->
-	    <meta name="viewport" content="width=device-width, initial-scale=1"  user-scalable=no>
+	<meta charset="utf-8">
+	<title>index</title>
+	<!-- 包含头部信息用于适应不同设备 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1"  user-scalable=no>
 	<!--  Bootstrap 核心 CSS 文件 -->
 	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 

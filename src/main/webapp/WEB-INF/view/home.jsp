@@ -20,7 +20,7 @@
     <!--  Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>home</title>
+    <title>XD</title>
 
 </head>
 <body style=" background-color: #d1d9e0;">

@@ -12,7 +12,6 @@
         <result property="title"        column="title"        jdbcType="VARCHAR"/>
         <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
 
-
         <association property="block" javaType="com.xd.pojo.Block">
             <id     property="id"       column="blockid"        jdbcType="INTEGER"/>
             <result property="name"     column="name"           jdbcType="VARCHAR"/>
@@ -65,6 +64,8 @@
          values (#{title},#{content},#{user.id},#{block.id} )
     </insert>
     
-
+    <update id="IncreaseReplyCount" parameterType="com.xd.pojo.Post">
+        update `post` set reply_count=reply_count+1 where id=#{id};
+    </update>
 
 </mapper>
