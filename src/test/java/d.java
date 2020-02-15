@@ -34,11 +34,7 @@ public class d {
     @Test
     public void asdfg(){
 
-        Reply re = replyService.getReplyById(10);
-
-        for(char e:re.getContent().toCharArray()){
-            System.out.println((int)e);
-        }
+        Post p = postService.getPostById(1);
 
     }
     

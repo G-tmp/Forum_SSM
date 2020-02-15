@@ -3,6 +3,7 @@ package com.xd.pojo;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Post implements Serializable {
@@ -17,8 +18,7 @@ public class Post implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date publishTime;
     private Integer isBanned;
-    
-    
+
     
     public Post(){
         

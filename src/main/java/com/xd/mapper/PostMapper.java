@@ -19,6 +19,10 @@ public interface PostMapper {
     Integer publishPost(Post post);
 
     // increase one
-    void IncreaseReplyCount(Integer id);
-    
+    Integer IncreaseReplyCount(Integer id);
+
+    List<Post> pagePost(Integer start,Integer size);
+
+    List<Post> pagePostNew(Integer start,Integer size);
+
 }

@@ -30,7 +30,7 @@
 
     <div style="padding-top: 150px;"></div>
 
-    <img src="<%=path%>/img_profile/${user.profile}" class="img-rounded" width="80px" height="80px;">
+    <img src="/<%=path%>/img_profile/${user.profile}" class="img-rounded" width="80px" height="80px;">
     <h2>${user.nickname }</h2>
 
     <h3>创建于: ${user.registerTime}</h3>

@@ -10,12 +10,15 @@ public class Reply  implements Serializable {
     private String content;
     private User user;
     private Post post;
+    private Integer floor;
     private Reply replyTo;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date publishTime;
     private Integer isBanned;
 
-    
+
+
+
     public Reply(){}
 
     public Reply(String rid){
@@ -85,5 +88,13 @@ public class Reply  implements Serializable {
 
     public void setIsBanned(Integer isBanned) {
         this.isBanned = isBanned;
+    }
+
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
     }
 }

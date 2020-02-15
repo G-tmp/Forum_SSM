@@ -25,7 +25,7 @@
 
 <script>
     function confirm() {
-        var url="login";
+        var url="/forum/login";
         var email=$("#email").val();
         var password=$("#password").val();
 

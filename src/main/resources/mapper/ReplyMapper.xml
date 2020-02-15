@@ -3,19 +3,46 @@
 
 <!-- 设置为ActivityDao接口方法提供sql语句配置 -->
 <mapper namespace="com.xd.mapper.ReplyMapper">
-    <resultMap id="baseResult" type="com.xd.pojo.Reply">
+
+    <resultMap id="baseReply" type="com.xd.pojo.Reply">
         <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="content"  column="content" />
+        <result property="floor"    column="floor"/>
+        <result property="publishTime" column="publish_time"/>
+        <result property="isBanned" column="is_banned"/>
+
+        <association property="user" javaType="com.xd.pojo.User" >
+            <id     property="id"           column="userid"         jdbcType="INTEGER"/>
+            <result property="isBanned"     column="is_banned"      jdbcType="INTEGER"/>
+            <result property="isAdmin"      column="is_admin"       jdbcType="INTEGER" />
+            <result property="registerTime" column="register_time"  jdbcType="TIMESTAMP"/>
+            <result property="nickname"     column="nickname"       jdbcType="VARCHAR" />
+            <result property="introduction" column="introduction"   jdbcType="VARCHAR" />
+            <result property="email"        column="email"          jdbcType="VARCHAR" />
+            <result property="password"     column="password"       jdbcType="VARCHAR" />
+            <result property="profile"      column="profile"        jdbcType="VARCHAR" />
+        </association>
+
     </resultMap>
 
 
 
 
-    <select id="getReplysByPostid" resultType="com.xd.pojo.Reply">
-        select * from reply where post_id = #{id}
+    <select id="getReplysByPostid" resultMap="baseReply">
+        select `reply`.*,`user`.* , `user`.id as `userid`
+            from `reply`
+            left join `user`
+            on reply.user_id = user.id
+        where reply.post_id = #{id} ;
     </select>
 
-    <insert id="publishReply">
-        insert into reply (content,user_id,post_id,reply_id) values (#{content},#{user.id},#{post.id},#{replyTo.id})
+    <insert id="publishReply" parameterType="com.xd.pojo.Reply">
+        insert into reply
+            (content,user_id,post_id,reply_id,floor)
+            values (#{content},#{user.id},#{post.id},#{replyTo.id},
+                (select reply_count from post where id = #{post.id})+1
+            );
+
     </insert>
 
     <select id="getReplyById" resultType="com.xd.pojo.Reply">

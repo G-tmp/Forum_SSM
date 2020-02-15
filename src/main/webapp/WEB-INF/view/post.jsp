@@ -2,7 +2,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -157,7 +156,7 @@
                     </blockquote>
                 </div>
                 <div class="media-right">
-                    <img src="${pageContext.request.contextPath }/img_profile/${post.user.profile }" class="media-object" style="width:100px">
+                    <img src="/${pageContext.request.contextPath }/img_profile/${post.user.profile }" class="media-object" style="width:100px">
                 </div>
             </div>
 
@@ -218,27 +217,42 @@
             <div class="panel-body" style="padding-top: 2px;">
 
                 <div style="float: left;width: 100px;">
-                    <div>
-                        <img src="${pageContext.request.contextPath }/img_profile/${reply.user.profile }" class="img-rounded" width="50px" >
-                    </div>
-
-                        <%--                    <a href="profile/${reply.user.id }"  style="color: #ed5736">${reply.user.nickname }</a>--%>
-                    <div>
-                        <a href="profile/${reply.user.id }"  style="color: #ed5736">nickname</a>
+                    <div style="padding-top: 15px;">
+                        <img src="/${pageContext.request.contextPath}/img_profile/${reply.user.profile }" class="img-rounded" width="50px" >
                     </div>
                 </div>
+                        <%--                    <a href="profile/${reply.user.id }"  style="color: #ed5736">${reply.user.nickname }</a>--%>
+<%--                    <div>--%>
+<%--                        <a href="profile/${reply.user.nickname}">nickname</a>--%>
+<%--                    </div>--%>
+
                 
                 <div style="float: left;">
+
+                    <div style="height: 40px;width: 999px;" >
+                        <div style="float: left;width: 90%;">
+                            <a href="profile/${reply.user.nickname}">${reply.user.nickname  }</a>
+                            |${reply.publishTime }
+                        </div>
+                        <div style="float: right;">
+<%--                            <span class="badge">#${reply.floor} </span>--%>
+                            <h4 style="color: #e74c3c;">#${reply.floor}</h4>
+                        </div>
+                    </div>
+
                     <c:if test="${reply.replyTo!=null }">
                         <a style="color: #0c8918" href="#" onclick="test(this)" onmouseenter="appear_reply(document.getElementById('float'),this,&quot;${reply.to_reply.content }&quot; , &quot;${reply.to_reply.publishTime}&quot;,&quot;${reply.to_reply.user.username }&quot;)" >@${ reply.to_reply.user.username}</a>
                     </c:if>
 
-                    <strong style="width: 800px;white-space: pre-wrap ;background-color: #e74c3c"> ${reply.content } </strong>
+                    <strong style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </strong>
 
-                    ${reply.publishTime }
+
 <%--                    ${reply.replyTo.floor }--%>
                 </div>
+            </div>
 
+        </div>
+    </c:forEach>
 
 
 <%--                <c:if test="${reply.isBanned==1 }">--%>
@@ -265,10 +279,7 @@
 <%--                        <a onclick="confirm_delete(${reply.id},${reply.post.id })"  href="reply_delete?rid=${reply.id}&pid=${reply.post_id}" >delete</a>--%>
 <%--                    </c:if>--%>
 <%--                </c:if>--%>
-            </div>
 
-        </div>
-    </c:forEach>
 
     <!-- 按钮触发模态框 -->
     <div >

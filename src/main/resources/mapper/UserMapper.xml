@@ -4,7 +4,7 @@
 <!-- 设置为ActivityDao接口方法提供sql语句配置 -->
 <mapper namespace="com.xd.mapper.UserMapper">
 
-    <resultMap id="baseResult" type="com.xd.pojo.User">
+    <resultMap id="baseUser" type="com.xd.pojo.User">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="email" column="email" jdbcType="VARCHAR" />
         <result property="password" column="password" jdbcType="VARCHAR"/>
@@ -16,7 +16,7 @@
         <result property="registerTime" column="register_time" jdbcType="TIMESTAMP" />
     </resultMap>
 
-    <select id="login" resultMap="baseResult" parameterType="com.xd.pojo.User">
+    <select id="login" resultMap="baseUser" parameterType="com.xd.pojo.User">
         select * from `user` where binary email=#{email} ;
     </select>
 
@@ -24,15 +24,15 @@
         insert into `user` (email,password,nickname) values (#{email},#{password},#{nickname});
     </insert>
 
-    <select id="checkNickname" resultMap="baseResult">
+    <select id="checkNickname" resultMap="baseUser">
         select * from `user` where nickname = #{nickName};
     </select>
 
-    <select id="checkEmail" resultMap="baseResult">
+    <select id="checkEmail" resultMap="baseUser">
         select * from `user` where  email=#{email};
     </select>
 
-    <select id="getUserByNickname" resultMap="baseResult">
+    <select id="getUserByNickname" resultMap="baseUser">
         select * from `user` where  nickname = #{nickname}
     </select>
 
