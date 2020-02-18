@@ -75,7 +75,7 @@
     </insert>
 
     <update id="IncreaseReplyCount" parameterType="com.xd.pojo.Post">
-        update `post` set reply_count=reply_count+1 where id=#{id};
+        update `post` set reply_count=reply_count+1 , last_reply_time = now() where id=#{id};
     </update>
 
     <select id="pagePostNew" resultMap="basePost">
