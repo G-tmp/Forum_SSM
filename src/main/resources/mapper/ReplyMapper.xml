@@ -41,9 +41,8 @@
         insert into reply
             (content,user_id,post_id,reply_id,floor)
             values (#{content},#{user.id},#{post.id},#{replyTo.id},
-                (select reply_count from post where id = #{post.id})+1
+                (select reply_count from post where id = #{post.id})
             );
-
     </insert>
 
     <select id="getReplyById" resultType="com.xd.pojo.Reply">

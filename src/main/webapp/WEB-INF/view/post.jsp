@@ -30,9 +30,9 @@
         // $("#reply_form").submit();
         
         var postid = $("#postid").val();
-        var content = $("#reply_textarea").val();
+        var content = $("#reply_textarea").val().trim();
 
-        if (content==null || content.trim()==""){
+        if (content==null || content==""){
             alert("不能为空");
             return;
         }
@@ -240,9 +240,10 @@
                         </div>
                     </div>
 
-                    <c:if test="${reply.replyTo!=null }">
-                        <a style="color: #0c8918" href="#" onclick="test(this)" onmouseenter="appear_reply(document.getElementById('float'),this,&quot;${reply.to_reply.content }&quot; , &quot;${reply.to_reply.publishTime}&quot;,&quot;${reply.to_reply.user.username }&quot;)" >@${ reply.to_reply.user.username}</a>
-                    </c:if>
+                    <%--封印Bug--%>
+<%--                    <c:if test="${reply.replyTo!=null }">--%>
+<%--                        <a style="color: #0c8918" href="#" onclick="test(this)" onmouseenter="appear_reply(document.getElementById('float'),this,&quot;${reply.to_reply.content }&quot; , &quot;${reply.to_reply.publishTime}&quot;,&quot;${reply.to_reply.user.username }&quot;)" >@${ reply.to_reply.user.username}</a>--%>
+<%--                    </c:if>--%>
 
                     <strong style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </strong>
 

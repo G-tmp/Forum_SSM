@@ -34,10 +34,10 @@ public class d {
     @Test
     public void asdfg(){
 
-        List<Reply> replies = replyService.getReplysByPostid(3);
+        List<Reply> replies = replyService.getReplysByPostid(1);
 
         for (Reply e:replies){
-            System.out.println(e);
+            System.out.println(e.getReplyTo());
         }
 
     }

@@ -46,7 +46,6 @@ public class ReplyController {
         System.out.println(reply.getReplyTo());
 
         replyService.publishReply(reply);
-        postService.IncreaseReplyCount(reply.getPost().getId());
 
 
         json.put("msg","success");
