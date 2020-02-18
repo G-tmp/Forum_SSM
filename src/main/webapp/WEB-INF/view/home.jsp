@@ -117,7 +117,7 @@
                         <a href="post/${post.id}" style="font-size: 19px; color: #000000"> ${post.title }</a>
                         <blockquote class="pull-right">
                             <a href="profile/${post.user.nickname }">${post.user.nickname }</a>
-                            <small><cite  title="Source Title">${post.publishTime }</cite></small>
+                            <small><cite  title="Source Title">${post.lastReplyTime }</cite></small>
                         </blockquote>
                     </div>
 

@@ -17,6 +17,8 @@ public class Post implements Serializable {
     private Block block;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date publishTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+    private Date lastReplyTime;
     private Integer isBanned;
 
     
@@ -63,6 +65,14 @@ public class Post implements Serializable {
 
     public Integer getHit() {
         return hit;
+    }
+
+    public Date getLastReplyTime() {
+        return lastReplyTime;
+    }
+
+    public void setLastReplyTime(Date lastReplyTime) {
+        this.lastReplyTime = lastReplyTime;
     }
 
     public void setHit(Integer hit) {

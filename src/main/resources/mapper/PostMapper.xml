@@ -11,6 +11,7 @@
         <result property="publishTime"  column="publish_time" jdbcType="TIMESTAMP"/>
         <result property="title"        column="title"        jdbcType="VARCHAR"/>
         <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
+        <result property="lastReplyTime"   column="last_reply_time"  jdbcType="TIMESTAMP"/>
 
         <association property="block" javaType="com.xd.pojo.Block">
             <id     property="id"       column="blockid"        jdbcType="INTEGER"/>
@@ -46,7 +47,7 @@
         SELECT post.* , block.* , `user`.* , block.`id` 'blockid' , user.`id`  'userid' 
         FROM post  , block  ,`user`  
         WHERE post.`block_id` = block.`id` AND `user`.`id` = post.`user_id`
-		ORDER BY post.publish_time DESC;
+		ORDER BY post.last_reply_time DESC;
     </select>
     
     <select id="getPostById" resultMap="basePost">
