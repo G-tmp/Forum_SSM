@@ -25,4 +25,5 @@ public interface PostMapper {
 
     List<Post> pagePostNew(Integer start,Integer size);
 
+    List<Post> fuzzySearchTitle(String words);
 }

@@ -37,7 +37,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void IncreaseReplyCount(Integer id) {
-        postMapper.IncreaseReplyCount(id);
+    public Integer IncreaseReplyCount(Integer id) {
+        return postMapper.IncreaseReplyCount(id);
+    }
+
+    @Override
+    public List<Post> fuzzySearchTitle(String words) {
+        return postMapper.fuzzySearchTitle(words);
     }
 }

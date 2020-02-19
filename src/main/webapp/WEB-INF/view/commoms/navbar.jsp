@@ -7,21 +7,23 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>index</title>
-	<!-- 包含头部信息用于适应不同设备 -->
-	<meta name="viewport" content="width=device-width, initial-scale=1"  user-scalable=no>
-	<!--  Bootstrap 核心 CSS 文件 -->
-	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+	<!--  Bootstrap 核心 CSS 文件 -->
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
 
 	<!--  Bootstrap 核心 JavaScript 文件 -->
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
-<body>
+<body  style=" background-color: #d1d9e0;">
 	<!--  navbar  -->
     		<nav class="navbar navbar-default navbar-fixed-top" role="navigation"  style="padding-left: 150px;padding-right: 150px ;font-size: 17px;background-color: #ffffff;box-shadow: 5px 5px 10px gray;">
 				<!--  -->
@@ -30,13 +32,14 @@
     					<a href="<%=path%>/home" class="navbar-brand" style="font-size: 28px;">XD</a>
     				</div>
     				<div>
+
     					<ul class="nav navbar-nav">
     						<li><a href="<%=path%>/new">New</a></li>
     						<li class="dropdown">
     							<a href="#" class="dropdown-toggle" data-toggle="dropdown">list<b class="caret"></b></a>
     							<ul class="dropdown-menu">
     								<c:forEach items="${blocks}" var="block">
-	    								<li><a href="<%=path%>/block/${block.ename}">${block.name }</a></li>
+	    								<li><a href="<%=path%>/b/${block.ename}">${block.name }</a></li>
 	    								<li class="divider"></li>
     								</c:forEach>
     							</ul>
@@ -46,10 +49,11 @@
     					<!-- search   -->
     					<form action="search" method="get" class="navbar-form navbar-left" role="search">
     						<div class="form-group">
-    							<input type="text" name="searchP" class="form-control" placeholder="Search">
+    							<input type="text" name="words" class="form-control" placeholder="Search">
     						</div>
     						<input type="submit" class="btn btn-default" value="Search">
     					</form>
+
 
     					<!-- login & register -->
     					<c:if test="${sessionScope.user==null }">

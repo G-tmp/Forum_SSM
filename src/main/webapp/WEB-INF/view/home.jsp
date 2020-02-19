@@ -1,29 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@include file="commoms/navbar.jsp"%>
 
 <html>
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-
-    <!--  Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-
-    <!--  Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <title>XD</title>
 
 </head>
-<body style=" background-color: #d1d9e0;">
+<body>
 
 
 <script>
@@ -35,8 +20,8 @@
     
     function submit_button(){
 
-        var title = $("#title111").val();
-        var content = $("#content111").val();
+        var title = $("#title111").val().trim();
+        var content = $("#content111").val().trim();
         var block = $("#block111").val();
 
         var data = {
@@ -77,7 +62,7 @@
 
 
 <div class="container">
-    <%@ include file="commoms/navbar.jsp"%>
+
 <%--    <c:import url="commoms/navbar.jsp" var="data"/>--%>
 <%--    ${data}--%>
 
@@ -109,14 +94,14 @@
 
             <div class="panel-body">
                 <div style="float: left; width: 55px; height: 55px; margin-top: -5px;" class="pull-left">
-                    <img src="${pageContext.request.contextPath}/img_profile/default.png" class="img-rounded" width="60px" height="60px"><br>
+                    <img src="<%=path%>/img_profile/default.png" class="img-rounded" width="60px" height="60px"><br>
                 </div>
 
                 <div  style="float: left; margin-left: 50px; width: 900px; height: 60px; margin-bottom: -10px; margin-top: -5px;">
                     <div style="width: 900px; height: 50px;">
-                        <a href="post/${post.id}" style="font-size: 19px; color: #000000"> ${post.title }</a>
+                        <a href="<%=path%>/post/${post.id}" style="font-size: 19px; color: #000000"> ${post.title }</a>
                         <blockquote class="pull-right">
-                            <a href="profile/${post.user.nickname }">${post.user.nickname }</a>
+                            <a href="<%=path%>/profile/${post.user.nickname }">${post.user.nickname }</a>
                             <small><cite  title="Source Title">${post.lastReplyTime }</cite></small>
                         </blockquote>
                     </div>
@@ -125,7 +110,7 @@
                         <div style="float: left; width: 100px;padding-left: 200px;padding-top: 10px;">
 								<span class="label label-info">
                                     <a style="font-size: 12px; color: #222222;"
-                                        href="b/${post.block.ename}"
+                                        href="<%=path%>/b/${post.block.ename}"
                                         class="text-info">${post.block.name }
                                     </a>
                                 </span>

@@ -37,11 +37,11 @@ public class PostController {
     @RequestMapping("/home")
     public String home(Model model){
 
-        List<Post> posts = postService.getAllPosts();
-        model.addAttribute("posts",posts);
-
         List<Block> blocks = blockService.getAllBlock();
         model.addAttribute("blocks",blocks);
+
+        List<Post> posts = postService.getAllPosts();
+        model.addAttribute("posts",posts);
 
         return "home";
     }
@@ -50,11 +50,11 @@ public class PostController {
     @RequestMapping("/new")
     public String neww (Model model){
 
-        List<Post> posts = postService.getAllPostsNew();
-        model.addAttribute("posts",posts);
-
         List<Block> blocks = blockService.getAllBlock();
         model.addAttribute("blocks",blocks);
+
+        List<Post> posts = postService.getAllPostsNew();
+        model.addAttribute("posts",posts);
 
         return "home";
     }
@@ -96,5 +96,18 @@ public class PostController {
         
         
         return json.toString();
+    }
+
+
+    @RequestMapping(value = "/search",method = RequestMethod.GET)
+    public String searchTitle(Model model,String words){
+
+        List<Post> posts = postService.fuzzySearchTitle(words);
+        model.addAttribute("posts",posts);
+
+        List<Block> blocks = blockService.getAllBlock();
+        model.addAttribute("blocks",blocks);
+
+        return "home";
     }
 }

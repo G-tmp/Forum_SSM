@@ -38,9 +38,16 @@
 
 
     <select id="getAllPosts" resultMap="basePost">
-        SELECT post.* , block.* , `user`.* , block.`id` 'blockid' , user.`id`  'userid' 
-        FROM post  , block  ,`user`  
-        WHERE post.`block_id` = block.`id` AND `user`.`id` = post.`user_id`;
+        SELECT post.* , block.* , `user`.* , block.`id` 'blockid' , user.`id`  'userid'
+        from post
+            left join block
+            on post.`block_id` = block.`id`
+            left join user
+            on  post.`user_id` = user.`id`
+        order by post.id ;
+--         SELECT post.* , block.* , `user`.* , block.`id` 'blockid' , user.`id`  'userid'
+--         FROM post  , block  ,`user`
+--         WHERE post.`block_id` = block.`id` AND `user`.`id` = post.`user_id`;
     </select>
 
     <select id="getAllPostsNew" resultMap="basePost">
@@ -57,7 +64,17 @@
             on post.block_id = block.id  
             left join `user` 
             on post.user_id = user.id 
-        where post.id=#{id} 
+        where post.id=#{id} ;
+    </select>
+
+    <select id="fuzzySearchTitle" resultMap="basePost">
+        select post.* , block.* ,`user`.* , block.id as blockid ,`user`.id as userid
+            from `post`
+            left join block
+            on post.block_id = block.id
+            left join `user`
+            on post.user_id = user.id
+        where post.title like concat('%',#{words},'%');
     </select>
 
     <select id="pagePost" resultMap="basePost">

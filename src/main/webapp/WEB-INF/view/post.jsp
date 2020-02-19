@@ -1,27 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@include file="commoms/navbar.jsp"%>
+
 
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-
-    <!--  Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-
-    <!--  Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <title>sign in</title>
 
 </head>
-<body style="background-color: #d1d9e0;">
+<body>
 
 <script>
 
@@ -139,7 +127,6 @@
 
 
 
-<%@ include file="commoms/navbar.jsp"%>
 
 <div class="container">
 
@@ -203,7 +190,7 @@
          onmouseout="disappear_reply(document.getElementById('float'))">
         <div class="panel-body">
             <p id="username" style="color:#ed5736"></p>
-            <strong id="content" style="width: 800px;color: #000000">content </strong>
+            <strong id="content" style="width: 800px;color: #000000;white-space: pre-wrap ;">content </strong>
             <p id="time" style="color: #000222"><small> asdsdf</small></p>
 
             <!--  <a href="report?rid=${reply.id }&pid=${reply.post_id}"> report</a>  -->
@@ -231,7 +218,7 @@
 
                     <div style="height: 40px;width: 999px;" >
                         <div style="float: left;width: 90%;">
-                            <a href="profile/${reply.user.nickname}">${reply.user.nickname  }</a>
+                            <a href="<%=path%>/profile/${reply.user.nickname}">${reply.user.nickname  }</a>
                             |${reply.publishTime }
                         </div>
                         <div style="float: right;">
