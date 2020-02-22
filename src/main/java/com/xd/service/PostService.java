@@ -22,4 +22,6 @@ public interface PostService {
     Integer IncreaseReplyCount(Integer id);
 
     List<Post> fuzzySearchTitle(String words);
+
+    Integer getPostTotalCount();
 }

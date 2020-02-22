@@ -1,5 +1,7 @@
 package com.xd.utils;
 
+import com.xd.pojo.Reply;
+
 import java.util.List;
 
 public class Page<E> {
@@ -12,36 +14,40 @@ public class Page<E> {
 
 
 
-    public Integer getSize() {
-        return size;
+    public void setProperties(Integer size,Integer cur,Integer totalRecord){
+        this.size = size;
+        this.cur = cur;
+        this.totalRecord = totalRecord;
+        this.list = list;
+
+        if (totalRecord%size == 0)
+            this.totalPage = totalRecord/size;
+        else
+            this.totalPage = totalRecord/size + 1;
+
+
     }
 
-    public void setSize(Integer size) {
-        this.size = size;
+
+
+
+
+
+
+    public Integer getSize() {
+        return size;
     }
 
     public Integer getCur() {
         return cur;
     }
 
-    public void setCur(Integer cur) {
-        this.cur = cur;
-    }
-
     public Integer getTotalRecord() {
         return totalRecord;
     }
 
-    public void setTotalRecord(Integer totalRecord) {
-        this.totalRecord = totalRecord;
-    }
-
     public Integer getTotalPage() {
         return totalPage;
-    }
-
-    public void setTotalPage(Integer totalPage) {
-        this.totalPage = totalPage;
     }
 
     public List<E> getList() {

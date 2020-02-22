@@ -25,18 +25,18 @@
             return;
         }
 
-        var data = {
+        var reply = {
             post : postid,
             content : content,
-            replyTo:"0"
+            replyTo : 0
         };
 
-        // alert(JSON.stringify(data));
+        alert(JSON.stringify(reply));
 
         $.ajax({
             type : "POST",
             url : "/forum/publishReply",
-            data : JSON.stringify(data),
+            data : JSON.stringify(reply),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
 
@@ -228,9 +228,13 @@
                     </div>
 
                     <%--封印Bug--%>
-<%--                    <c:if test="${reply.replyTo!=null }">--%>
+<%--                    <c:if test="${reply.replyTo!=0 }">--%>
 <%--                        <a style="color: #0c8918" href="#" onclick="test(this)" onmouseenter="appear_reply(document.getElementById('float'),this,&quot;${reply.to_reply.content }&quot; , &quot;${reply.to_reply.publishTime}&quot;,&quot;${reply.to_reply.user.username }&quot;)" >@${ reply.to_reply.user.username}</a>--%>
 <%--                    </c:if>--%>
+
+                    <c:if test="${reply.replyTo != 0}">
+                        <a href="#">@${reply.replyTo}</a>
+                    </c:if>
 
                     <strong style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </strong>
 

@@ -68,11 +68,10 @@
 
     <div style="padding-top: 100px;"></div>
 
-<%--    面包屑导航--%>
-<%--    <ul class="breadcrumb">--%>
-<%--        <li><a href="#">XD</a></li>--%>
-<%--        <li><a href="#">${board.name}</a></li>--%>
-<%--    </ul>--%>
+    <div class="well well-lg">
+        <h4>XD</h4>
+        <p>您好，我在大的 Well 中！</p>
+    </div>
 
     <!-- 发帖按钮 -->
     <div>
@@ -161,13 +160,6 @@
 <%--            <li><a href="index?cur=${page.cur+1 }&method=${param.method}&bid=${param.bid }">&raquo;</a></li>--%>
 <%--        </c:if>--%>
 <%--    </ul>--%>
-
-    <!--  
-			[${requestScope.page.totalRecord }]		
-			<h2>m:${param.method }</h2>
-			<h2>b:${param.bid }</h2>
-			<h2>c:${param.cur }</h2>
-		-->
 
 </div>
 

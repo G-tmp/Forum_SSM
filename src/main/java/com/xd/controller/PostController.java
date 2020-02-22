@@ -11,6 +11,7 @@ import com.xd.pojo.User;
 import com.xd.service.BlockService;
 import com.xd.service.PostService;
 import com.xd.service.ReplyService;
+import com.xd.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,16 +60,26 @@ public class PostController {
         return "home";
     }
 
+    private static int PAGESIZE = 3;
 
     @RequestMapping(value = "/post/{pid}",method = RequestMethod.GET)
-    public String post(Model model, @PathVariable int pid){
-        
+    public String post(Model model, @PathVariable Integer pid ,Integer page){
+
         Post p = postService.getPostById(pid);
         model.addAttribute("post",p);
         
-        List<Reply> replies = replyService.getReplysByPostid(pid);
-        model.addAttribute("replies",replies);
-        
+//        List<Reply> replies = replyService.getReplysByPostid(pid);
+//        model.addAttribute("replies",replies);
+
+        try {
+            Page<Reply> replyPage = replyService.getPageReplysByPostid(pid,page,PAGESIZE);
+
+            model.addAttribute("replies",replyPage.getList());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         return  "post";
     }
 

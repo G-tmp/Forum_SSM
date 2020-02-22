@@ -6,6 +6,7 @@ import com.xd.service.BlockService;
 import com.xd.service.PostService;
 import com.xd.service.ReplyService;
 import com.xd.service.UserService;
+import com.xd.utils.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +35,12 @@ public class d {
     @Test
     public void asdfg(){
 
-        List<Post> posts = postService.fuzzySearchTitle("");
+        Page<Reply> replyPage = replyService.getPageReplysByPostid(1,1,3);
 
-        for (Post e:posts){
+        for (Reply e:replyPage.getList()){
             System.out.println(e);
         }
+
     }
     
 }

@@ -1,17 +1,18 @@
 package com.xd.pojo;
 
+import com.xd.utils.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class Reply  implements Serializable {
+public class Reply implements Serializable {
     private Integer id;
     private String content;
     private User user;
     private Post post;
     private Integer floor;
-    private Reply replyTo;
+    private Integer replyTo;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private Date publishTime;
     private Integer isBanned;
@@ -28,7 +29,7 @@ public class Reply  implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s[id=%d,content=%s]",this.getClass().getName(),id,content);
+        return String.format("%s[id=%d,content=%s,reply_to=%d]",this.getClass().getName(),id,content,replyTo);
     }
 
 
@@ -66,11 +67,11 @@ public class Reply  implements Serializable {
         this.post = post;
     }
 
-    public Reply getReplyTo() {
+    public Integer getReplyTo() {
         return replyTo;
     }
 
-    public void setReplyTo(Reply replyTo) {
+    public void setReplyTo(Integer replyTo) {
         this.replyTo = replyTo;
     }
 

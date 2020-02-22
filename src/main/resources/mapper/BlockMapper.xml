@@ -26,6 +26,7 @@
             <result property="content"  column="content"        jdbcType="VARCHAR" />
             <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP" />
             <result property="hit"      column="hit"            jdbcType="INTEGER" />
+            <result property="lastReplyTime"   column="last_reply_time"  jdbcType="TIMESTAMP"/>
         
             <association property="user" javaType="com.xd.pojo.User">
                 <id     property="id"           column="userid"       jdbcType="INTEGER"/>
@@ -40,7 +41,10 @@
             </association> 
         </collection>
     </resultMap>
-    
+
+
+
+
     
     <select id="getAllBlock" resultMap="baseBlock">
         select * from block;
@@ -48,10 +52,10 @@
 
     <select id="getBlockByEname" resultMap="association">
         SELECT block.* , post.* , `user`.* , post.`id` `postid`  , user.`id` `userid`
-            FROM block
-            LEFT JOIN post
+        FROM block
+        LEFT JOIN post
             ON block.`id` = post.`block_id`
-            LEFT JOIN `user`
+        LEFT JOIN `user`
             ON user.`id` = post.`user_id`
         where block.ename = #{ename};
     </select>

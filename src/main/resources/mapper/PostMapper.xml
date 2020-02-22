@@ -105,4 +105,8 @@
         </if>
     </select>
 
+    <select id="getPostTotalCount" resultType="INTEGER">
+        select count(*) from post;
+    </select>
+
 </mapper>

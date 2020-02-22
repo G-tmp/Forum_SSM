@@ -45,4 +45,11 @@ public class PostServiceImpl implements PostService {
     public List<Post> fuzzySearchTitle(String words) {
         return postMapper.fuzzySearchTitle(words);
     }
+
+    @Override
+    public Integer getPostTotalCount() {
+        return postMapper.getPostTotalCount();
+    }
+
+
 }
