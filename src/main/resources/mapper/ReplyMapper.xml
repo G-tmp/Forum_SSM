@@ -59,7 +59,7 @@
             from `reply`
             left join `user`
             on reply.user_id = user.id
-        where reply.post_id = #{id}
+        where reply.post_id = #{id} and reply.is_banned=0
         order by reply.id
         limit #{start} , #{size}  ;
     </select>

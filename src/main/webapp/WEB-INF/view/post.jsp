@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="commoms/navbar.jsp"%>
 
 
@@ -31,7 +30,7 @@
             replyTo : 0
         };
 
-        alert(JSON.stringify(reply));
+        // alert(JSON.stringify(reply));
 
         $.ajax({
             type : "POST",
@@ -186,20 +185,20 @@
      -->
 
     <!-- display @ -->
-    <div class="panel panel-default"  id="float" style="color:#abcd;position: fixed;display: none;"
-         onmouseout="disappear_reply(document.getElementById('float'))">
-        <div class="panel-body">
-            <p id="username" style="color:#ed5736"></p>
-            <strong id="content" style="width: 800px;color: #000000;white-space: pre-wrap ;">content </strong>
-            <p id="time" style="color: #000222"><small> asdsdf</small></p>
+<%--    <div class="panel panel-default"  id="float" style="color:#abcd;position: fixed;display: none;"--%>
+<%--         onmouseout="disappear_reply(document.getElementById('float'))">--%>
+<%--        <div class="panel-body">--%>
+<%--            <p id="username" style="color:#ed5736"></p>--%>
+<%--            <strong id="content" style="width: 800px;color: #000000;white-space: pre-wrap ;">content </strong>--%>
+<%--            <p id="time" style="color: #000222"><small> asdsdf</small></p>--%>
 
-            <!--  <a href="report?rid=${reply.id }&pid=${reply.post_id}"> report</a>  -->
-        </div>
-    </div>
+<%--            <!--  <a href="report?rid=${reply.id }&pid=${reply.post_id}"> report</a>  -->--%>
+<%--        </div>--%>
+<%--    </div>--%>
 
 
     <!--  display reply  -->
-    <c:forEach var="reply" items="${replies}">
+    <c:forEach var="reply" items="${replyPage.list}">
         <div class="panel panel-default" style="box-shadow: 5px 5px 5px gray;">
             <div class="panel-body" style="padding-top: 2px;">
 
@@ -233,7 +232,7 @@
 <%--                    </c:if>--%>
 
                     <c:if test="${reply.replyTo != 0}">
-                        <a href="#">@${reply.replyTo}</a>
+                        <a href="#">To:${reply.replyTo}</a>
                     </c:if>
 
                     <strong style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </strong>
@@ -281,45 +280,49 @@
         </button>
     </div>
 
+
+
+
+
     <!-- ---------   pagination   ------------->
-<%--    <ul class="pagination pagination-lg" style="padding-top: 100px">--%>
-<%--        <!-- 上一页 -->--%>
-<%--        <c:if test="${page.cur!=1 }">--%>
-<%--            <li><a href="post_detail?pid=${post.id }&cur=${page.cur-1}">&laquo;</a></li>--%>
-<%--        </c:if>--%>
+    <ul class="pagination pagination-lg" >
+        <!-- 上一页 -->
+        <c:if test="${replyPage.cur != 1 }">
+            <li><a href="<%=path%>/post/${post.id }?page=${replyPage.cur-1}">&laquo;</a></li>
+        </c:if>
 
 
-<%--        <!-- 当前页为中心前后各显示2页 -->--%>
-<%--        <c:set var="size" value="2" scope="page"></c:set>--%>
-<%--        <c:set var="begin" value="1" scope="page"></c:set>--%>
-<%--        <c:set var="end" value="${page.totalPage }" scope="page"></c:set>--%>
-<%--        <!-- 判断前面有没有2页 -->--%>
-<%--        <c:if test="${page.cur>pageScope.size }">--%>
-<%--            <c:set var="begin" value="${page.cur-pageScope.size }" scope="page"></c:set>--%>
-<%--        </c:if>--%>
-<%--        <!-- 判断后面有没有2页 -->--%>
-<%--        <c:if test="${page.cur<page.totalPage-pageScope.size }">--%>
-<%--            <c:set var="end" value="${page.cur +pageScope.size}" scope="page"></c:set>--%>
-<%--        </c:if>--%>
-<%--        <!-- 显示(begin~end) -->--%>
-<%--        <c:forEach begin="${begin}" end="${end }" var="i">--%>
-<%--            <c:if test="${page.cur!=i }">--%>
-<%--                <li><a href="post_detail?pid=${post.id }&cur=${i}">${i }</a></li>--%>
-<%--            </c:if>--%>
-<%--            <c:if test="${page.cur==i }">--%>
-<%--                <li class="active"><a>${i }</a></li>--%>
-<%--            </c:if>--%>
-<%--        </c:forEach>--%>
+        <!-- 当前页为中心前后各显示2页 -->
+        <c:set var="size" value="2" scope="page"></c:set>
+        <c:set var="begin" value="1" scope="page"></c:set>
+        <c:set var="end" value="${replyPage.totalPage}" scope="page"></c:set>
+        <!-- 判断前面有没有2页 -->
+        <c:if test="${replyPage.cur > pageScope.size }">
+            <c:set var="begin" value="${replyPage.cur - pageScope.size }" scope="page"></c:set>
+        </c:if>
+        <!-- 判断后面有没有2页 -->
+        <c:if test="${replyPage.cur < replyPage.totalPage-pageScope.size }">
+            <c:set var="end" value="${replyPage.cur + pageScope.size}" scope="page"></c:set>
+        </c:if>
+        <!-- 显示(begin~end) -->
+        <c:forEach begin="${begin}" end="${end }" var="i">
+            <c:if test="${replyPage.cur != i}">
+                <li><a href="<%=path%>/post/${post.id}?page=${i}">${i }</a></li>
+            </c:if>
+            <c:if test="${replyPage.cur == i }">
+                <li class="active"><a>${i }</a></li>
+            </c:if>
+        </c:forEach>
 
 
-<%--        <!-- 下一页 -->--%>
-<%--        <c:if test="${page.totalPage!=page.cur }">--%>
-<%--            <li><a href="post_detail?pid=${post.id }&cur=${page.cur+1}">&raquo;</a></li>--%>
-<%--        </c:if>--%>
-<%--    </ul>--%>
+        <!-- 下一页 -->
+        <c:if test="${replyPage.totalPage != replyPage.cur }">
+            <li><a href="<%=path%>/post/${post.id }?page=${replyPage.cur+1}">&raquo;</a></li>
+        </c:if>
+    </ul>
 
     <!--  
-			[${page.totalRecord }]
+			[${replyPage.totalRecord }]
 			<h2>m:${param.method }</h2>
 			<h2>b:${param.bid }</h2>
 			<h2>c:${param.cur }</h2>

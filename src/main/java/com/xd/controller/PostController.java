@@ -60,7 +60,7 @@ public class PostController {
         return "home";
     }
 
-    private static int PAGESIZE = 3;
+    private static int PAGESIZE = 10;
 
     @RequestMapping(value = "/post/{pid}",method = RequestMethod.GET)
     public String post(Model model, @PathVariable Integer pid ,Integer page){
@@ -73,8 +73,7 @@ public class PostController {
 
         try {
             Page<Reply> replyPage = replyService.getPageReplysByPostid(pid,page,PAGESIZE);
-
-            model.addAttribute("replies",replyPage.getList());
+            model.addAttribute("replyPage",replyPage);
         }catch (Exception e){
             e.printStackTrace();
         }
