@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -14,6 +15,9 @@
     <context:component-scan base-package="com.xd.controller"/>
     <context:component-scan base-package="com.xd.service.*" />
 
+    <!--aop-->
+    <aop:aspectj-autoproxy />
+
     <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
 
@@ -26,5 +30,7 @@
         <property name="prefix" value="/WEB-INF/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+
 
 </beans>
