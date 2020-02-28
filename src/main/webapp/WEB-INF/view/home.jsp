@@ -32,7 +32,7 @@
 
         $.ajax({
             type : "post",
-            url : "/forum/publishPost",
+            url : "/<%=path%>/publishPost",
             data : JSON.stringify(data),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",

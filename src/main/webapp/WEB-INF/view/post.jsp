@@ -34,7 +34,7 @@
 
         $.ajax({
             type : "POST",
-            url : "/forum/publishReply",
+            url : "/<%=path%>/publishReply",
             data : JSON.stringify(reply),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
@@ -286,6 +286,8 @@
 
     <!-- ---------   pagination   ------------->
     <ul class="pagination pagination-lg" >
+        <li><a href="<%=path%>/post/${post.id}/?page=1">first</a></li>
+
         <!-- 上一页 -->
         <c:if test="${replyPage.cur != 1 }">
             <li><a href="<%=path%>/post/${post.id }?page=${replyPage.cur-1}">&laquo;</a></li>
@@ -319,6 +321,9 @@
         <c:if test="${replyPage.totalPage != replyPage.cur }">
             <li><a href="<%=path%>/post/${post.id }?page=${replyPage.cur+1}">&raquo;</a></li>
         </c:if>
+
+
+        <li><a href="<%=path%>/post/${post.id}/?page=${replyPage.totalPage}">last</a></li>
     </ul>
 
     <!--  
