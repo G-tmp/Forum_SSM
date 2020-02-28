@@ -27,7 +27,9 @@
             <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP" />
             <result property="hit"      column="hit"            jdbcType="INTEGER" />
             <result property="lastReplyTime"   column="last_reply_time"  jdbcType="TIMESTAMP"/>
-        
+            <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
+
+
             <association property="user" javaType="com.xd.pojo.User">
                 <id     property="id"           column="userid"       jdbcType="INTEGER"/>
                 <result property="email"        column="email"        jdbcType="VARCHAR" />

@@ -27,11 +27,11 @@ public class BlockController {
     
     @RequestMapping(value = "b/{ename}",method = RequestMethod.GET)
     public String getBlockByEname(Model model,@PathVariable String ename){
-        
-        List<Post> posts = blockService.getBlockByEname(ename).getPosts();
-        model.addAttribute("posts",posts);
 
-        return "home";
+        Block block = blockService.getBlockByEname(ename);
+        model.addAttribute("block",block);
+
+        return "block";
     }
 
 

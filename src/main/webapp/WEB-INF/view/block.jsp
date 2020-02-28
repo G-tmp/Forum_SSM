@@ -5,7 +5,7 @@
 <html>
 <head>
 
-    <title>XD</title>
+    <title>${block.name}</title>
 
 </head>
 <body>
@@ -16,8 +16,8 @@
     function show_time() {
         return new date();
     }
-    
-    
+
+
     function submit_button(){
 
         var title = $("#title111").val().trim();
@@ -50,11 +50,11 @@
             }
         });
     };
-    
+
 </script>
 
 
-<!-- 
+<!--
       <body  onload="location.href='IndexServlet?method=getAllPost'">
    -->
 <!-- 运行IndexServlet -->
@@ -63,18 +63,21 @@
 
 <div class="container">
 
-<%--    <c:import url="commoms/navbar.jsp" var="data"/>--%>
-<%--    ${data}--%>
+    <%--    <c:import url="commoms/navbar.jsp" var="data"/>--%>
+    <%--    ${data}--%>
 
     <div style="padding-top: 100px;"></div>
 
-
+    <div class="well well-lg">
+        <h4>${block.name}</h4>
+        <p>${block.description}</p>
+    </div>
 
     <!-- 发帖按钮 -->
     <div>
-    <!-- 按钮触发模态框 -->
+        <!-- 按钮触发模态框 -->
         <button class="btn btn-primary btn-lg" data-toggle="modal"
-            data-target="#myModalll">
+                data-target="#myModalll">
             <h5>发帖</h5>
         </button>
     </div>
@@ -83,7 +86,7 @@
 
 
 
-    <c:forEach var="post" items="${posts}">
+    <c:forEach var="post" items="${block.posts}">
         <!-- 面板 -->
         <div class="panel panel-default"
              style="box-shadow: 5px 5px 5px gray;">
@@ -102,16 +105,16 @@
                         </blockquote>
                     </div>
 
-                    <div style="width: 900px; height: 20px;">
-                        <div style="float: left; width: 100px;padding-left: 200px;padding-top: 10px;">
-								<span class="label label-info">
-                                    <a style="font-size: 12px; color: #222222;"
-                                        href="<%=path%>/b/${post.block.ename}"
-                                        class="text-info">${post.block.name }
-                                    </a>
-                                </span>
-                        </div>
-                    </div>
+<%--                    <div style="width: 900px; height: 20px;">--%>
+<%--                        <div style="float: left; width: 100px;padding-left: 200px;padding-top: 10px;">--%>
+<%--								<span class="label label-info">--%>
+<%--                                    <a style="font-size: 12px; color: #222222;"--%>
+<%--                                       href="<%=path%>/b/${post.block.ename}"--%>
+<%--                                       class="text-info">${post.block.name }--%>
+<%--                                    </a>--%>
+<%--                                </span>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
 
                 <div style="float: right; width: 60px; height: 60px; padding-top: 20px;">
@@ -123,40 +126,40 @@
 
 
     <!-- ---------   pagination   ------------->
-<%--    <ul class="pagination pagination-lg" style="padding-top: 100px">--%>
-<%--        <!-- 上一页 -->--%>
-<%--        <c:if test="${page.cur!=1 }">--%>
-<%--            <li><a href="index?method=${param.method }&cur=${page.cur-1 }&bid=${param.bid }">&laquo;</a></li>--%>
-<%--        </c:if>--%>
+    <%--    <ul class="pagination pagination-lg" style="padding-top: 100px">--%>
+    <%--        <!-- 上一页 -->--%>
+    <%--        <c:if test="${page.cur!=1 }">--%>
+    <%--            <li><a href="index?method=${param.method }&cur=${page.cur-1 }&bid=${param.bid }">&laquo;</a></li>--%>
+    <%--        </c:if>--%>
 
 
-<%--        <!-- 当前页为中心前后各显示2页 -->--%>
-<%--        <c:set var="begin" value="1" scope="page"></c:set>--%>
-<%--        <c:set var="end" value="${page.totalPage }" scope="page"></c:set>--%>
-<%--        <!-- 判断前面有没有2页 -->--%>
-<%--        <c:if test="${page.cur>2 }">--%>
-<%--            <c:set var="begin" value="${page.cur-2 }" scope="page"></c:set>--%>
-<%--        </c:if>--%>
-<%--        <!-- 判断后面有没有2页 -->--%>
-<%--        <c:if test="${page.cur<page.totalPage-2 }">--%>
-<%--            <c:set var="end" value="${page.cur+2 }" scope="page"></c:set>--%>
-<%--        </c:if>--%>
-<%--        <!-- 显示(begin~end) -->--%>
-<%--        <c:forEach begin="${begin}" end="${end }" var="i">--%>
-<%--            <c:if test="${page.cur!=i }">--%>
-<%--                <li><a href="index?method=${param.method }&cur=${i }&bid=${param.bid }">${i }</a></li>--%>
-<%--            </c:if>--%>
-<%--            <c:if test="${page.cur==i }">--%>
-<%--                <li class="active"><a href="index?method=${param.method }&cur=${i }&bid=${param.bid }">${i }</a></li>--%>
-<%--            </c:if>--%>
-<%--        </c:forEach>--%>
+    <%--        <!-- 当前页为中心前后各显示2页 -->--%>
+    <%--        <c:set var="begin" value="1" scope="page"></c:set>--%>
+    <%--        <c:set var="end" value="${page.totalPage }" scope="page"></c:set>--%>
+    <%--        <!-- 判断前面有没有2页 -->--%>
+    <%--        <c:if test="${page.cur>2 }">--%>
+    <%--            <c:set var="begin" value="${page.cur-2 }" scope="page"></c:set>--%>
+    <%--        </c:if>--%>
+    <%--        <!-- 判断后面有没有2页 -->--%>
+    <%--        <c:if test="${page.cur<page.totalPage-2 }">--%>
+    <%--            <c:set var="end" value="${page.cur+2 }" scope="page"></c:set>--%>
+    <%--        </c:if>--%>
+    <%--        <!-- 显示(begin~end) -->--%>
+    <%--        <c:forEach begin="${begin}" end="${end }" var="i">--%>
+    <%--            <c:if test="${page.cur!=i }">--%>
+    <%--                <li><a href="index?method=${param.method }&cur=${i }&bid=${param.bid }">${i }</a></li>--%>
+    <%--            </c:if>--%>
+    <%--            <c:if test="${page.cur==i }">--%>
+    <%--                <li class="active"><a href="index?method=${param.method }&cur=${i }&bid=${param.bid }">${i }</a></li>--%>
+    <%--            </c:if>--%>
+    <%--        </c:forEach>--%>
 
 
-<%--        <!-- 下一页 -->--%>
-<%--        <c:if test="${page.totalPage!=page.cur && page.totalRecord>0}">--%>
-<%--            <li><a href="index?cur=${page.cur+1 }&method=${param.method}&bid=${param.bid }">&raquo;</a></li>--%>
-<%--        </c:if>--%>
-<%--    </ul>--%>
+    <%--        <!-- 下一页 -->--%>
+    <%--        <c:if test="${page.totalPage!=page.cur && page.totalRecord>0}">--%>
+    <%--            <li><a href="index?cur=${page.cur+1 }&method=${param.method}&bid=${param.bid }">&raquo;</a></li>--%>
+    <%--        </c:if>--%>
+    <%--    </ul>--%>
 
 </div>
 

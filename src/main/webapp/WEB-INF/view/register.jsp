@@ -131,7 +131,7 @@
     
     
     function disableButton() {
-        alert(flagNick);
+        // alert(flagNick);
         // alert("email : "+flagEmail+"\n"+"nick : "+flagNick);
         if (flagNick){
             $("#confirmButton").removeAttr("disabled");

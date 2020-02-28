@@ -48,7 +48,7 @@
     					</ul>
 
     					<!-- search   -->
-    					<form action="search" method="get" class="navbar-form navbar-left" role="search">
+    					<form action="<%=path%>/search" method="get" class="navbar-form navbar-left" role="search">
     						<div class="form-group">
     							<input type="text" name="words" class="form-control" placeholder="Search">
     						</div>
@@ -70,7 +70,7 @@
 <%--    							<c:if test="${user.status==7}">--%>
 <%-- 		   							<li><a href="report_list" class="btn btn-lg"><span class="glyphicon glyphicon-tree-conifer">Manager</span></a></li>--%>
 <%--	    						</c:if>--%>
-	    						<li><a href="<%=path%>/profile/${sessionScope.user.nickname }" class="btn btn-lg"><span class="glyphicon glyphicon-user">${sessionScope.user.nickname }</span></a></li>
+	    						<li><a href="<%=path%>/u/${sessionScope.user.nickname }" class="btn btn-lg"><span class="glyphicon glyphicon-user">${sessionScope.user.nickname }</span></a></li>
 	    						<li><a href="<%=path%>/logout" class="btn btn-lg " ><span class="glyphicon glyphicon-log-out">Logout</span></a></li>
 	    					</ul>
     					</c:if>

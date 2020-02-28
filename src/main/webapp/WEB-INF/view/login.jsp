@@ -12,7 +12,7 @@
 
 <script>
     function confirm() {
-        var url="/<%=path%>/login";
+        var url="<%=path%>/login";
         var email=$("#email").val();
         var password=$("#password").val();
 

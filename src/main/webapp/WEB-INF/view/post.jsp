@@ -5,7 +5,7 @@
 <html>
 <head>
 
-    <title>sign in</title>
+    <title>${post.title}</title>
 
 </head>
 <body>
@@ -135,6 +135,7 @@
 
             <div class="media">
                 <div class="media-body">
+                    <h3><a href="<%=path%>/b/${post.block.ename}">${post.block.name}</a></h3>
                     <h2 class="media-heading">${post.title }</h2>
                     <blockquote class="pull-right">
                         <cite title="Source Title">${post.user.nickname }</cite>
@@ -207,9 +208,9 @@
                         <img src="/${pageContext.request.contextPath}/img_profile/${reply.user.profile }" class="img-rounded" width="50px" >
                     </div>
                 </div>
-                        <%--                    <a href="profile/${reply.user.id }"  style="color: #ed5736">${reply.user.nickname }</a>--%>
+                        <%--                    <a href="u/${reply.user.id }"  style="color: #ed5736">${reply.user.nickname }</a>--%>
 <%--                    <div>--%>
-<%--                        <a href="profile/${reply.user.nickname}">nickname</a>--%>
+<%--                        <a href="u/${reply.user.nickname}">nickname</a>--%>
 <%--                    </div>--%>
 
                 
@@ -217,7 +218,7 @@
 
                     <div style="height: 40px;width: 999px;" >
                         <div style="float: left;width: 90%;">
-                            <a href="<%=path%>/profile/${reply.user.nickname}">${reply.user.nickname  }</a>
+                            <a href="<%=path%>/u/${reply.user.nickname}">${reply.user.nickname  }</a>
                             |${reply.publishTime }
                         </div>
                         <div style="float: right;">
@@ -286,7 +287,7 @@
 
     <!-- ---------   pagination   ------------->
     <ul class="pagination pagination-lg" >
-        <li><a href="<%=path%>/post/${post.id}/?page=1">first</a></li>
+        <li><a href="<%=path%>/post/${post.id}?page=1">first</a></li>
 
         <!-- 上一页 -->
         <c:if test="${replyPage.cur != 1 }">
@@ -323,7 +324,7 @@
         </c:if>
 
 
-        <li><a href="<%=path%>/post/${post.id}/?page=${replyPage.totalPage}">last</a></li>
+        <li><a href="<%=path%>/post/${post.id}?page=${replyPage.totalPage}">last</a></li>
     </ul>
 
     <!--  
