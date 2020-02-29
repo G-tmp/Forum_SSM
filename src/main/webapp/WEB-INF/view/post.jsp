@@ -34,7 +34,7 @@
 
         $.ajax({
             type : "POST",
-            url : "/<%=path%>/publishReply",
+            url : "<%=path%>/publishReply",
             data : JSON.stringify(reply),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
@@ -327,12 +327,6 @@
         <li><a href="<%=path%>/post/${post.id}?page=${replyPage.totalPage}">last</a></li>
     </ul>
 
-    <!--  
-			[${replyPage.totalRecord }]
-			<h2>m:${param.method }</h2>
-			<h2>b:${param.bid }</h2>
-			<h2>c:${param.cur }</h2>
-		-->
 </div>
 
 

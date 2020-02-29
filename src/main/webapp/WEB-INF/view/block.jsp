@@ -187,12 +187,8 @@
                         <textarea class="form-control" rows="4" cols="65" name="content" id="content111"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>选择版块</label>
-                        <select class="form-control" id="block111" name="block">
-                            <c:forEach var="block" items="${blocks}">
-                                <option value="${block.id}">${block.name}</option>
-                            </c:forEach>
-                        </select>
+                        <label>版块</label>
+                        ${block.name}
                     </div>
                 </form>
             </div>

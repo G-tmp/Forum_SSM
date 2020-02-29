@@ -49,10 +49,7 @@ public class UserController {
         }
 
         //登陆成功,设置session
-        if (u.getIsAdmin() == 0)
-            session.setAttribute("user",u);
-        else
-            session.setAttribute("admin",u);
+        session.setAttribute("user",u);
 
         json.put("msg","success");
         return json.toString();
@@ -70,7 +67,9 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/register" , method = RequestMethod.POST)
     public String doRegister(@RequestBody User user){
-        //userService.register(user);
+
+        user.setProfile("default.png");
+        userService.register(user);
 
         JSONObject json=new JSONObject();
 
@@ -84,7 +83,7 @@ public class UserController {
     public String logout(Model model,HttpSession session){
         
         session.removeAttribute("user");
-        
+
         return "redirect:home";
     }
 
@@ -100,12 +99,7 @@ public class UserController {
     @RequestMapping("/check_nickname")
     public String nickname(@RequestParam @RequestBody String nickname){
 
-        System.out.println(nickname);
-        
-        
-
         JSONObject json = new JSONObject();
-        
         
         if (userService.checkNicknane(nickname) != null){
             json.put("msg","duplicate");

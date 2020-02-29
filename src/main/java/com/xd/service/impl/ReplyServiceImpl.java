@@ -32,7 +32,7 @@ public class ReplyServiceImpl  implements ReplyService {
     @Transactional      //事务
     @Override
     public Integer publishReply(Reply reply) {
-        return postMapper.IncreaseReplyCount(reply.getPost().getId())  &  replyMapper.publishReply(reply);
+        return postMapper.IncreaseReplyCount(reply.getPost().getId())   &  replyMapper.publishReply(reply);
     }
 
     @Override
@@ -51,8 +51,8 @@ public class ReplyServiceImpl  implements ReplyService {
 
         if (cur == null)
             cur = 1;
-        else if (cur <= 0)
-            throw new RuntimeException("cnm");
+//        else if (cur <= 0)
+//            throw new RuntimeException("error");
 
         replyPage.setProperties(size,cur,replyMapper.getReplyTotalCount(id));
         replyPage.setList(replyMapper.getPageReplysByPostid(id,(replyPage.getCur()-1)*size,size));

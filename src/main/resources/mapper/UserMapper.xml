@@ -21,7 +21,7 @@
     </select>
 
     <insert id="register" parameterType="com.xd.pojo.User">
-        insert into `user` (email,password,nickname) values (#{email},#{password},#{nickname});
+        insert into `user` (email,password,nickname,profile) values (#{email},#{password},#{nickname},#{profile});
     </insert>
 
     <select id="checkNickname" resultMap="baseUser">

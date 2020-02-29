@@ -120,8 +120,10 @@
             url:url,
             contentType : "application/json;charset=UTF-8",
             success:function (result) {
-                if (result["msg"] == "success")
-                    alert("success")
+                if (result["msg"] == "success") {
+                    alert("success");
+                    window.location.href = "<%=path%>/login";
+                }
             },
             error:function () {
                 alert("error")

@@ -57,7 +57,7 @@
 
 
     					<!-- login & register -->
-    					<c:if test="${sessionScope.user==null }">
+    					<c:if test="${sessionScope.user==null}">
 	    					<ul class="nav navbar-nav navbar-right">
 	    						<li><a href="<%=path%>/register" class="btn btn-lg"><span class="glyphicon glyphicon-user">注册</span></a></li>
 	    						<li><a href="<%=path%>/login" class="btn btn-lg " ><span class="glyphicon glyphicon-log-in">登录</span></a></li>

@@ -43,7 +43,6 @@ public class ReplyController {
 //        Reply r = new Reply();
 //        r.setId(0);
 //        reply.setReplyTo(r);
-        System.out.println(reply);
 
         replyService.publishReply(reply);
 
