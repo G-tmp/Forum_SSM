@@ -34,12 +34,15 @@ public class d {
     
     @Test
     public void asdfg(){
+//
+//        Page<Reply> replyPage = replyService.getPageReplysByPostid(1,1,3);
+//
+//        for (Reply e:replyPage.getList()){
+//            System.out.println(e);
+//        }
 
-        Page<Reply> replyPage = replyService.getPageReplysByPostid(1,1,3);
+        
 
-        for (Reply e:replyPage.getList()){
-            System.out.println(e);
-        }
 
     }
     

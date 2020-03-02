@@ -7,17 +7,18 @@ import com.xd.service.BlockService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+
 
 @Controller
-@Aspect
 public class BlockController {
     
     @Autowired
@@ -35,16 +36,9 @@ public class BlockController {
     }
 
 
-//    @Around("execution(* com.xd.controller.*.*(..))")
-//    public String getAllBlock(ProceedingJoinPoint point) throws Throwable {
-//
-//        point.proceed();
-//
-//        List<Block> blocks = blockService.getAllBlock();
-//
-//        Model model = new ConcurrentModel();
-//        model.addAttribute("blocks",blocks);
-//
-//        return "commoms/navbar";
+//    @Before("execution(* com.xd.controller.*.*(..)) && args(model,..)")
+//    public void getAllBlock(Model model) {
+//        model.addAttribute("blocks",blockService.getAllBlock());
+//        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXX");
 //    }
 }

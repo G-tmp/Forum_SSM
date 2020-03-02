@@ -23,7 +23,7 @@ public class UserController {
     
     
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login(){
+    public String login(Model model){
         return "login";
     }
 
@@ -58,7 +58,7 @@ public class UserController {
 
     
     @RequestMapping(value = "/register" , method = RequestMethod.GET)
-    public String register(){
+    public String register(Model model){
         return "register";
     }
 

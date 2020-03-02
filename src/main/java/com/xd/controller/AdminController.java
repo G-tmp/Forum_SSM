@@ -13,7 +13,7 @@ public class AdminController {
 
 
     @RequestMapping("error")
-    public String test(Model model){
+    public String error(Model model){
 
         model.addAttribute("xd","xd");
 

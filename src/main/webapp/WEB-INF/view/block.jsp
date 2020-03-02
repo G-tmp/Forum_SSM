@@ -124,43 +124,6 @@
         </div>
     </c:forEach>
 
-
-    <!-- ---------   pagination   ------------->
-    <%--    <ul class="pagination pagination-lg" style="padding-top: 100px">--%>
-    <%--        <!-- 上一页 -->--%>
-    <%--        <c:if test="${page.cur!=1 }">--%>
-    <%--            <li><a href="index?method=${param.method }&cur=${page.cur-1 }&bid=${param.bid }">&laquo;</a></li>--%>
-    <%--        </c:if>--%>
-
-
-    <%--        <!-- 当前页为中心前后各显示2页 -->--%>
-    <%--        <c:set var="begin" value="1" scope="page"></c:set>--%>
-    <%--        <c:set var="end" value="${page.totalPage }" scope="page"></c:set>--%>
-    <%--        <!-- 判断前面有没有2页 -->--%>
-    <%--        <c:if test="${page.cur>2 }">--%>
-    <%--            <c:set var="begin" value="${page.cur-2 }" scope="page"></c:set>--%>
-    <%--        </c:if>--%>
-    <%--        <!-- 判断后面有没有2页 -->--%>
-    <%--        <c:if test="${page.cur<page.totalPage-2 }">--%>
-    <%--            <c:set var="end" value="${page.cur+2 }" scope="page"></c:set>--%>
-    <%--        </c:if>--%>
-    <%--        <!-- 显示(begin~end) -->--%>
-    <%--        <c:forEach begin="${begin}" end="${end }" var="i">--%>
-    <%--            <c:if test="${page.cur!=i }">--%>
-    <%--                <li><a href="index?method=${param.method }&cur=${i }&bid=${param.bid }">${i }</a></li>--%>
-    <%--            </c:if>--%>
-    <%--            <c:if test="${page.cur==i }">--%>
-    <%--                <li class="active"><a href="index?method=${param.method }&cur=${i }&bid=${param.bid }">${i }</a></li>--%>
-    <%--            </c:if>--%>
-    <%--        </c:forEach>--%>
-
-
-    <%--        <!-- 下一页 -->--%>
-    <%--        <c:if test="${page.totalPage!=page.cur && page.totalRecord>0}">--%>
-    <%--            <li><a href="index?cur=${page.cur+1 }&method=${param.method}&bid=${param.bid }">&raquo;</a></li>--%>
-    <%--        </c:if>--%>
-    <%--    </ul>--%>
-
 </div>
 
 
@@ -168,6 +131,7 @@
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModalll" tabindex="0" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -199,9 +163,7 @@
                         class="btn btn-primary">确定</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal -->
 </div>
 
 </body>

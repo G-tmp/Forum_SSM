@@ -16,12 +16,13 @@
 
 
     <!-- 扫描web相关的bean -->
+    <context:component-scan base-package="com.xd.aop" />
     <context:component-scan base-package="com.xd.controller"/>
     <context:component-scan base-package="com.xd.service.*" />
 
 
     <!--aop-->
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 
     <!-- 开启SpringMVC注解模式 -->
