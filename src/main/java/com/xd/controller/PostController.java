@@ -1,10 +1,7 @@
 package com.xd.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xd.pojo.Block;
 import com.xd.pojo.Post;
 import com.xd.pojo.Reply;
 import com.xd.pojo.User;
@@ -40,9 +37,6 @@ public class PostController {
     @RequestMapping("/home")
     public String home(Model model){
 
-//        List<Block> blocks = blockService.getAllBlock();
-//        model.addAttribute("blocks",blocks);
-
         List<Post> posts = postService.getAllPosts();
         model.addAttribute("posts",posts);
 
@@ -52,9 +46,6 @@ public class PostController {
 
     @RequestMapping("/new")
     public String neww (Model model){
-
-//        List<Block> blocks = blockService.getAllBlock();
-//        model.addAttribute("blocks",blocks);
 
         List<Post> posts = postService.getAllPostsNew();
         model.addAttribute("posts",posts);
@@ -69,7 +60,7 @@ public class PostController {
 
         Post p = postService.getPostById(pid);
         model.addAttribute("post",p);
-        
+
 //        List<Reply> replies = replyService.getReplysByPostid(pid);
 //        model.addAttribute("replies",replies);
 
@@ -116,9 +107,6 @@ public class PostController {
 
         List<Post> posts = postService.fuzzySearchTitle(words);
         model.addAttribute("posts",posts);
-
-//        List<Block> blocks = blockService.getAllBlock();
-//        model.addAttribute("blocks",blocks);
 
         return "home";
     }

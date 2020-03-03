@@ -2,15 +2,14 @@ package com.xd.aop;
 
 
 import com.xd.service.BlockService;
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 
+@Component
 @Aspect
 public class BlockAop {
 
@@ -21,8 +20,8 @@ public class BlockAop {
 
     @Before("execution(* com.xd.controller.*.*(..)) && args(model,..)")
     public void getAllBlocks(Model model){
-        System.out.println("**********************************");
-//        model.addAttribute("blocks",blockService.getAllBlock());
+        System.out.println("AOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOP");
+        model.addAttribute("blocks",blockService.getAllBlock());
     }
 
 }

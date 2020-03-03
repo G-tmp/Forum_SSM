@@ -4,6 +4,7 @@
 <%
 	String path=request.getServletContext().getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,6 @@
 
 	<!--  Bootstrap 核心 CSS 文件 -->
 	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
 
 	<!--  Bootstrap 核心 JavaScript 文件 -->
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -40,8 +40,8 @@
     							<a href="#" class="dropdown-toggle" data-toggle="dropdown">list<b class="caret"></b></a>
     							<ul class="dropdown-menu">
     								<c:forEach items="${blocks}" var="block">
-	    								<li><a href="<%=path%>/b/${block.ename}">${block.name }</a></li>
-	    								<li class="divider"></li>
+										<li class="divider"></li>
+										<li><a href="<%=path%>/b/${block.ename}">${block.name }</a></li>
     								</c:forEach>
     							</ul>
     						</li>
