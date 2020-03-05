@@ -90,7 +90,7 @@
 
             <div class="panel-body">
                 <div style="float: left; width: 55px; height: 55px; margin-top: -5px;" class="pull-left">
-                    <img src="<%=path%>/img_profile/default.png" class="img-rounded" width="60px" height="60px"><br>
+                    <img src="<%=path%>/resources/img_profile/${post.user.profile}" class="img-rounded" width="60px" height="60px"><br>
                 </div>
 
                 <div  style="float: left; margin-left: 50px; width: 900px; height: 60px; margin-bottom: -10px; margin-top: -5px;">

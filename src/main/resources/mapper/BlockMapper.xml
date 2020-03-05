@@ -34,7 +34,7 @@
                 <id     property="id"           column="userid"       jdbcType="INTEGER"/>
                 <result property="email"        column="email"        jdbcType="VARCHAR" />
                 <result property="password"     column="password"     jdbcType="VARCHAR"/>
-                <result property="introduction" column="introduction" jdbcType="VARCHAR" />
+                <result property="bio"          column="bio"          jdbcType="VARCHAR" />
                 <result property="nickname"     column="nickname"     jdbcType="VARCHAR" />
                 <result property="profile"      column="profile"      jdbcType="VARCHAR" />
                 <result property="isAdmin"      column="is_admin"     jdbcType="INTEGER" />

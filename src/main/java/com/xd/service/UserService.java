@@ -18,4 +18,6 @@ public interface UserService {
 
     // find user via nickname
     User getUserByNickname(String nickname);
+
+    Integer updateProfileImg(User user);
 }

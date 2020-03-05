@@ -1,16 +1,20 @@
 package com.xd.utils;
 
-import com.xd.pojo.Reply;
-
 import java.util.List;
 
+
+/**
+ *  泛型分页类
+ *
+ * @param <E>
+ */
 public class Page<E> {
     
-    private Integer size;
-    private Integer cur;
-    private Integer totalRecord;
-    private Integer totalPage;
-    private List<E> list;
+    private Integer size;        //一页多少条
+    private Integer cur;         //当前第几页
+    private Integer totalRecord; //一共多少条记录
+    private Integer totalPage;   //一共多少页
+    private List<E> list;        //存放当前页数据
 
 
 
@@ -24,8 +28,6 @@ public class Page<E> {
             this.totalPage = totalRecord/size;
         else
             this.totalPage = totalRecord/size + 1;
-
-
     }
 
 

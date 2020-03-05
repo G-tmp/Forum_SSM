@@ -7,22 +7,65 @@
 <html>
 <head>
 
-    <title>${user.nickname}</title>
+    <title>个人资料</title>
 
 </head>
 <body>
+
+    <script>
+        function uploadImg() {
+            
+            if ($("#pic_img").var()==""){
+                //为空
+            }else{
+                //不为空
+            }
+            
+            var formData = new formData($("#uploadForm")[0]);   //创建一个forData
+            formData.append("img",$("#pic_img")[0].file[0]);    //把file添加进去  name命名为img
+
+            $.ajax({
+                url : "<%=path%>/uploadImg",
+                data : formData,
+                type : "post",
+                async : false,
+                cache : false,
+                contentType : false,
+                processData : false,
+                success : function (result) {
+                    if (result["msg"] == "success"){
+                        alert("success");
+                    }else {
+                        alert("failed");
+                    }
+                },
+                error : function () {
+                    alert("這是替身攻擊！")
+                }
+            })
+
+        }
+
+    </script>
 
 <div class="container">
 
     <div style="padding-top: 150px;"></div>
 
-    <img src="<%=path%>/img_profile/${user.profile}" class="img-rounded" width="80px" height="80px;">
+    <img src="<%=path%>/resources/img_profile/${user.profile}" class="img-rounded" width="80px" height="80px;">
     <h2>${user.nickname }</h2>
 
     <h3>创建于: ${user.registerTime}</h3>
-    <h3>自我介绍: ${user.introduction}</h3>
+    <h3>自我介绍: ${user.bio}</h3>
 
-
+    <form role="form"  id="uploadForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>上传头像</label>
+            <input type="file" id="pic_img" name="img">
+        </div>
+<%--        <input type="submit" class="btn btn-default" value="D">--%>
+        <button type="button" class="btn btn-default" onclick="uploadImg()">提交</button>
+    </form>
 
 
 <%--    <!-- 历史发帖 -->--%>

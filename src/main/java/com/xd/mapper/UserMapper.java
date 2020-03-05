@@ -22,5 +22,9 @@ public interface UserMapper {
 
     // find user via nickname
     User getUserByNickname(String nickname);
-    
+
+
+    Integer updateProfileImg(User user);
+
+
 }

@@ -20,7 +20,7 @@ public class BlockAop {
 
     @Before("execution(* com.xd.controller.*.*(..)) && args(model,..)")
     public void getAllBlocks(Model model){
-        System.out.println("AOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOPAOP");
+        System.out.println("AOP-AOP-AOP-AOP-AOP-AOP-AOP-AOP-AOP-AOP-AOP-AOP-AOP");
         model.addAttribute("blocks",blockService.getAllBlock());
     }
 

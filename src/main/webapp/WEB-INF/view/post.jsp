@@ -143,7 +143,7 @@
                     </blockquote>
                 </div>
                 <div class="media-right">
-                    <img src="/${pageContext.request.contextPath }/img_profile/${post.user.profile }" class="media-object" style="width:100px">
+                    <img src="${pageContext.request.contextPath }/resources/img_profile/${post.user.profile }" class="media-object" style="width:100px">
                 </div>
             </div>
 
@@ -205,7 +205,7 @@
 
                 <div style="float: left;width: 100px;">
                     <div style="padding-top: 15px;">
-                        <img src="/${pageContext.request.contextPath}/img_profile/${reply.user.profile }" class="img-rounded" width="50px" >
+                        <img src="${pageContext.request.contextPath}/resources/img_profile/${reply.user.profile }" class="img-rounded" width="50px" >
                     </div>
                 </div>
                         <%--                    <a href="u/${reply.user.id }"  style="color: #ed5736">${reply.user.nickname }</a>--%>
@@ -236,7 +236,7 @@
                         <a href="#">To:${reply.replyTo}</a>
                     </c:if>
 
-                    <strong style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </strong>
+                    <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>
 
 
 <%--                    ${reply.replyTo.floor }--%>

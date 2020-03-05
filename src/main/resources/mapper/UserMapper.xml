@@ -8,7 +8,7 @@
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="email" column="email" jdbcType="VARCHAR" />
         <result property="password" column="password" jdbcType="VARCHAR"/>
-        <result property="introduction" column="introduction" jdbcType="VARCHAR" />
+        <result property="bio" column="bio" jdbcType="VARCHAR" />
         <result property="nickname" column="nickname" jdbcType="VARCHAR" />
         <result property="profile" column="profile" jdbcType="VARCHAR" />
         <result property="isAdmin" column="is_admin" jdbcType="INTEGER" />
@@ -36,5 +36,8 @@
         select * from `user` where  nickname = #{nickname}
     </select>
 
+    <update id="updateProfileImg" parameterType="com.xd.pojo.User">
+        update user set profile = #{profile} where id = #{id};
+    </update>
 
 </mapper>

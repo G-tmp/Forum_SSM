@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
     public User getUserByNickname(String nickname) {
         return userMapper.getUserByNickname(nickname);
     }
+
+    @Override
+    public Integer updateProfileImg(User user) {
+        return userMapper.updateProfileImg(user);
+    }
 }

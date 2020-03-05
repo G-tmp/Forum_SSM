@@ -11,7 +11,7 @@ public class User implements Serializable {
     private String password;
     private String nickname;
     private String profile;
-    private String introduction;
+    private String bio;
     private Integer isBanned;
     private Integer isAdmin;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
@@ -67,12 +67,12 @@ public class User implements Serializable {
         this.profile = profile;
     }
 
-    public String getIntroduction() {
-        return introduction;
+    public String getBio() {
+        return bio;
     }
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public Integer getIsBanned() {

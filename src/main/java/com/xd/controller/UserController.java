@@ -5,11 +5,14 @@ package com.xd.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.xd.pojo.User;
 import com.xd.service.UserService;
+import com.xd.utils.UploadImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -131,7 +134,7 @@ public class UserController {
     
     
     @RequestMapping(value = "/u/{nickname}",method = RequestMethod.GET)
-    public String profile(Model model,@PathVariable String nickname){
+    public String profiles(Model model,@PathVariable String nickname){
         
         User u = userService.getUserByNickname(nickname);
 //        u.getId();
@@ -139,6 +142,49 @@ public class UserController {
         
         model.addAttribute("user",u);
 
+        return "user";
+    }
+
+
+    @RequestMapping("/profile")
+    public String myProfile(Model model,HttpSession session){
+
+        User u = (User) session.getAttribute("user");
+
+        if (u == null){
+            return "error";
+        }
+
+        model.addAttribute("user",u);
+
         return "profile";
     }
+
+
+    @RequestMapping("/uploadImg")
+    @ResponseBody
+    public String upload(@RequestBody @PathVariable MultipartFile img,HttpSession session){
+        JSONObject json = new JSONObject();
+
+        System.out.println("img : "+img);
+
+        User user = (User) session.getAttribute("user");
+
+        String path = session.getServletContext().getRealPath("resources/img_profile");
+        String fileName = UploadImage.upload(img,path);
+
+        if (fileName==null){
+            json.put("msg","failed");
+        }
+
+        System.out.println("fileName : "+fileName);
+
+        user.setProfile(fileName);
+        userService.updateProfileImg(user);
+        json.put("msg","success");
+
+        return json.toString();
+//        return "profile";
+    }
+
 }
