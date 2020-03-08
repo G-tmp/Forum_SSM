@@ -1,23 +1,33 @@
 package com.xd.controller;
 
 
+import com.xd.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/admin")
 public class AdminController {
 
 
-    @RequestMapping("error")
-    public String error(Model model){
 
-        model.addAttribute("xd","xd");
+    @RequestMapping("/")
+    public String admin(Model model, HttpSession session){
+        model.addAttribute("","");
 
-        return "error";
+        User user = (User) session.getAttribute("user");
+
+        //not admin
+        if (user!=null || user.getIsAdmin()==0){
+            return  "error";
+        }
+
+
+        return "admin/";
     }
-
 }

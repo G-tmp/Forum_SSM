@@ -20,8 +20,6 @@ public class AdminInterceptor  implements HandlerInterceptor {
         }
 
 
-
-
         return true;
     }
 

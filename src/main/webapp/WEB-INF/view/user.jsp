@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="commoms/navbar.jsp"%>
 
 
@@ -16,7 +15,7 @@
 
     <div style="padding-top: 150px;"></div>
 
-    <img src="<%=path%>/resources/img_profile/${user.profile}" class="img-rounded" width="80px" height="80px;">
+    <img src="<%=path%>/resources/img_profile/${user.profile}" class="img-rounded" width="120px" height="120px;">
     <h2>${user.nickname }</h2>
 
     <h3>创建于: ${user.registerTime}</h3>

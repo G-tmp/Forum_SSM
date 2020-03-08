@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -161,9 +160,8 @@ public class UserController {
     }
 
 
-    @RequestMapping("/uploadImg")
-    @ResponseBody
-    public String upload(@RequestBody @PathVariable MultipartFile img,HttpSession session){
+    @RequestMapping(value = "/uploadImg",method = RequestMethod.POST)
+    public String upload(@RequestParam("img") MultipartFile img,HttpSession session){
         JSONObject json = new JSONObject();
 
         System.out.println("img : "+img);
@@ -183,8 +181,8 @@ public class UserController {
         userService.updateProfileImg(user);
         json.put("msg","success");
 
-        return json.toString();
-//        return "profile";
+//        return json.toString();
+        return "profile";
     }
 
 }

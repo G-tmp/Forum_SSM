@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="commoms/navbar.jsp"%>
 
 <html>
@@ -32,7 +31,7 @@
 
         $.ajax({
             type : "post",
-            url : "/<%=path%>/publishPost",
+            url : "<%=path%>/publishPost",
             data : JSON.stringify(data),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
@@ -115,7 +114,7 @@
                 </div>
 
                 <div style="float: right; width: 60px; height: 60px; padding-top: 20px;">
-                    <span class="badge">${post.replyCount}</span>
+                    <span class="badge" style="font-size: 16px">${post.replyCount}</span>
                 </div>
             </div>
         </div>
