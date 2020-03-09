@@ -11,59 +11,69 @@
 </head>
 <body>
 
-    <script>
-        function upload() {
-            
-            if ($("#pic_img").var()==""){
-                //为空
-            }else{
-                //不为空
-            }
-            
-            var formData = new formData($("#uploadForm")[0]);   //创建一个forData
+<script>
+    function upload() {
+
+        // if (($("#pic_img").val()){
+        //     alert("null");
+        //     return;
+        // }
+
+
+
+        var formData = new FormData($("#uploadForm")[0]);   //创建一个forData
             // formData.append("img",$("#pic_img")[0].file[0]);    //把file添加进去  name命名为img
 
-            $.ajax({
-                type : "POST",
-                url : "<%=path%>/uploadImg",
-                data : formData,
-                encrypt : "multipart/form-data",
-                contentType : false,
-                processData : false,
-                cache : false,
-                success : function (result) {
-                    if (result["msg"] == "success"){
-                        alert("success");
-                    }else {
-                        alert("failed");
-                    }
-                },
-                error : function () {
-                    alert("這是替身攻擊！")
+        alert(formData);
+
+        $.ajax({
+            type : "POST",
+            url : "<%=path%>/uploadImg",
+            data : formData,
+            dataType : "json",
+            encrypt : "multipart/form-data",
+            contentType : false,
+            processData : false,
+            cache : false,
+            success : function (result) {
+                alert(result.path);
+
+                if (result.msg == "success"){
+                    alert("success");
+                    $("#image").attr("src",result.path);
+                }else {
+                    alert("failed");
                 }
-            })
+            },
+            error : function () {
+                alert("這是替身攻擊！")
+            }
 
-        }
+        });
 
-    </script>
+        // $("#pic_img").attr("value","");
+    }
+
+</script>
 
 <div class="container">
 
     <div style="padding-top: 150px;"></div>
 
-    <img src="<%=path%>/resources/img_profile/${user.profile}" class="img-rounded" width="120px" height="120px;">
-    <h2>${user.nickname }</h2>
+    <img id="image" src="<%=path%>/resources/img_profile/${user.profile}" class="img-rounded" width="120px" height="120px;">
+    <h2 >${user.nickname }</h2>
 
     <h3>创建于: ${user.registerTime}</h3>
     <h3>自我介绍: ${user.bio}</h3>
 
-    <form role="form"  id="uploadForm" action="<%=path%>/uploadImg" method="post" enctype="multipart/form-data">
+<%--    <form role="form"  id="uploadForm" action="uploadImg" method="post" enctype="multipart/form-data">--%>
+    <form role="form"  id="uploadForm">
         <div class="form-group">
             <label>上传头像</label>
             <input type="file" id="pic_img" name="img" accept="*">
         </div>
 <%--        <input type="submit" class="btn btn-default" value="D">--%>
-        <button type="submit" class="btn btn-default" >提交</button>
+        <button type="button" class="btn btn-default" onclick="upload()">upload</button>
     </form>
 
 

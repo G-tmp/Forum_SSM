@@ -1,6 +1,10 @@
 package com.xd.service;
 
 import com.xd.pojo.User;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 public interface UserService {
 
@@ -19,5 +23,14 @@ public interface UserService {
     // find user via nickname
     User getUserByNickname(String nickname);
 
-    Integer updateProfileImg(User user);
+    /**
+     * if success , return image name
+     *
+     * @param user
+     * @param img
+     * @param savePath
+     * @param session
+     * @return
+     */
+    public String updateProfileImg(User user, MultipartFile img, String savePath, HttpSession session);
 }

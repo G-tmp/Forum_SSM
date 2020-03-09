@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("")
@@ -116,7 +118,7 @@ public class UserController {
     
     @RequestMapping("/check_email")
     @ResponseBody
-    public String mail(@RequestParam @RequestBody String email){
+    public String mail(@RequestParam("email") @RequestBody String email){
         JSONObject json = new JSONObject();
 
         System.out.println(email);
@@ -160,29 +162,34 @@ public class UserController {
     }
 
 
+
+    @ResponseBody
     @RequestMapping(value = "/uploadImg",method = RequestMethod.POST)
-    public String upload(@RequestParam("img") MultipartFile img,HttpSession session){
-        JSONObject json = new JSONObject();
+    public String upload(@RequestParam("img") MultipartFile img, HttpServletRequest request){
+        HttpSession session = request.getSession();
 
         System.out.println("img : "+img);
+        JSONObject json = new JSONObject();
 
         User user = (User) session.getAttribute("user");
 
-        String path = session.getServletContext().getRealPath("resources/img_profile");
-        String fileName = UploadImage.upload(img,path);
+        String path = "resources/img_profile/";
 
-        if (fileName==null){
+        String imgName = userService.updateProfileImg(user,img,path,session);
+
+        System.out.println("controller" + imgName);
+
+        if (imgName == null){
+            System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             json.put("msg","failed");
+            return json.toString();
         }
 
-        System.out.println("fileName : "+fileName);
 
-        user.setProfile(fileName);
-        userService.updateProfileImg(user);
         json.put("msg","success");
+        json.put("path","http://127.0.0.1:8080/forum/"+path+imgName);
 
-//        return json.toString();
-        return "profile";
+        return json.toString();
     }
 
 }

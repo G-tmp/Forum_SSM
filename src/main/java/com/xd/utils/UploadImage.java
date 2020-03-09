@@ -11,7 +11,19 @@ import java.io.IOException;
 
 public class UploadImage {
 
-    public static String upload(MultipartFile file , String path) {
+
+    /**
+     *  图片写入磁盘
+     *  if (success)
+     *      return file name;
+     *  else
+     *      return null;
+     *
+     * @param file
+     * @param path
+     * @return
+     */
+    public static String upload(MultipartFile file , String path)  {
 
         if (file != null){
 //            String path = session.getServletContext().getRealPath("resources/img_profile");
@@ -29,10 +41,15 @@ public class UploadImage {
 
             try {
                 file.transferTo(saveFile);
+
             } catch (IOException e) {
                 e.printStackTrace();
+                System.out.println("我日你妈");
+
+                return  null;
             }
 
+            System.out.println("成了");
             return fileName;
         }
 
