@@ -7,7 +7,13 @@
 </head>
 <body>
 
-    cnm
+    <div style="padding-top: 100px;"></div>
+
+    <div class="well well-lg">
+        <center>
+            <h4>${error}</h4>
+        </center>
+    </div>
 
 </body>
 </html>

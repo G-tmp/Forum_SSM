@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("")
@@ -23,7 +24,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    
+
+
+
+    @RequestMapping("forbiden")
+    public String error(Model model){
+
+        model.addAttribute("error","Permission denied");
+
+        return "error";
+    }
     
     
     @RequestMapping(value = "/login",method = RequestMethod.GET)
@@ -78,6 +88,7 @@ public class UserController {
         JSONObject json=new JSONObject();
 
         json.put("msg","success");
+
         return json.toString();
     }
     
@@ -153,6 +164,7 @@ public class UserController {
         User u = (User) session.getAttribute("user");
 
         if (u == null){
+            model.addAttribute("error","请先登陆🙏🙏");
             return "error";
         }
 

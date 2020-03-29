@@ -200,7 +200,7 @@
 
     <!--  display reply  -->
     <c:forEach var="reply" items="${replyPage.list}">
-        <div class="panel panel-default" style="box-shadow: 5px 5px 5px gray;">
+        <div id="${post.id}_${reply.floor}" class="panel panel-default" style="box-shadow: 5px 5px 5px gray;">
             <div class="panel-body" style="padding-top: 2px;">
 
                 <div style="float: left;width: 100px;">

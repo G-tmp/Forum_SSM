@@ -104,6 +104,7 @@ public class PostController {
 
     @RequestMapping(value = "/search",method = RequestMethod.GET)
     public String searchTitle(Model model,String words){
+        words = words.trim();
 
         List<Post> posts = postService.fuzzySearchTitle(words);
         model.addAttribute("posts",posts);

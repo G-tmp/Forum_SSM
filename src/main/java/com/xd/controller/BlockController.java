@@ -31,12 +31,6 @@ public class BlockController {
     }
 
 
-    @RequestMapping("error")
-    public String error(Model model){
 
-        model.addAttribute("xd","xd");
-
-        return "error";
-    }
 
 }

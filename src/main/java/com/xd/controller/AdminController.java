@@ -18,16 +18,19 @@ public class AdminController {
 
     @RequestMapping("/")
     public String admin(Model model, HttpSession session){
-        model.addAttribute("","");
 
         User user = (User) session.getAttribute("user");
 
         //not admin
-        if (user!=null || user.getIsAdmin()==0){
+        if (user==null || user.getIsAdmin()==0){
+            model.addAttribute("error","无权限🙏🙏");
             return  "error";
         }
 
 
-        return "admin/";
+        return "admin";
     }
+
+
+
 }
