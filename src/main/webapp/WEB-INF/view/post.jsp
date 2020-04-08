@@ -139,7 +139,9 @@
                     <h2 class="media-heading">${post.title }</h2>
                     <blockquote class="pull-right">
                         <cite title="Source Title">${post.user.nickname }</cite>
-                        <small><cite title="Source Title">${post.publishTime }</cite></small>
+                        <small><cite title="Source Title">
+                            <fmt:formatDate value="${post.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                        </cite></small>
                     </blockquote>
                 </div>
                 <div class="media-right">
@@ -149,7 +151,7 @@
 
             <div style="background-color: #66a9">
                 <div style="float: left;width: 300px;padding-left: 400px;">
-                    <strong>${post.hit }hit</strong>
+                    <!--    <strong>${post.hit }hit</strong>   -->
                 </div>
 <%--                <div style="float: right">--%>
 <%--                    <c:if test="${sessionScope.user!=null && sessionScope.user.status!=7}">--%>
@@ -219,11 +221,14 @@
                     <div style="height: 40px;width: 999px;" >
                         <div style="float: left;width: 90%;">
                             <a href="<%=path%>/u/${reply.user.nickname}">${reply.user.nickname  }</a>
-                            |${reply.publishTime }
+                            |<fmt:formatDate value="${reply.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                         </div>
                         <div style="float: right;">
 <%--                            <span class="badge">#${reply.floor} </span>--%>
                             <h4 style="color: #e74c3c;">#${reply.floor}</h4>
+                            <c:if test="${reply.user.isAdmin} != 0">
+                                <h5><a href="#">删除</a></h5>
+                            </c:if>
                         </div>
                     </div>
 

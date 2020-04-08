@@ -14,8 +14,8 @@
 
 <script>
     
-    var  flagEmail = false;
-    var  flagNick = false;
+    // var  flagEmail = false;
+    // var  flagNick = false;
 
 
     function checkEmail() {
@@ -31,7 +31,6 @@
         if (email == null || email == ""){
             $("#checkResult1").html("");
         }else if(!blank(email)) {
-            flagEmail = false;
             $("#checkResult1").html("<font color='red'>不能包含空格</font>");
         }else{
             $.ajax({
@@ -41,10 +40,8 @@
                 url: url,
                 success: function (result) {
                     if (result["msg"] == "duplicate"){
-                        flagEmail = false;
                         $("#checkResult1").html("<font color='red'>抱歉，该邮箱已被注册，请更换！</font>");
                     }else if (result["msg"] == "unique"){
-                        flagEmail = true;
                         $("#checkResult1").html("<font color='#7fffd4' '>naisuuuuuuu!</font>");
                     }
                 }
@@ -67,7 +64,6 @@
         if (nickname == null  ||  nickname==""){
             $("#checkResult2").html("");
         } if(!blank(nickname)) {
-            flagNick = false;
             $("#checkResult2").html("<font color='red'>不能包含空格</font>");
         }else{
             $.ajax({
@@ -77,17 +73,14 @@
                 url: url,
                 success: function (result) {
                     if (result["msg"] == "duplicate"){
-                        flagNick = false;
                         $("#checkResult2").html("<font color='red'>抱歉，该昵称已被注册，请更换！</font>");
                     }else if (result["msg"] == "unique") {
-                        flagNick = true;
                         $("#checkResult2").html("<font color='#7fffd4' '>naisuuuuuuu!</font>");
                     }
                 }
             });
         }
 
-        disableButton();
     }
     
 
@@ -206,7 +199,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <input type="button" onclick="register()" id="confirmButton" class="btn btn-success"  value="注册" disabled="disabled">
+                        <input type="button" onclick="register()" id="confirmButton" class="btn btn-success"  value="注册" >
                     </div>
                 </div>
             </form>
