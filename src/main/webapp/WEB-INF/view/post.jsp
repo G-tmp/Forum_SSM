@@ -292,11 +292,11 @@
 
     <!-- ---------   pagination   ------------->
     <ul class="pagination pagination-lg" >
-        <li><a href="<%=path%>/post/${post.id}?page=1">first</a></li>
+        <li><a href="<%=path%>/post/${post.id}?p=1">first</a></li>
 
         <!-- 上一页 -->
         <c:if test="${replyPage.cur != 1 }">
-            <li><a href="<%=path%>/post/${post.id }?page=${replyPage.cur-1}">&laquo;</a></li>
+            <li><a href="<%=path%>/post/${post.id }?p=${replyPage.cur-1}">&laquo;</a></li>
         </c:if>
 
 
@@ -315,7 +315,7 @@
         <!-- 显示(begin~end) -->
         <c:forEach begin="${begin}" end="${end }" var="i">
             <c:if test="${replyPage.cur != i}">
-                <li><a href="<%=path%>/post/${post.id}?page=${i}">${i }</a></li>
+                <li><a href="<%=path%>/post/${post.id}?p=${i}">${i }</a></li>
             </c:if>
             <c:if test="${replyPage.cur == i }">
                 <li class="active"><a>${i }</a></li>
@@ -325,11 +325,11 @@
 
         <!-- 下一页 -->
         <c:if test="${replyPage.totalPage != replyPage.cur }">
-            <li><a href="<%=path%>/post/${post.id }?page=${replyPage.cur+1}">&raquo;</a></li>
+            <li><a href="<%=path%>/post/${post.id }?p=${replyPage.cur+1}">&raquo;</a></li>
         </c:if>
 
 
-        <li><a href="<%=path%>/post/${post.id}?page=${replyPage.totalPage}">last</a></li>
+        <li><a href="<%=path%>/post/${post.id}?p=${replyPage.totalPage}">last</a></li>
     </ul>
 
 </div>

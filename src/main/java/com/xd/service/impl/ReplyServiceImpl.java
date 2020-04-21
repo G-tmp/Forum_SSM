@@ -49,11 +49,6 @@ public class ReplyServiceImpl  implements ReplyService {
     public Page<Reply> getPageReplysByPostid(Integer id, Integer cur, Integer size) {
         Page<Reply> replyPage = new Page<>();
 
-        if (cur == null)
-            cur = 1;
-//        else if (cur <= 0)
-//            throw new RuntimeException("error");
-
         replyPage.setProperties(size,cur,replyMapper.getReplyTotalCount(id));
         replyPage.setList(replyMapper.getPageReplysByPostid(id,(replyPage.getCur()-1)*size,size));
 

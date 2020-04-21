@@ -11,7 +11,7 @@
 
     <div class="well well-lg">
         <center>
-            <h4>${error}</h4>
+            <h4 style="color: red;">${error}</h4>
         </center>
     </div>
 

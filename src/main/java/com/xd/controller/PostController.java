@@ -56,10 +56,10 @@ public class PostController {
     private static int PAGESIZE = 10;
 
     @RequestMapping(value = "/post/{pid}",method = RequestMethod.GET)
-    public String post(Model model, @PathVariable Integer pid ,Integer page){
+    public String post(Model model, @PathVariable(value = "pid") Integer pid ,@RequestParam(value = "p",required = false) Integer page){
 
-        Post p = postService.getPostById(pid);
-        model.addAttribute("post",p);
+        Post post = postService.getPostById(pid);
+        model.addAttribute("post",post);
 
 //        List<Reply> replies = replyService.getReplysByPostid(pid);
 //        model.addAttribute("replies",replies);
@@ -105,6 +105,12 @@ public class PostController {
     @RequestMapping(value = "/search",method = RequestMethod.GET)
     public String searchTitle(Model model,String words){
         words = words.trim();
+
+        if (words==""){
+            model.addAttribute("error","不能为空");
+            return "error";
+        }
+
 
         List<Post> posts = postService.fuzzySearchTitle(words);
         model.addAttribute("posts",posts);

@@ -112,7 +112,7 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping("/check_nickname")
-    public String nickname(@RequestParam @RequestBody String nickname){
+    public String nickname( @RequestBody String nickname){
 
         JSONObject json = new JSONObject();
         
