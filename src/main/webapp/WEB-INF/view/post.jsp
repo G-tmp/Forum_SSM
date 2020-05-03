@@ -139,7 +139,9 @@
                     <h3><a href="<%=path%>/b/${post.block.ename}">${post.block.name}</a></h3>
                     <h2 class="media-heading">${post.title }</h2>
                     <blockquote class="pull-right">
-                        <cite title="Source Title">${post.user.nickname }</cite>
+                        <cite title="Source Title">
+                            <a href="../u/${post.user.nickname}">${post.user.nickname}</a>
+                        </cite>
                         <small><cite title="Source Title">
                             <fmt:formatDate value="${post.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                         </cite></small>

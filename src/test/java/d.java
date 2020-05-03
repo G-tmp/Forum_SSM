@@ -1,3 +1,4 @@
+import com.xd.mapper.PostMapper;
 import com.xd.pojo.Block;
 import com.xd.pojo.Post;
 import com.xd.pojo.Reply;
@@ -30,7 +31,9 @@ public class d {
     
     @Autowired
     private PostService postService;
-    
+
+    @Autowired
+    private PostMapper postMapper;
     
     @Test
     public void asdfg(){
@@ -41,9 +44,18 @@ public class d {
 //            System.out.println(e);
 //        }
 
-        
+//        List<Post> posts = postMapper.getPostsByUserId(1);
+//
+//        for (Post e:posts)
+//            System.out.println(e);
 
+//        List<Reply> replies = replyService.getReplysByPostid(1);
+//        for (Reply e:replies)
+//            System.out.println(e);
 
+        List<Reply> reply = replyService.getReplysByPostid(1);
+        for (Reply e:reply)
+            System.out.println(e.getId());
     }
     
 }

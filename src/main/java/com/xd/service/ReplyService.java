@@ -21,4 +21,7 @@ public interface ReplyService {
 
 
     Page<Reply> getPageReplysByPostid(Integer id, Integer cur, Integer size);
+
+
+    List<Reply> getRepliesByUserId(Integer uid);
 }

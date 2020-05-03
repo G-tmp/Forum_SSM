@@ -161,7 +161,12 @@ public class UserController {
     public String profiles(Model model,@PathVariable String nickname){
         
         User u = userService.getUserByNickname(nickname);
-//        u.getId();
+
+        List<Post> posts = postService.getPostsByUserId(u.getId());
+        model.addAttribute("posts",posts);
+
+        List<Reply> replies = replyService.getReplysByPostid(u.getId());
+        model.addAttribute("replies",replies);
         
         
         model.addAttribute("user",u);
@@ -181,6 +186,12 @@ public class UserController {
         }
 
         model.addAttribute("user",u);
+
+        List<Post> posts = postService.getPostsByUserId(u.getId());
+        model.addAttribute("posts",posts);
+
+        List<Reply> replies = replyService.getReplysByPostid(u.getId());
+        model.addAttribute("replies",replies);
 
         return "profile";
     }

@@ -55,5 +55,10 @@ public class ReplyServiceImpl  implements ReplyService {
         return replyPage;
     }
 
+    @Override
+    public List<Reply> getRepliesByUserId(Integer uid) {
+        return replyMapper.getRepliesByUserId(uid);
+    }
+
 
 }

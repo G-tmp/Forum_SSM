@@ -22,4 +22,6 @@ public interface ReplyMapper {
 
 
     List<Reply> getPageReplysByPostid(@Param("id") Integer id,@Param("start") Integer start,@Param("size") Integer size);
+
+    List<Reply> getRepliesByUserId(Integer uid);
 }

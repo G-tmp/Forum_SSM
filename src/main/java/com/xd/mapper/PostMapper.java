@@ -28,4 +28,6 @@ public interface PostMapper {
     List<Post> fuzzySearchTitle(String words);
 
     Integer getPostTotalCount();
+
+    List<Post> getPostsByUserId(Integer uid);
 }

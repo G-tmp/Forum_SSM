@@ -51,5 +51,10 @@ public class PostServiceImpl implements PostService {
         return postMapper.getPostTotalCount();
     }
 
+    @Override
+    public List<Post> getPostsByUserId(Integer uid) {
+        return postMapper.getPostsByUserId(uid);
+    }
+
 
 }

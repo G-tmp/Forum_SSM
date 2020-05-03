@@ -18,7 +18,7 @@
             <result property="isAdmin"      column="is_admin"       jdbcType="INTEGER" />
             <result property="registerTime" column="register_time"  jdbcType="TIMESTAMP"/>
             <result property="nickname"     column="nickname"       jdbcType="VARCHAR" />
-            <result property="bio" column="bio"   jdbcType="VARCHAR" />
+            <result property="bio"          column="bio"            jdbcType="VARCHAR" />
             <result property="email"        column="email"          jdbcType="VARCHAR" />
             <result property="password"     column="password"       jdbcType="VARCHAR" />
             <result property="profile"      column="profile"        jdbcType="VARCHAR" />
@@ -64,4 +64,7 @@
         limit #{start} , #{size}  ;
     </select>
 
+    <select id="getRepliesByUserId" resultType="com.xd.pojo.Reply">
+        select * from reply where user_id = #{uid};
+    </select>
 </mapper>

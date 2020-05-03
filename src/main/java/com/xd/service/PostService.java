@@ -25,5 +25,6 @@ public interface PostService {
 
     Integer getPostTotalCount();
 
+    List<Post> getPostsByUserId(Integer uid);
 
 }

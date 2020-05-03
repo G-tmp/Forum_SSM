@@ -109,4 +109,8 @@
         select count(*) from post;
     </select>
 
+    <select id="getPostsByUserId" resultType="com.xd.pojo.Post">
+        select * from post where user_id = #{uid};
+    </select>
+
 </mapper>
