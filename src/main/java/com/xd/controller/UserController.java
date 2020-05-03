@@ -3,7 +3,11 @@ package com.xd.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.xd.pojo.Post;
+import com.xd.pojo.Reply;
 import com.xd.pojo.User;
+import com.xd.service.PostService;
+import com.xd.service.ReplyService;
 import com.xd.service.UserService;
 import com.xd.utils.UploadImage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("")
@@ -23,6 +28,13 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PostService postService;
+
+    @Autowired
+    private ReplyService replyService;
+
 
 
 
@@ -164,7 +176,7 @@ public class UserController {
         User u = (User) session.getAttribute("user");
 
         if (u == null){
-            model.addAttribute("error","请先登陆🙏🙏");
+            model.addAttribute("error","请先登陆");
             return "error";
         }
 
@@ -199,9 +211,36 @@ public class UserController {
 
 
         json.put("msg","success");
-        json.put("path","http://127.0.0.1:8080/forum/"+path+imgName);
+        json.put("path",path+imgName);
 
         return json.toString();
     }
 
+
+    @RequestMapping(value = "updateMe",method = RequestMethod.GET)
+    public String modify(Model model,HttpSession session){
+
+        User me = (User) session.getAttribute("user");
+
+        if (me == null){
+            model.addAttribute("error","请先登陆");
+            return "error";
+        }
+
+        model.addAttribute("user",me);
+
+        return "user_update";
+    }
+
+
+    @RequestMapping(value = "updateMe",method = RequestMethod.POST)
+    public String modify(Model model,User me,HttpSession session){
+
+        userService.updateInfo(me);
+        User user = userService.getUserById(me.getId());
+
+        session.setAttribute("user",user);
+
+        return "redirect:profile";
+    }
 }

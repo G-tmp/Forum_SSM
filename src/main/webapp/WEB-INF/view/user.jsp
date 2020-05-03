@@ -15,12 +15,15 @@
 
     <div style="padding-top: 150px;"></div>
 
-    <img src="<%=path%>/resources/img_profile/${user.profile}" class="img-rounded" width="120px" height="120px;">
-    <h2>${user.nickname }</h2>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <img src="<%=path%>/resources/img_profile/${user.profile}" class="img-rounded" width="120px" height="120px;">
+            <h2>${user.nickname }</h2>
 
-    <h3>创建于: ${user.registerTime}</h3>
-    <h3>自我介绍: ${user.bio}</h3>
-
+            <h3>创建于: <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></h3>
+            <h3>自我介绍: ${user.bio}</h3>
+        </div>
+    </div>
 
 
 

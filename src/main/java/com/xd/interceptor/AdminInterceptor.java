@@ -15,7 +15,7 @@ public class AdminInterceptor  implements HandlerInterceptor {
         User admin = (User) request.getSession().getAttribute("user");
 
         if (admin == null || admin.getIsAdmin()==0) {
-            response.sendRedirect("forbiden");
+            response.sendRedirect("/forum/forbiden");
             return false;
         }
 

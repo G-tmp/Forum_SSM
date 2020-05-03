@@ -4,6 +4,8 @@ import com.xd.pojo.User;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 public interface UserMapper {
 
@@ -23,8 +25,11 @@ public interface UserMapper {
     // find user via nickname
     User getUserByNickname(String nickname);
 
+    User getUserById(Integer id);
 
     Integer updateProfileImg(User user);
 
+    Integer updateInfo(User user);
 
+    List<User> getAllUsers();
 }

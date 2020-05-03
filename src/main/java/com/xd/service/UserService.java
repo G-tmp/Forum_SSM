@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public interface UserService {
 
@@ -23,6 +24,8 @@ public interface UserService {
     // find user via nickname
     User getUserByNickname(String nickname);
 
+    User getUserById(Integer id);
+
     /**
      * if success , return image name
      *
@@ -33,4 +36,8 @@ public interface UserService {
      * @return
      */
     public String updateProfileImg(User user, MultipartFile img, String savePath, HttpSession session);
+
+    Integer updateInfo(User user);
+
+    List<User> getAllUsers();
 }

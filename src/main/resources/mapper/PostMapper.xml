@@ -44,7 +44,7 @@
             on post.`block_id` = block.`id`
             left join user
             on  post.`user_id` = user.`id`
-        order by post.id ;
+        order by post.reply_count DESC;
 --         SELECT post.* , block.* , `user`.* , block.`id` 'blockid' , user.`id`  'userid'
 --         FROM post  , block  ,`user`
 --         WHERE post.`block_id` = block.`id` AND `user`.`id` = post.`user_id`;

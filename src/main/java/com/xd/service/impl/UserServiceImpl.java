@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 
 @Service
@@ -46,6 +47,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserById(Integer id) {
+        return userMapper.getUserById(id);
+    }
+
+    @Override
     public String updateProfileImg(User user, MultipartFile img, String savePath, HttpSession session) {
         String path = session.getServletContext().getRealPath(savePath);
         String imgName = UploadImage.upload(img,path);
@@ -58,5 +64,15 @@ public class UserServiceImpl implements UserService {
         userMapper.updateProfileImg(user);
 
         return imgName;
+    }
+
+    @Override
+    public Integer updateInfo(User user) {
+        return userMapper.updateInfo(user);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userMapper.getAllUsers();
     }
 }

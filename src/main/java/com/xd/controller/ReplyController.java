@@ -45,6 +45,9 @@ public class ReplyController {
 
         replyService.publishReply(reply);
 
+        System.out.println("************************************************************");
+        System.out.println(reply.getContent());
+        System.out.println("************************************************************");
 
         json.put("msg","success");
 

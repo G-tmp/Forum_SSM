@@ -36,8 +36,26 @@
         select * from `user` where  nickname = #{nickname}
     </select>
 
+    <select id="getUserById" resultMap="baseUser">
+        select * from `user` where  id = #{id};
+    </select>
+
+
     <update id="updateProfileImg" parameterType="com.xd.pojo.User">
         update user set profile = #{profile} where id = #{id};
     </update>
+
+    <update id="updateInfo" parameterType="com.xd.pojo.User">
+        update user set
+            email = #{email} ,
+            bio = #{bio},
+            nickname = #{nickname}
+        where id = #{id};
+    </update>
+
+
+    <select id="getAllUsers" resultMap="baseUser">
+        select * from `user`;
+    </select>
 
 </mapper>

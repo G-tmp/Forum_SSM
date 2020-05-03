@@ -24,4 +24,6 @@ public interface PostService {
     List<Post> fuzzySearchTitle(String words);
 
     Integer getPostTotalCount();
+
+
 }

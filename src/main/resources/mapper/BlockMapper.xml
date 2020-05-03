@@ -13,7 +13,7 @@
     </resultMap>
 
 
-    <resultMap id="association" type="com.xd.pojo.Block">
+    <resultMap id="associationBlock" type="com.xd.pojo.Block">
         <id     property="id"           column="id"         jdbcType="INTEGER"/>
         <result property="name"         column="name"       jdbcType="VARCHAR"/>
         <result property="ename"        column="ename"      jdbcType="VARCHAR" />
@@ -52,7 +52,7 @@
         select * from block;
     </select>
 
-    <select id="getBlockByEname" resultMap="association">
+    <select id="getBlockByEname" resultMap="associationBlock">
         SELECT block.* , post.* , `user`.* , post.`id` `postid`  , user.`id` `userid`
         FROM block
         LEFT JOIN post
@@ -62,5 +62,15 @@
         where block.ename = #{ename};
     </select>
 
+    <insert id="addBlock" parameterType="com.xd.pojo.Block">
+        insert into block(`name`,`ename`,`description`) values (#{name},#{ename},#{description});
+    </insert>
 
+    <update id="updateBlock" parameterType="com.xd.pojo.Block">
+        update block set
+            name = #{name},
+            ename = #{ename},
+            description = #{description}
+        where id = #{id}
+    </update>
 </mapper>

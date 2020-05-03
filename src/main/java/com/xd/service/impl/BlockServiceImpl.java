@@ -23,4 +23,17 @@ public class BlockServiceImpl implements BlockService {
     public Block getBlockByEname(String ename) {
         return blockMapper.getBlockByEname(ename);
     }
+
+
+    @Override
+    public Integer addBlock(Block block) {
+        return blockMapper.addBlock(block);
+    }
+
+
+    @Override
+    public Integer updateBlock(Block block) {
+        return blockMapper.updateBlock(block);
+    }
+
 }

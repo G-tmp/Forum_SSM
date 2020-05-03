@@ -19,10 +19,10 @@
         var postid = $("#postid").val();
         var content = $("#reply_textarea").val().trim();
 
-        if (content==null || content==""){
-            alert("不能为空");
-            return;
-        }
+        // if (content==null || content==""){
+        //     alert("不能为空");
+        //     return;
+        // }
 
         var reply = {
             post : postid,
@@ -30,7 +30,8 @@
             replyTo : 0
         };
 
-        // alert(JSON.stringify(reply));
+        // alert(content);
+        //alert(JSON.stringify(reply));
 
         $.ajax({
             type : "POST",
@@ -242,7 +243,7 @@
                     </c:if>
 
                     <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>
-
+                   <%-- <h4 style="width: 800px;"> ${reply.content } </h4> --%>
 
 <%--                    ${reply.replyTo.floor }--%>
                 </div>

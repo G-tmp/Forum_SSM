@@ -11,5 +11,10 @@ public interface BlockMapper {
     
     //find block via ename
     Block getBlockByEname(String ename);
-    
+
+
+    Integer addBlock(Block block);
+
+
+    Integer updateBlock(Block block);
 }
