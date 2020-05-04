@@ -20,7 +20,6 @@
 
     function checkEmail() {
         var email=$("#email").val();
-        var url="check_email";
 
         var data={
             email:email
@@ -30,57 +29,57 @@
         //校验空格
         if (email == null || email == ""){
             $("#checkResult1").html("");
-        }else if(!blank(email)) {
+        }else if(hasBlank(email)) {
             $("#checkResult1").html("<font color='red'>不能包含空格</font>");
         }else{
             $.ajax({
                 type: "get",
                 data: data,
                 dataType: "json",
-                url: url,
+                url: "check_email",
                 success: function (result) {
                     if (result["msg"] == "duplicate"){
                         $("#checkResult1").html("<font color='red'>抱歉，该邮箱已被注册，请更换！</font>");
                     }else if (result["msg"] == "unique"){
-                        $("#checkResult1").html("<font color='#7fffd4' '>naisuuuuuuu!</font>");
+                        $("#checkResult1").html("<font color='#16a085'>OK</font>");
                     }
                 }
             });
         }
 
-        disableButton();
+        // disableButton();
     }
     
     
     function checkName() {
         var nickname=$("#nickname").val();
-        var url="check_nickname";
 
         var data={
             nickname:nickname
         };
 
         //校验空格
-        if (nickname == null  ||  nickname==""){
+        if (nickname == null  ||  nickname == ""){
             $("#checkResult2").html("");
-        } if(!blank(nickname)) {
+        }else if(hasBlank(nickname)) {
             $("#checkResult2").html("<font color='red'>不能包含空格</font>");
         }else{
             $.ajax({
                 type: "get",
                 data: data,
                 dataType: "json",
-                url: url,
+                url: "check_nickname",
                 success: function (result) {
                     if (result["msg"] == "duplicate"){
                         $("#checkResult2").html("<font color='red'>抱歉，该昵称已被注册，请更换！</font>");
                     }else if (result["msg"] == "unique") {
-                        $("#checkResult2").html("<font color='#7fffd4' '>naisuuuuuuu!</font>");
+                        $("#checkResult2").html("<font color='#16a085'>OK</font>");
                     }
                 }
             });
         }
 
+        // disableButton();
     }
     
 
@@ -92,9 +91,19 @@
         var email=$("#email").val();
         var password=$("#password").val();
         var password2=$("#password2").val();
-        
-        if (password != password2){
-            alert("密码不一致")
+
+        if (password== null  || password==""){
+            alert("密码不能为空");
+            return;
+        }
+
+        if (hasBlank(password)) {
+            alert("密码不能含有空格");
+            return;
+        }
+
+        if (password !== password2){
+            alert("两次密码不一致");
             return;
         }
 
@@ -127,20 +136,25 @@
     
     function disableButton() {
         // alert(flagNick);
-        // alert("email : "+flagEmail+"\n"+"nick : "+flagNick);
-        if (flagNick){
+        alert("email : "+flagEmail+"\n"+"nick : "+flagNick);
+        // if (flagNick){
+        //     $("#confirmButton").removeAttr("disabled");
+        // }else{
+        //     $("#confirmButton").attr("disabled","disabled");
+        // }
+
+        if (flagNick && flagEmail)
             $("#confirmButton").removeAttr("disabled");
-        }else{
-            $("#confirmButton").attr("disabled","disabled");
-        }
     }
 
 
-    function blank(str) {
+    // 判断字符串是否有空格
+    function hasBlank(str) {
+        // 無
         if (str.indexOf(" ") == -1){
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
     
@@ -168,7 +182,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">E-mail</label>
                     <div class="col-sm-8">
-                        <input type="text " onkeyup="checkEmail()"  id="email"  name="email" placeholder="请输入E-mail" class="form-control"  required >
+                        <input type="text" onkeyup="checkEmail()"  id="email"  name="email" placeholder="请输入E-mail" class="form-control"  required >
                         <span id="checkResult1"></span>
                     </div>
                 </div>
@@ -177,7 +191,7 @@
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">昵称</label>
                     <div class="col-sm-8">
-                        <input type="text " onkeyup="checkName()"  name="nickname" id="nickname" placeholder="请输入昵称" class="form-control" required >
+                        <input type="text" onkeyup="checkName()"  name="nickname" id="nickname" placeholder="请输入昵称" class="form-control" required >
                         <span id="checkResult2"></span>
                     </div>
                 </div>
@@ -186,7 +200,7 @@
                 <div class="form-group">
                     <label  class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-8">
-                        <input type="password " name="password" id="password"  placeholder="请输入密码" class="form-control" required >
+                        <input type="password" name="password" id="password"  placeholder="请输入密码" class="form-control" required >
                     </div>
                 </div>
 

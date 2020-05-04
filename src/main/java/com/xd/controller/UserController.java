@@ -124,10 +124,13 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping("/check_nickname")
-    public String nickname( @RequestBody String nickname){
+    public String nickname(@RequestParam("nickname") @RequestBody String nickname){
 
         JSONObject json = new JSONObject();
-        
+
+        System.out.println(nickname);
+
+        // exist
         if (userService.checkNicknane(nickname) != null){
             json.put("msg","duplicate");
             return json.toString();
@@ -145,7 +148,8 @@ public class UserController {
         JSONObject json = new JSONObject();
 
         System.out.println(email);
-        
+
+        // exist
         if (userService.checkEmail(email) != null){
             json.put("msg","duplicate");
             return json.toString();
