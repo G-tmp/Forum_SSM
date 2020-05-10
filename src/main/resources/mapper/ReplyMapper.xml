@@ -24,13 +24,26 @@
             <result property="profile"      column="profile"        jdbcType="VARCHAR" />
         </association>
 
+        <association property="post" javaType="com.xd.pojo.Post">
+            <id     property="id"           column="postid"           jdbcType="INTEGER"/>
+            <result property="content"      column="content"      jdbcType="VARCHAR"/>
+            <result property="hit"          column="hit"          jdbcType="INTEGER"/>
+            <result property="isBanned"     column="is_banned"    jdbcType="INTEGER"/>
+            <result property="publishTime"  column="publish_time" jdbcType="TIMESTAMP"/>
+            <result property="title"        column="title"        jdbcType="VARCHAR"/>
+            <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
+            <result property="lastReplyTime"   column="last_reply_time"  jdbcType="TIMESTAMP"/>
+
+        </association>
+
+
     </resultMap>
 
 
 
 
     <select id="getReplysByPostid" resultMap="baseReply">
-        select `reply`.*,`user`.* , `user`.id as `userid`
+        select `reply`.* , `user`.* , `user`.id  as `userid`
             from `reply`
             left join `user`
             on reply.user_id = user.id
@@ -65,6 +78,24 @@
     </select>
 
     <select id="getRepliesByUserId" resultType="com.xd.pojo.Reply">
-        select * from reply where user_id = #{uid};
+        /*select * from reply where user_id = #{uid};*/
+
+        select `reply`.* , `post`.id as `postid` , `post`.title
+            from `reply`
+            left join `post`
+            on `reply`.post_id = `post`.id
+        where `reply`.user_id = #{uid};
     </select>
+
+    <update id="reportReply">
+        update reply set reported = 1 where id = #{rid};
+    </update>
+
+    <select id="getReportReply" resultType="com.xd.pojo.Reply">
+        select * from reply where reported = 1;
+    </select>
+
+    <update id="deleteReply">
+        update reply set is_banned = 1 where id = #{rid}
+    </update>
 </mapper>

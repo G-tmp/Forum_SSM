@@ -60,5 +60,20 @@ public class ReplyServiceImpl  implements ReplyService {
         return replyMapper.getRepliesByUserId(uid);
     }
 
+    @Override
+    public Integer reportReply(Integer rid) {
+        return replyMapper.reportReply(rid);
+    }
+
+    @Override
+    public List<Reply> getReportReply() {
+        return replyMapper.getReportReply();
+    }
+
+    @Override
+    public Integer deleteReply(Integer rid) {
+        return replyMapper.deleteReply(rid);
+    }
+
 
 }

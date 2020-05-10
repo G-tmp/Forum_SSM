@@ -24,4 +24,10 @@ public interface ReplyService {
 
 
     List<Reply> getRepliesByUserId(Integer uid);
+
+    Integer reportReply(Integer rid);
+
+    List<Reply > getReportReply();
+
+    Integer deleteReply(Integer rid);
 }

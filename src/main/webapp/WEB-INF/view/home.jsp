@@ -23,6 +23,11 @@
         var content = $("#content111").val().trim();
         var block = $("#block111").val();
 
+        if (title == null || title === ""){
+            alert("标题不能为空");
+            return;
+        }
+
         var data = {
             title:title,
             content:content,
@@ -182,7 +187,7 @@
                         <textarea class="form-control" rows="2" cols="65" name="title" id="title111" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label>请输入内容(<small>500字以内</small>)</label>
+                        <label>请输入内容(<small>可以为空/500字以内</small>)</label>
                         <textarea class="form-control" rows="4" cols="65" name="content" id="content111"></textarea>
                     </div>
                     <div class="form-group">

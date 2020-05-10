@@ -2,8 +2,12 @@ package com.xd.controller;
 
 
 import com.xd.pojo.Block;
+import com.xd.pojo.Post;
+import com.xd.pojo.Reply;
 import com.xd.pojo.User;
 import com.xd.service.BlockService;
+import com.xd.service.PostService;
+import com.xd.service.ReplyService;
 import com.xd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +30,11 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ReplyService replyService;
 
+    @Autowired
+    private PostService postService;
 
 
 
@@ -68,6 +76,12 @@ public class AdminController {
 
     @RequestMapping("reports")
     public String reportAdmin(Model model){
+
+        List<Reply> replies = replyService.getReportReply();
+        model.addAttribute("replies",replies);
+
+        List<Post> posts = postService.getReportPost();
+        model.addAttribute("posts",posts);
 
         return "/admin/reports";
     }

@@ -58,4 +58,8 @@
         select * from `user`;
     </select>
 
+    <update id="ban" parameterType="INTEGER">
+        update `user` set is_banned = 1 where id = #{uid};
+    </update>
+
 </mapper>

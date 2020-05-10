@@ -75,4 +75,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return userMapper.getAllUsers();
     }
+
+    @Override
+    public Integer ban(Integer uid) {
+        return userMapper.ban(uid);
+    }
 }

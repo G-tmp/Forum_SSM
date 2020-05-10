@@ -11,6 +11,14 @@
 </head>
 <body>
 
+<script>
+    function del() {
+        if(confirm("确定封禁？"))
+            return true;
+        else
+            return false;
+    }
+</script>
 <div class="container">
 
     <div style="padding-top: 150px;"></div>
@@ -18,7 +26,20 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <img src="<%=path%>/resources/img_profile/${user.profile}" class="img-rounded" width="120px" height="120px;">
-            <h2>${user.nickname }</h2>
+            <h2>
+                ${user.nickname }
+                <c:if test="${ sessionScope.user != null}">
+                    <c:if test="${ sessionScope.user.isAdmin != 0}">
+                        <a onclick="return del()" href="../ban?uid=${user.id}"><button type="button" class="btn btn-danger">封禁</button></a>
+                    </c:if>
+                </c:if>
+            </h2>
+
+<%--            <c:if test="${sessionScope.user.isBanned == 0}">--%>
+<%--                <h3>状态：正常</h3>--%>
+<%--            <c:if test="${sessionScope.user.isBanned != 0}">--%>
+<%--                <h3>状态：封禁</h3>--%>
+<%--            </c:if>--%>
 
             <h3>创建于: <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></h3>
             <h3>自我介绍: ${user.bio}</h3>

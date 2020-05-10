@@ -23,6 +23,11 @@
         var content = $("#content111").val().trim();
         var block = $("#block111").val();
 
+        if (content == null || content === ""){
+            alert("标题不能为空");
+            return;
+        }
+
         var data = {
             title:title,
             content:content,

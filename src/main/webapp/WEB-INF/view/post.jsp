@@ -19,10 +19,10 @@
         var postid = $("#postid").val();
         var content = $("#reply_textarea").val().trim();
 
-        // if (content==null || content==""){
-        //     alert("不能为空");
-        //     return;
-        // }
+        if (content==null || content===""){
+            alert("内容不能为空");
+            return;
+        }
 
         var reply = {
             post : postid,
@@ -59,16 +59,16 @@
 
 
 
-    function report(postid,replyid){
-        var reason=prompt("reason");
-
-        if(reason!=null  &&  reason.trim()!=""){
-            if(replyid==undefined)
-                window.location.href="report?"+"pid="+postid+"&reason="+String(reason);
-            else
-                window.location.href="report?rid="+replyid+"&pid="+postid+"&reason="+String(reason);
-        }
-    }
+    // function report(postid,replyid){
+    //     var reason=prompt("reason");
+    //
+    //     if(reason!=null  &&  reason.trim()!=""){
+    //         if(replyid==undefined)
+    //             window.location.href="report?"+"pid="+postid+"&reason="+String(reason);
+    //         else
+    //             window.location.href="report?rid="+replyid+"&pid="+postid+"&reason="+String(reason);
+    //     }
+    // }
 
 
 
@@ -76,6 +76,33 @@
         if(confirm("确定删除？"))
             return true;
         return false;
+    }
+
+    function confirm_report(){
+        if(confirm("确定举报？"))
+            return true;
+        return false;
+    }
+
+    function report(postid,replyid){
+        var reason=prompt("请输入原因").trim();
+        var url = "report_reply";
+
+        if (reason!=null && reason!==""){
+            $.ajax({
+                type : "GET",
+                url : url,
+                data : ,
+                dataType : "json",
+                contentType : "application/json;charset=UTF-8",
+                success : function (result) {
+                    alert("举报成功")
+                },
+                error : function (result) {
+                    alert("error");
+                }
+            });
+        }
     }
 
 
@@ -138,6 +165,13 @@
                 <div class="media-body">
                     <h3><a href="<%=path%>/b/${post.block.ename}">${post.block.name}</a></h3>
                     <h2 class="media-heading">${post.title }</h2>
+
+                    <c:if test="${sessionScope.user != null}">
+                        <c:if test="${sessionScope.user.isAdmin != 0}">
+                            <a href="del_post?pid=${post.id}">delete</a>
+                        </c:if>
+                    </c:if>
+
                     <blockquote class="pull-right">
                         <cite title="Source Title">
                             <a href="../u/${post.user.nickname}">${post.user.nickname}</a>
@@ -170,6 +204,8 @@
 <%--                </div>--%>
             </div>
         </div>
+
+        <a onclick="return confirm_report()" href="report_post?pid=${post.id}">report</a>
 
         <h4>${post.content }</h4>
 
@@ -225,13 +261,15 @@
                         <div style="float: left;width: 90%;">
                             <a href="<%=path%>/u/${reply.user.nickname}">${reply.user.nickname  }</a>
                             |<fmt:formatDate value="${reply.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                            |<a onclick="return confirm_report()" href="report_reply?pid=${post.id}&rid=${reply.id}">report</a>
+                            |<a onclick="return confirm_delete()" href="del_reply?pid=${post.id}&rid=${reply.id}">delete</a>
                         </div>
                         <div style="float: right;">
 <%--                            <span class="badge">#${reply.floor} </span>--%>
                             <h4 style="color: #e74c3c;">#${reply.floor}</h4>
-                            <c:if test="${reply.user.isAdmin} != 0">
-                                <h5><a href="#">删除</a></h5>
-                            </c:if>
+<%--                            <c:if test="${sessionScope.user.isAdmin != 0 } ">--%>
+<%--                                <h5><a href="#">report</a></h5>--%>
+<%--                            </c:if>--%>
                         </div>
                     </div>
 
@@ -240,12 +278,18 @@
 <%--                        <a style="color: #0c8918" href="#" onclick="test(this)" onmouseenter="appear_reply(document.getElementById('float'),this,&quot;${reply.to_reply.content }&quot; , &quot;${reply.to_reply.publishTime}&quot;,&quot;${reply.to_reply.user.username }&quot;)" >@${ reply.to_reply.user.username}</a>--%>
 <%--                    </c:if>--%>
 
-                    <c:if test="${reply.replyTo != 0}">
-                        <a href="#">To:${reply.replyTo}</a>
+<%--                    <c:if test="${reply.replyTo != 0}">--%>
+<%--                        <a href="#">To:${reply.replyTo}</a>--%>
+<%--                    </c:if>--%>
+
+                    <c:if test="${reply.isBanned == 0}">
+                        <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>
+                    </c:if>
+                    <c:if test="${reply.isBanned != 0}">
+                        <h4 style="width: 800px;"> 已被删除! </h4>
                     </c:if>
 
-                    <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>
-                   <%-- <h4 style="width: 800px;"> ${reply.content } </h4> --%>
+                <%-- <h4 style="width: 800px;"> ${reply.content } </h4> --%>
 
 <%--                    ${reply.replyTo.floor }--%>
                 </div>

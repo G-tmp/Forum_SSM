@@ -28,12 +28,16 @@
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
             success : function (result) {
-                if (result["msg"] == "success")
-                    window.location.href="home";
-                else if (result["msg"] == "wrong")
+                if (result["msg"] == "success") {
+                    window.location.href = "home";
+                } else if (result["msg"] == "wrong") {
                     alert("密码错误")
-                else if (result["msg"] == "null")
+                } else if (result["msg"] == "null"){
                     alert("账号不存在");
+                } else if (result["msg"] == "banned") {
+                    alert("账号被Ban")
+                    return;
+                }
             },
             error : function () {
                 alert("error");

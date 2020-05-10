@@ -30,4 +30,10 @@ public interface PostMapper {
     Integer getPostTotalCount();
 
     List<Post> getPostsByUserId(Integer uid);
+
+    Integer reportPost(Integer pid);
+
+    List< Post> getReportPost();
+
+    Integer deletePost(Integer pid);
 }

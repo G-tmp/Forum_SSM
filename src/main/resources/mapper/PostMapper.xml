@@ -113,4 +113,16 @@
         select * from post where user_id = #{uid};
     </select>
 
+    <update id="reportPost">
+        update post set reported = 1 where id = #{pid};
+    </update>
+
+    <select id="getReportPost" resultType="com.xd.pojo.Post">
+        select * from post where reported = 1;
+    </select>
+
+    <update id="deletePost">
+        update post set is_banned = 1 where id = #{pid}
+    </update>
+
 </mapper>

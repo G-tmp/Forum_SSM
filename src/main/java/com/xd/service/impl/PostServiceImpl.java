@@ -56,5 +56,20 @@ public class PostServiceImpl implements PostService {
         return postMapper.getPostsByUserId(uid);
     }
 
+    @Override
+    public Integer reportPost(Integer pid) {
+        return postMapper.reportPost(pid);
+    }
+
+    @Override
+    public List<Post> getReportPost() {
+        return postMapper.getReportPost();
+    }
+
+    @Override
+    public Integer deletePost(Integer pid) {
+        return postMapper.deletePost(pid);
+    }
+
 
 }

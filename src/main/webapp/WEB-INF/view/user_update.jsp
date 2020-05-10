@@ -45,7 +45,7 @@
 
                 <!-- bio -->
                 <div class="form-group">
-                    <label  class="col-sm-2 control-label">昵称</label>
+                    <label  class="col-sm-2 control-label">个人介绍</label>
                     <div class="col-sm-8">
                         <input type="text" value="${user.bio}"  name="bio" id="bio" placeholder="请输入简介" class="form-control"  >
                     </div>

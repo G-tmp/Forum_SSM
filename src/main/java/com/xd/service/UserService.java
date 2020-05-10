@@ -40,4 +40,7 @@ public interface UserService {
     Integer updateInfo(User user);
 
     List<User> getAllUsers();
+
+    Integer ban(Integer uid);
+
 }

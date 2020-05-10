@@ -74,6 +74,11 @@ public class UserController {
             return json.toString();
         }
 
+        if (u.getIsBanned() !=0 ){
+            json.put("msg","banned");
+            return json.toString();
+        }
+
         //登陆成功,设置session
         session.setAttribute("user",u);
 
@@ -257,5 +262,23 @@ public class UserController {
         session.setAttribute("user",user);
 
         return "redirect:profile";
+    }
+
+
+    @RequestMapping(value = "ban",method = RequestMethod.GET)
+    public String ban(Model model,Integer uid){
+
+        userService.ban(uid);
+        String nickname = userService.getUserById(uid).getNickname();
+
+        return "redirect:u/"+nickname;
+    }
+
+
+    @RequestMapping("report")
+    public String report(Model model,Integer rid){
+
+
+        return "";
     }
 }

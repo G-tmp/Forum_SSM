@@ -117,4 +117,27 @@ public class PostController {
 
         return "home";
     }
+
+
+    @RequestMapping("post/report_post")
+    public String report_post(Model model,Integer pid,HttpSession session){
+
+        User u = (User) session.getAttribute("user");
+
+        //do not login
+        if(u == null){
+            model.addAttribute("error","请先登陆");
+            return "error";
+        }
+
+        postService.reportPost(pid);
+
+        return "home";
+    }
+
+    @RequestMapping("del")
+    public String delPost(Model model,Integer pid){
+
+        return "";
+    }
 }
