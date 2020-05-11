@@ -84,26 +84,26 @@
         return false;
     }
 
-    function report(postid,replyid){
-        var reason=prompt("请输入原因").trim();
-        var url = "report_reply";
-
-        if (reason!=null && reason!==""){
-            $.ajax({
-                type : "GET",
-                url : url,
-                data : ,
-                dataType : "json",
-                contentType : "application/json;charset=UTF-8",
-                success : function (result) {
-                    alert("举报成功")
-                },
-                error : function (result) {
-                    alert("error");
-                }
-            });
-        }
-    }
+    // function report(postid,replyid){
+    //     var reason=prompt("请输入原因").trim();
+    //     var url = "report_reply";
+    //
+    //     if (reason!=null && reason!==""){
+    //         $.ajax({
+    //             type : "GET",
+    //             url : url,
+    //             data : ,
+    //             dataType : "json",
+    //             contentType : "application/json;charset=UTF-8",
+    //             success : function (result) {
+    //                 alert("举报成功")
+    //             },
+    //             error : function (result) {
+    //                 alert("error");
+    //             }
+    //         });
+    //     }
+    // }
 
 
 
@@ -168,7 +168,7 @@
 
                     <c:if test="${sessionScope.user != null}">
                         <c:if test="${sessionScope.user.isAdmin != 0}">
-                            <a href="del_post?pid=${post.id}">delete</a>
+                            <a onclick="return confirm_delete()" href="del_post?pid=${post.id}">delete</a>
                         </c:if>
                     </c:if>
 

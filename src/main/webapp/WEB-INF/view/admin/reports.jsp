@@ -20,7 +20,7 @@
 
                 <thead>
                 <tr>
-                    <th>内容</th>
+                    <th>标题</th>
                 </tr>
                 </thead>
 

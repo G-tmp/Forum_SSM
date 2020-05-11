@@ -59,7 +59,7 @@
             ON block.`id` = post.`block_id`
         LEFT JOIN `user`
             ON user.`id` = post.`user_id`
-        where block.ename = #{ename};
+        where block.ename = #{ename} ;
     </select>
 
     <insert id="addBlock" parameterType="com.xd.pojo.Block">

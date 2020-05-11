@@ -132,12 +132,14 @@ public class PostController {
 
         postService.reportPost(pid);
 
-        return "home";
+        return "redirect:../post/"+pid;
     }
 
-    @RequestMapping("del")
+    @RequestMapping("post/del_post")
     public String delPost(Model model,Integer pid){
 
-        return "";
+        postService.deletePost(pid);
+
+        return "redirect:../home";
     }
 }

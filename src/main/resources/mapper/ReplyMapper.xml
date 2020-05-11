@@ -33,7 +33,6 @@
             <result property="title"        column="title"        jdbcType="VARCHAR"/>
             <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
             <result property="lastReplyTime"   column="last_reply_time"  jdbcType="TIMESTAMP"/>
-
         </association>
 
 
@@ -77,14 +76,13 @@
         limit #{start} , #{size}  ;
     </select>
 
-    <select id="getRepliesByUserId" resultType="com.xd.pojo.Reply">
-        /*select * from reply where user_id = #{uid};*/
-
-        select `reply`.* , `post`.id as `postid` , `post`.title
-            from `reply`
-            left join `post`
-            on `reply`.post_id = `post`.id
-        where `reply`.user_id = #{uid};
+    <select id="getRepliesByUserId" resultType="com.xd.pojo.Reply" >
+        select * from reply where user_id = #{uid};
+--         select `reply`.* , `post`.* , post.id as `postid`
+--             from `reply`
+--             left join `post`
+--             on `reply`.post_id = `post`.id
+--         where `reply`.user_id = #{uid};
     </select>
 
     <update id="reportReply">

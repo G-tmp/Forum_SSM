@@ -174,9 +174,9 @@ public class UserController {
         List<Post> posts = postService.getPostsByUserId(u.getId());
         model.addAttribute("posts",posts);
 
-        List<Reply> replies = replyService.getReplysByPostid(u.getId());
-        model.addAttribute("replies",replies);
-        
+//        List<Reply> replies = replyService.getRepliesByUserId(u.getId());
+//        model.addAttribute("replies",replies);
+//
         
         model.addAttribute("user",u);
 
@@ -199,8 +199,8 @@ public class UserController {
         List<Post> posts = postService.getPostsByUserId(u.getId());
         model.addAttribute("posts",posts);
 
-        List<Reply> replies = replyService.getReplysByPostid(u.getId());
-        model.addAttribute("replies",replies);
+//        List<Reply> replies = replyService.getRepliesByUserId(u.getId());
+//        model.addAttribute("replies",replies);
 
         return "profile";
     }
@@ -275,10 +275,10 @@ public class UserController {
     }
 
 
-    @RequestMapping("report")
-    public String report(Model model,Integer rid){
-
-
-        return "";
-    }
+//    @RequestMapping("report")
+//    public String report(Model model,Integer rid){
+//
+//
+//        return "";
+//    }
 }
