@@ -12,11 +12,8 @@ public class User implements Serializable {
     private String nickname;
     private String profile;
     private String bio;
-    private Integer isBanned;
-    private Integer isAdmin;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Timestamp registerTime;
-
+    private Integer registerTime;
+    private Integer states;
 
     
     
@@ -75,27 +72,19 @@ public class User implements Serializable {
         this.bio = bio;
     }
 
-    public Integer getIsBanned() {
-        return isBanned;
+    public Integer getStates() {
+        return states;
     }
 
-    public void setIsBanned(Integer isBanned) {
-        this.isBanned = isBanned;
+    public void setStates(Integer states) {
+        this.states = states;
     }
 
-    public Integer getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Integer isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    public Timestamp getRegisterTime() {
+    public Integer getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Timestamp registerTime) {
+    public void setRegisterTime(Integer registerTime) {
         this.registerTime = registerTime;
     }
 }

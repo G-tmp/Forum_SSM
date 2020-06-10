@@ -11,9 +11,8 @@
         <result property="bio" column="bio" jdbcType="VARCHAR" />
         <result property="nickname" column="nickname" jdbcType="VARCHAR" />
         <result property="profile" column="profile" jdbcType="VARCHAR" />
-        <result property="isAdmin" column="is_admin" jdbcType="INTEGER" />
-        <result property="isBanned" column="is_banned" jdbcType="INTEGER" />
-        <result property="registerTime" column="register_time" jdbcType="TIMESTAMP" />
+        <result property="states" column="states" jdbcType="INTEGER" />
+        <result property="registerTime" column="register_time" jdbcType="INTEGER" />
     </resultMap>
 
     <select id="login" resultMap="baseUser" parameterType="com.xd.pojo.User">

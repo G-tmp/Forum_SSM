@@ -26,7 +26,7 @@
             <result property="isAdmin"      column="is_admin"       jdbcType="INTEGER" />
             <result property="registerTime" column="register_time"  jdbcType="TIMESTAMP"/>
             <result property="nickname"     column="nickname"       jdbcType="VARCHAR" />
-            <result property="bio" column="bio"   jdbcType="VARCHAR" />
+            <result property="bio"          column="bio"   jdbcType="VARCHAR" />
             <result property="email"        column="email"          jdbcType="VARCHAR" />
             <result property="password"     column="password"       jdbcType="VARCHAR" />
             <result property="profile"      column="profile"        jdbcType="VARCHAR" />
@@ -62,7 +62,7 @@
         select post.* , block.* ,`user`.* , block.id as blockid ,`user`.id as userid
             from `post` 
             left join block 
-            on post.block_id = block.id  
+            on post.block_id = block.id
             left join `user` 
             on post.user_id = user.id 
         where post.id=#{id} and post.is_banned = 0;

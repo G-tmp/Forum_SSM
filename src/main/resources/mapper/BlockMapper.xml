@@ -18,15 +18,15 @@
         <result property="name"         column="name"       jdbcType="VARCHAR"/>
         <result property="ename"        column="ename"      jdbcType="VARCHAR" />
         <result property="description"  column="description" jdbcType="VARCHAR"/>
-        
+
         <collection property="posts" ofType="com.xd.pojo.Post">
             <id     property="id"       column="postid"         jdbcType="INTEGER" />
             <result property="isBanned" column="is_banned"      jdbcType="INTEGER"/>
             <result property="title"    column="title"          jdbcType="VARCHAR" />
             <result property="content"  column="content"        jdbcType="VARCHAR" />
-            <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP" />
+            <result property="publishTime" column="publish_time" jdbcType="INTEGER" />
             <result property="hit"      column="hit"            jdbcType="INTEGER" />
-            <result property="lastReplyTime"   column="last_reply_time"  jdbcType="TIMESTAMP"/>
+            <result property="lastReplyTime"   column="last_reply_time"  jdbcType="INTEGER"/>
             <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
 
 
@@ -39,8 +39,8 @@
                 <result property="profile"      column="profile"      jdbcType="VARCHAR" />
                 <result property="isAdmin"      column="is_admin"     jdbcType="INTEGER" />
                 <result property="isBanned"     column="is_banned"    jdbcType="INTEGER" />
-                <result property="registerTime" column="register_time" jdbcType="TIMESTAMP" />
-            </association> 
+                <result property="registerTime" column="register_time" jdbcType="INTEGER" />
+            </association>
         </collection>
     </resultMap>
 

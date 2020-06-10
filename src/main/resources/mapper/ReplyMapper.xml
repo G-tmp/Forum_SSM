@@ -8,15 +8,14 @@
         <id property="id"           column="id"        jdbcType="INTEGER"/>
         <result property="content"  column="content"   jdbcType="VARCHAR"/>
         <result property="floor"    column="floor"     jdbcType="INTEGER"/>
-        <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP"/>
+        <result property="publishTime" column="publish_time" jdbcType="INTEGER"/>
         <result property="isBanned" column="is_banned" jdbcType="INTEGER"/>
         <result property="replyTo"  column="reply_id"  jdbcType="INTEGER"/>
 
         <association property="user" javaType="com.xd.pojo.User" >
             <id     property="id"           column="userid"         jdbcType="INTEGER"/>
-            <result property="isBanned"     column="is_banned"      jdbcType="INTEGER"/>
-            <result property="isAdmin"      column="is_admin"       jdbcType="INTEGER" />
-            <result property="registerTime" column="register_time"  jdbcType="TIMESTAMP"/>
+            <result property="states"      column="states"          jdbcType="INTEGER" />
+            <result property="registerTime" column="register_time"  jdbcType="INTEGER"/>
             <result property="nickname"     column="nickname"       jdbcType="VARCHAR" />
             <result property="bio"          column="bio"            jdbcType="VARCHAR" />
             <result property="email"        column="email"          jdbcType="VARCHAR" />
@@ -29,10 +28,10 @@
             <result property="content"      column="content"      jdbcType="VARCHAR"/>
             <result property="hit"          column="hit"          jdbcType="INTEGER"/>
             <result property="isBanned"     column="is_banned"    jdbcType="INTEGER"/>
-            <result property="publishTime"  column="publish_time" jdbcType="TIMESTAMP"/>
+            <result property="publishTime"  column="publish_time" jdbcType="INTEGER"/>
             <result property="title"        column="title"        jdbcType="VARCHAR"/>
             <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
-            <result property="lastReplyTime"   column="last_reply_time"  jdbcType="TIMESTAMP"/>
+            <result property="lastReplyTime"   column="last_reply_time"  jdbcType="INTEGER"/>
         </association>
 
 

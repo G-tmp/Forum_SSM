@@ -15,10 +15,8 @@ public class Post implements Serializable {
     private Integer replyCount;
     private User user;
     private Block block;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date publishTime;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date lastReplyTime;
+    private Integer publishTime;
+    private Integer lastReplyTime;
     private Integer isBanned;
 
     
@@ -67,14 +65,6 @@ public class Post implements Serializable {
         return hit;
     }
 
-    public Date getLastReplyTime() {
-        return lastReplyTime;
-    }
-
-    public void setLastReplyTime(Date lastReplyTime) {
-        this.lastReplyTime = lastReplyTime;
-    }
-
     public void setHit(Integer hit) {
         this.hit = hit;
     }
@@ -111,13 +101,6 @@ public class Post implements Serializable {
         this.replyCount = replyCount;
     }
 
-    public Date getPublishTime() {
-        return publishTime;
-    }
-
-    public void setPublishTime(Date publishTime) {
-        this.publishTime = publishTime;
-    }
 
     public Integer getIsBanned() {
         return isBanned;
@@ -125,5 +108,21 @@ public class Post implements Serializable {
 
     public void setIsBanned(Integer isBanned) {
         this.isBanned = isBanned;
+    }
+
+    public Integer getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Integer publishTime) {
+        this.publishTime = publishTime;
+    }
+
+    public Integer getLastReplyTime() {
+        return lastReplyTime;
+    }
+
+    public void setLastReplyTime(Integer lastReplyTime) {
+        this.lastReplyTime = lastReplyTime;
     }
 }

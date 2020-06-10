@@ -13,8 +13,7 @@ public class Reply implements Serializable {
     private Post post;
     private Integer floor;
     private Integer replyTo;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date publishTime;
+    private Integer publishTime;
     private Integer isBanned;
 
 
@@ -75,14 +74,6 @@ public class Reply implements Serializable {
         this.replyTo = replyTo;
     }
 
-    public Date getPublishTime() {
-        return publishTime;
-    }
-
-    public void setPublishTime(Date publishTime) {
-        this.publishTime = publishTime;
-    }
-
     public Integer getIsBanned() {
         return isBanned;
     }
@@ -97,5 +88,13 @@ public class Reply implements Serializable {
 
     public void setFloor(Integer floor) {
         this.floor = floor;
+    }
+
+    public Integer getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Integer publishTime) {
+        this.publishTime = publishTime;
     }
 }
