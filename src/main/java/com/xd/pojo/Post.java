@@ -15,8 +15,8 @@ public class Post implements Serializable {
     private Integer replyCount;
     private User user;
     private Block block;
-    private Integer publishTime;
-    private Integer lastReplyTime;
+    private Long publishTime;
+    private Long lastReplyTime;
     private Integer isBanned;
 
     
@@ -110,19 +110,20 @@ public class Post implements Serializable {
         this.isBanned = isBanned;
     }
 
-    public Integer getPublishTime() {
+
+    public Long getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Integer publishTime) {
+    public void setPublishTime(Long publishTime) {
         this.publishTime = publishTime;
     }
 
-    public Integer getLastReplyTime() {
+    public Long getLastReplyTime() {
         return lastReplyTime;
     }
 
-    public void setLastReplyTime(Integer lastReplyTime) {
+    public void setLastReplyTime(Long lastReplyTime) {
         this.lastReplyTime = lastReplyTime;
     }
 }

@@ -57,9 +57,8 @@ public class d {
 //        for (Reply e:replies)
 //            System.out.println(e);
 
-        List<Reply> reply = replyMapper.getRepliesByUserId(1);
-        for (Reply e:reply)
-            System.out.println(e);
+
+        System.out.println(System.currentTimeMillis());
     }
 
 

@@ -1,6 +1,7 @@
 package com.xd.mapper;
 
 import com.xd.pojo.Post;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface PostMapper {
     Integer publishPost(Post post);
 
     // increase one
-    Integer IncreaseReplyCount(Integer id);
+    Integer IncreaseReplyCount(@Param("id") Integer id, @Param("timestrmp") Long timestrmp);
 
     List<Post> pagePost(Integer start,Integer size);
 

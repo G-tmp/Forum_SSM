@@ -22,11 +22,10 @@
 
         <association property="user" javaType="com.xd.pojo.User" >
             <id     property="id"           column="userid"         jdbcType="INTEGER"/>
-            <result property="isBanned"     column="is_banned"      jdbcType="INTEGER"/>
-            <result property="isAdmin"      column="is_admin"       jdbcType="INTEGER" />
+            <result property="states"        column="states"      jdbcType="INTEGER"/>
             <result property="registerTime" column="register_time"  jdbcType="TIMESTAMP"/>
             <result property="nickname"     column="nickname"       jdbcType="VARCHAR" />
-            <result property="bio"          column="bio"   jdbcType="VARCHAR" />
+            <result property="bio"          column="bio"    jdbcType="VARCHAR" />
             <result property="email"        column="email"          jdbcType="VARCHAR" />
             <result property="password"     column="password"       jdbcType="VARCHAR" />
             <result property="profile"      column="profile"        jdbcType="VARCHAR" />
@@ -88,12 +87,12 @@
     </select>
 
     <insert id="publishPost" parameterType="com.xd.pojo.Post" >
-        insert into `post` (title,content,user_id,block_id)
-         values (#{title},#{content},#{user.id},#{block.id} )
+        insert into `post` (title,content,user_id,block_id,publish_time,last_reply_time)
+         values (#{title},#{content},#{user.id},#{block.id},#{publishTime},#{lastReplyTime} )
     </insert>
 
     <update id="IncreaseReplyCount" parameterType="com.xd.pojo.Post">
-        update `post` set reply_count=reply_count+1 , last_reply_time = now() where id=#{id};
+        update `post` set reply_count=reply_count+1 , last_reply_time = #{timestrmp} where id=#{id};
     </update>
 
     <select id="pagePostNew" resultMap="basePost">

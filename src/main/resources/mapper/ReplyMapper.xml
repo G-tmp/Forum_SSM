@@ -51,8 +51,8 @@
 
     <insert id="publishReply" parameterType="com.xd.pojo.Reply">
         insert into reply
-            (content,user_id,post_id,reply_id,floor)
-            values (#{content},#{user.id},#{post.id},#{replyTo},
+            (content,user_id,post_id,reply_id,publish_time,floor)
+            values (#{content},#{user.id},#{post.id},#{replyTo},#{publishTime},
                 (select reply_count from post where id = #{post.id})
             );
     </insert>
@@ -62,7 +62,7 @@
     </select>
 
     <select id="getReplyTotalCount" resultType="INTEGER">
-        select count(*) from reply where post_id = #{id};
+        select count(*) from reply where post_id = #{id} and is_banned = 0 ;
     </select>
 
     <select id="getPageReplysByPostid" resultMap="baseReply">

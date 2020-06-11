@@ -14,7 +14,7 @@ public class AdminInterceptor  implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         User admin = (User) request.getSession().getAttribute("user");
 
-        if (admin == null || admin.getIsAdmin()==0) {
+        if (admin == null || admin.getStates()<7) {
             response.sendRedirect("/forum/forbiden");
             return false;
         }

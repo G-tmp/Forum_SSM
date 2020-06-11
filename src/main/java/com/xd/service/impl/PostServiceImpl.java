@@ -33,12 +33,15 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Integer publishPost(Post post) {
+        post.setLastReplyTime(System.currentTimeMillis());
+        post.setPublishTime(System.currentTimeMillis());
+
         return postMapper.publishPost(post);
     }
 
     @Override
-    public Integer IncreaseReplyCount(Integer id) {
-        return postMapper.IncreaseReplyCount(id);
+    public Integer IncreaseReplyCount(Integer id,Long timestamp) {
+        return postMapper.IncreaseReplyCount(id,timestamp);
     }
 
     @Override

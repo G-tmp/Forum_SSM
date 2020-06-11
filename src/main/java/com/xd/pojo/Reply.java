@@ -13,7 +13,7 @@ public class Reply implements Serializable {
     private Post post;
     private Integer floor;
     private Integer replyTo;
-    private Integer publishTime;
+    private Long publishTime;
     private Integer isBanned;
 
 
@@ -90,11 +90,12 @@ public class Reply implements Serializable {
         this.floor = floor;
     }
 
-    public Integer getPublishTime() {
+
+    public Long getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(Integer publishTime) {
+    public void setPublishTime(Long publishTime) {
         this.publishTime = publishTime;
     }
 }

@@ -19,7 +19,7 @@ public interface PostService {
     Integer publishPost(Post post);
 
     // increase one
-    Integer IncreaseReplyCount(Integer id);
+    Integer IncreaseReplyCount(Integer id,Long timestamp);
 
     List<Post> fuzzySearchTitle(String words);
 

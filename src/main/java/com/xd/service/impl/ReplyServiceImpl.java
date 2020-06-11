@@ -32,7 +32,10 @@ public class ReplyServiceImpl  implements ReplyService {
     @Transactional      //事务
     @Override
     public Integer publishReply(Reply reply) {
-        return postMapper.IncreaseReplyCount(reply.getPost().getId())   &  replyMapper.publishReply(reply);
+        long now = System.currentTimeMillis();
+        reply.setPublishTime(now);
+
+        return postMapper.IncreaseReplyCount(reply.getPost().getId(),now)   &  replyMapper.publishReply(reply);
     }
 
     @Override

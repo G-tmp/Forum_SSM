@@ -12,7 +12,8 @@ public class User implements Serializable {
     private String nickname;
     private String profile;
     private String bio;
-    private Integer registerTime;
+    private Long registerTime;
+    // Ban:-1   unactivate:0    normal:0~6  admin:7
     private Integer states;
 
     
@@ -80,11 +81,12 @@ public class User implements Serializable {
         this.states = states;
     }
 
-    public Integer getRegisterTime() {
+
+    public Long getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Integer registerTime) {
+    public void setRegisterTime(Long registerTime) {
         this.registerTime = registerTime;
     }
 }

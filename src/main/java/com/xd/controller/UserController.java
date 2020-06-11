@@ -74,7 +74,7 @@ public class UserController {
             return json.toString();
         }
 
-        if (u.getIsBanned() !=0 ){
+        if (u.getStates() == -1 ){
             json.put("msg","banned");
             return json.toString();
         }

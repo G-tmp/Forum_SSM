@@ -40,7 +40,7 @@ public class ReplyController {
 
 
         reply.setUser(u);
-        
+
 //        Reply r = new Reply();
 //        r.setId(0);
 //        reply.setReplyTo(r);
@@ -80,7 +80,7 @@ public class ReplyController {
         User u = (User) session.getAttribute("user");
 
         //do not login
-        if(u == null || u.getIsAdmin()==0){
+        if(u == null || u.getStates()<7){
             model.addAttribute("error","无权限");
             return "error";
         }

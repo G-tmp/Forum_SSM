@@ -167,7 +167,7 @@
                     <h2 class="media-heading">${post.title }</h2>
 
                     <c:if test="${sessionScope.user != null}">
-                        <c:if test="${sessionScope.user.isAdmin != 0}">
+                        <c:if test="${sessionScope.user.states == 7}">
                             <a onclick="return confirm_delete()" href="del_post?pid=${post.id}">delete</a>
                         </c:if>
                     </c:if>
@@ -177,7 +177,8 @@
                             <a href="../u/${post.user.nickname}">${post.user.nickname}</a>
                         </cite>
                         <small><cite title="Source Title">
-                            <fmt:formatDate value="${post.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+                            ${post.publishTime }
+<%--                            <fmt:formatDate value="${post.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>--%>
                         </cite></small>
                     </blockquote>
                 </div>
@@ -260,7 +261,8 @@
                     <div style="height: 40px;width: 999px;" >
                         <div style="float: left;width: 90%;">
                             <a href="<%=path%>/u/${reply.user.nickname}">${reply.user.nickname  }</a>
-                            |<fmt:formatDate value="${reply.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+<%--                            |<fmt:formatDate value="${reply.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>--%>
+                            |${reply.publishTime }
                             |<a onclick="return confirm_report()" href="report_reply?pid=${post.id}&rid=${reply.id}">report</a>
                             |<a onclick="return confirm_delete()" href="del_reply?pid=${post.id}&rid=${reply.id}">delete</a>
                         </div>
