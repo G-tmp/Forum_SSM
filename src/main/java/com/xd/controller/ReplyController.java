@@ -41,6 +41,8 @@ public class ReplyController {
 
         reply.setUser(u);
 
+        System.out.println(reply.getContent());
+
 //        Reply r = new Reply();
 //        r.setId(0);
 //        reply.setReplyTo(r);

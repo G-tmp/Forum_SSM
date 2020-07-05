@@ -20,7 +20,7 @@
     function submit_button(){
 
         var title = $("#title111").val().trim();
-        var content = $("#content111").val().trim();
+        var content = $("#content111").val().trim().replace(/\n|\r\n/g,'<br>').replace(/\s/g,'&nbsp;');
         var block = $("#block111").val();
 
         if (title == null || title === ""){

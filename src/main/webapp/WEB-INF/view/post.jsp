@@ -15,9 +15,11 @@
     function submit_button() {
         // document.getElementById('reply_form').submit();
         // $("#reply_form").submit();
-        
+
+        var regex = /(?!.*>)\s/g;
         var postid = $("#postid").val();
         var content = $("#reply_textarea").val().trim();
+        // var content = $("#reply_textarea").val().trim().replace(regex,'').replace(/\n|\r\n/g,'<br>').replace(/\s/g,'&nbsp;');
 
         if (content==null || content===""){
             alert("内容不能为空");
@@ -32,6 +34,7 @@
 
         // alert(content);
         //alert(JSON.stringify(reply));
+
 
         $.ajax({
             type : "POST",
@@ -285,7 +288,8 @@
 <%--                    </c:if>--%>
 
                     <c:if test="${reply.isBanned == 0}">
-                        <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>
+<%--                        <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>--%>
+                        <h4 style="width: 800px;"> ${reply.content } </h4>
                     </c:if>
                     <c:if test="${reply.isBanned != 0}">
                         <h4 style="width: 800px;"> 已被删除! </h4>
