@@ -1,7 +1,7 @@
 package com.xd.service.impl;
 
-import com.xd.mapper.PostMapper;
-import com.xd.mapper.ReplyMapper;
+import com.xd.dao.PostDao;
+import com.xd.dao.ReplyDao;
 import com.xd.pojo.Reply;
 import com.xd.service.ReplyService;
 import com.xd.utils.Page;
@@ -15,17 +15,17 @@ import java.util.List;
 public class ReplyServiceImpl  implements ReplyService {
 
     @Autowired
-    private ReplyMapper replyMapper;
+    private ReplyDao replyDao;
 
     @Autowired
-    private PostMapper postMapper;
+    private PostDao postDao;
 
 
 
 
     @Override
     public List<Reply> getReplysByPostid(Integer id) {
-        return replyMapper.getReplysByPostid(id);
+        return replyDao.getReplysByPostid(id);
     }
 
 
@@ -35,47 +35,47 @@ public class ReplyServiceImpl  implements ReplyService {
         long now = System.currentTimeMillis();
         reply.setPublishTime(now);
 
-        return postMapper.IncreaseReplyCount(reply.getPost().getId(),now)   &  replyMapper.publishReply(reply);
+        return postDao.IncreaseReplyCount(reply.getPost().getId(),now)   &  replyDao.publishReply(reply);
     }
 
     @Override
     public Reply getReplyById(Integer id) {
-        return replyMapper.getReplyById(id);
+        return replyDao.getReplyById(id);
     }
 
     @Override
     public Integer getReplyTotalCount(Integer id) {
-        return replyMapper.getReplyTotalCount(id);
+        return replyDao.getReplyTotalCount(id);
     }
 
     @Override
     public Page<Reply> getPageReplysByPostid(Integer id, Integer cur, Integer size) {
         Page<Reply> replyPage = new Page<>();
 
-        replyPage.setProperties(size,cur,replyMapper.getReplyTotalCount(id));
-        replyPage.setList(replyMapper.getPageReplysByPostid(id,(replyPage.getCur()-1)*size,size));
+        replyPage.setProperties(size,cur, replyDao.getReplyTotalCount(id));
+        replyPage.setList(replyDao.getPageReplysByPostid(id,(replyPage.getCur()-1)*size,size));
 
         return replyPage;
     }
 
     @Override
     public List<Reply> getRepliesByUserId(Integer uid) {
-        return replyMapper.getRepliesByUserId(uid);
+        return replyDao.getRepliesByUserId(uid);
     }
 
     @Override
     public Integer reportReply(Integer rid) {
-        return replyMapper.reportReply(rid);
+        return replyDao.reportReply(rid);
     }
 
     @Override
     public List<Reply> getReportReply() {
-        return replyMapper.getReportReply();
+        return replyDao.getReportReply();
     }
 
     @Override
     public Integer deleteReply(Integer rid) {
-        return replyMapper.deleteReply(rid);
+        return replyDao.deleteReply(rid);
     }
 
 

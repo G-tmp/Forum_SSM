@@ -1,7 +1,8 @@
 package com.xd.controller;
 
 
-import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xd.pojo.Post;
 import com.xd.pojo.Reply;
 import com.xd.pojo.User;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("")
@@ -28,20 +31,28 @@ public class ReplyController {
     @ResponseBody
     @RequestMapping("/publishReply")
     public String publishReply(@RequestBody  Reply reply, HttpSession session){
-        JSONObject json = new JSONObject();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map map = new HashMap();
+        String json = null;
 
         User u = (User) session.getAttribute("user");
 
         //do not login
         if(u == null){
-            json.put("msg","unlogin");
-            return json.toString();
+            map.put("msg","unlogin");
+
+            try {
+                json = objectMapper.writeValueAsString(map);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+
+            return json;
         }
 
 
         reply.setUser(u);
 
-        System.out.println(reply.getContent());
 
 //        Reply r = new Reply();
 //        r.setId(0);
@@ -53,9 +64,15 @@ public class ReplyController {
         System.out.println(reply.getContent());
         System.out.println("************************************************************");
 
-        json.put("msg","success");
 
-        return json.toString();
+        map.put("msg","success");
+        try {
+            json = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return json;
     }
 
 

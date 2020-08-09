@@ -7,7 +7,7 @@ import java.util.List;
 public interface PostService {
 
     //get all posts
-    List<Post> getAllPosts();
+    List<Post> getAllPostsHot();
 
     //get all posts sort by publish time
     List<Post> getAllPostsNew();

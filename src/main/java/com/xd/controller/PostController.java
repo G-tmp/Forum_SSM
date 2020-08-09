@@ -1,7 +1,9 @@
 package com.xd.controller;
 
 
-import com.alibaba.fastjson.JSONObject;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xd.pojo.Post;
 import com.xd.pojo.Reply;
 import com.xd.pojo.User;
@@ -15,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("")
@@ -37,17 +41,17 @@ public class PostController {
     @RequestMapping("/home")
     public String home(Model model){
 
-        List<Post> posts = postService.getAllPosts();
+        List<Post> posts = postService.getAllPostsNew();
         model.addAttribute("posts",posts);
 
         return "home";
     }
 
 
-    @RequestMapping("/new")
+    @RequestMapping("/hot")
     public String neww (Model model){
 
-        List<Post> posts = postService.getAllPostsNew();
+        List<Post> posts = postService.getAllPostsHot();
         model.addAttribute("posts",posts);
 
         return "home";
@@ -80,14 +84,21 @@ public class PostController {
     @ResponseBody
     @RequestMapping(value = "/publishPost",method = RequestMethod.POST)
     public String addPost(@RequestBody Post post, HttpSession session){
-
-        JSONObject json = new JSONObject();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = null;
+        Map map = new HashMap();
 
         User u = (User) session.getAttribute("user");
 
         if (u == null){
-            json.put("msg","unlogin");
-            return json.toString();
+            map.put("msg","unlogin");
+            try {
+                json = objectMapper.writeValueAsString(map);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+
+            return json;
         }
 
 
@@ -95,10 +106,14 @@ public class PostController {
 
         postService.publishPost(post);
 
-        json.put("msg","success");
-        
-        
-        return json.toString();
+        map.put("msg","success");
+        try {
+            json = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return json;
     }
 
 

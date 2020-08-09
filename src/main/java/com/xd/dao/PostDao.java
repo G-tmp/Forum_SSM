@@ -1,14 +1,17 @@
-package com.xd.mapper;
+package com.xd.dao;
 
 import com.xd.pojo.Post;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface PostMapper {
+
+@Repository
+public interface PostDao {
     
     //get all posts
-    List<Post> getAllPosts();
+    List<Post> getAllPostsHot();
     
     //get all posts sort by publish time
     List<Post> getAllPostsNew();

@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class User implements Serializable {
+public class User  {
     private Integer id;
     private String email;
     private String password;

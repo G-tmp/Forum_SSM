@@ -11,9 +11,12 @@
 
     <!-- 扫描service包下所有使用注解的类型 -->
     <context:component-scan base-package="com.xd.service"/>
+    <context:component-scan base-package="com.xd.aop" />
+    <context:component-scan base-package="com.xd.config" />
 
     <!-- 配置数据库相关参数properties的属性：${url} -->
-    <context:property-placeholder location="classpath:config/jdbc.properties"/>
+    <context:property-placeholder location="classpath:properties/jdbc.properties"/>
+
 
     <!-- 数据库连接池 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -26,6 +29,23 @@
         <property name="autoCommitOnClose" value="${c3p0.autoCommitOnClose}"/>
         <property name="checkoutTimeout" value="${c3p0.checkoutTimeout}"/>
         <property name="acquireRetryAttempts" value="${c3p0.acquireRetryAttempts}"/>
+    </bean>
+
+    <!-- Redis连接池的配置 -->
+    <bean id="jedisConfig" class="redis.clients.jedis.JedisPoolConfig" >
+        <property name="maxTotal" value="${redis.pool.maxActive}"/>
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <property name="minIdle" value="${redis.pool.minIdle}"/>
+        <property name="maxWaitMillis" value="${redis.pool.maxWait}"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+    </bean>
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisConfig"/>
+        <constructor-arg name="host" value="${redis.host}" />
+        <constructor-arg name="port" value="${redis.port}" type="int" />
+        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+<!--        <constructor-arg name="password" value="${redis.password}" />-->
     </bean>
 
     <!-- 配置SqlSessionFactory对象 -->
@@ -43,7 +63,7 @@
         <!-- 注入sqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描Dao接口包 -->
-        <property name="basePackage" value="com.xd.mapper"/>
+        <property name="basePackage" value="com.xd.dao"/>
     </bean>
 
     <!-- 配置事务管理器 -->

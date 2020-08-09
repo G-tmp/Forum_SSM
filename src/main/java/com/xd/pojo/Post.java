@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Post implements Serializable {
+public class Post  {
     private Integer id;
     private String title;
     private String content;

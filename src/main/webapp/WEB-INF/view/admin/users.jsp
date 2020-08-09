@@ -32,7 +32,8 @@
                         <td>${user.email}</td>
                         <td><a href="../u/${user.nickname}">${user.nickname}</a></td>
                         <td>${user.bio}</td>
-                        <td><fmt:formatDate value="${user.registerTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+<%--                        <td><fmt:formatDate value="${user.registerTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>--%>
+                        <td>${user.registerTime }</td>
                         <td>${user.isBanned}</td>
                         <td>${user.isAdmin}</td>
                     </tr>

@@ -1,6 +1,6 @@
 package com.xd.service.impl;
 
-import com.xd.mapper.UserMapper;
+import com.xd.dao.UserDao;
 import com.xd.pojo.User;
 import com.xd.service.UserService;
 import com.xd.utils.UploadImage;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 
@@ -17,39 +16,39 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     
     @Autowired
-    private UserMapper userMapper;
+    private UserDao userDao;
     
     
     
     @Override
     public User login(User user) {
-        return userMapper.login(user);
+        return userDao.login(user);
     }
 
     @Override
     public Integer register(User user) {
         user.setRegisterTime(System.currentTimeMillis());
-        return userMapper.register(user);
+        return userDao.register(user);
     }
 
     @Override
     public User checkNicknane(String nickName) {
-        return userMapper.checkNickname(nickName);
+        return userDao.checkNickname(nickName);
     }
 
     @Override
     public User checkEmail(String email) {
-        return userMapper.checkEmail(email);
+        return userDao.checkEmail(email);
     }
 
     @Override
     public User getUserByNickname(String nickname) {
-        return userMapper.getUserByNickname(nickname);
+        return userDao.getUserByNickname(nickname);
     }
 
     @Override
     public User getUserById(Integer id) {
-        return userMapper.getUserById(id);
+        return userDao.getUserById(id);
     }
 
     @Override
@@ -62,23 +61,23 @@ public class UserServiceImpl implements UserService {
         }
 
         user.setProfile(imgName);
-        userMapper.updateProfileImg(user);
+        userDao.updateProfileImg(user);
 
         return imgName;
     }
 
     @Override
     public Integer updateInfo(User user) {
-        return userMapper.updateInfo(user);
+        return userDao.updateInfo(user);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userMapper.getAllUsers();
+        return userDao.getAllUsers();
     }
 
     @Override
     public Integer ban(Integer uid) {
-        return userMapper.ban(uid);
+        return userDao.ban(uid);
     }
 }

@@ -1,13 +1,12 @@
-package com.xd.mapper;
+package com.xd.dao;
 
 import com.xd.pojo.User;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
-public interface UserMapper {
+@Repository
+public interface UserDao {
 
 
     //登陆

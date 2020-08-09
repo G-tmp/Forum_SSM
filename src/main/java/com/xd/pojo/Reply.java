@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Reply implements Serializable {
+public class Reply  {
     private Integer id;
     private String content;
     private User user;

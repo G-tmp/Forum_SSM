@@ -1,12 +1,15 @@
-package com.xd.mapper;
+package com.xd.dao;
 
 
 import com.xd.pojo.Reply;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface ReplyMapper {
+
+@Repository
+public interface ReplyDao {
 
     
     List<Reply> getReplysByPostid(Integer id);

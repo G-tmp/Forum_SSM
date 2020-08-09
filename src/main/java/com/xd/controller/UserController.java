@@ -2,7 +2,9 @@ package com.xd.controller;
 
 
 
-import com.alibaba.fastjson.JSONObject;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xd.pojo.Post;
 import com.xd.pojo.Reply;
 import com.xd.pojo.User;
@@ -20,7 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("")
@@ -58,32 +62,37 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/login" , method = RequestMethod.POST)
     public String login(@RequestBody User user, HttpSession session){
+        Map map = new HashMap();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = null;
+        // 得到登陆user
         User u=userService.login(user);
-        
-        JSONObject json=new JSONObject();
-        
-        //不存在用户
-        if (u==null){
-            json.put("msg","null");
-            return json.toString();
-        }
-        
-        //密码错误
-        if (!u.getPassword().equals(user.getPassword())){
-            json.put("msg","wrong");
-            return json.toString();
-        }
 
-        if (u.getStates() == -1 ){
-            json.put("msg","banned");
-            return json.toString();
-        }
+        //不存在用户
+        if (u == null){
+            map.put("msg","null");
+
+        //密码错误
+        }else if (!u.getPassword().equals(user.getPassword())){
+            map.put("msg","wrong");
+
+        //封号
+        }else if (u.getStates() == -1){
+            map.put("msg","banned");
 
         //登陆成功,设置session
-        session.setAttribute("user",u);
+        }else {
+            session.setAttribute("user",u);
+            map.put("msg","success");
+        }
 
-        json.put("msg","success");
-        return json.toString();
+        try {
+            json = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return json;
     }
 
 
@@ -102,11 +111,18 @@ public class UserController {
         user.setProfile("default.png");
         userService.register(user);
 
-        JSONObject json=new JSONObject();
+        String json = null;
+        Map map = new HashMap();
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        json.put("msg","success");
+        map.put("msg","success");
+        try {
+            json = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
-        return json.toString();
+        return json;
     }
     
     
@@ -131,18 +147,26 @@ public class UserController {
     @RequestMapping("/check_nickname")
     public String nickname(@RequestParam("nickname") @RequestBody String nickname){
 
-        JSONObject json = new JSONObject();
+        String json = null;
+        Map map = new HashMap();
+        ObjectMapper objectMapper = new ObjectMapper();
 
         System.out.println(nickname);
 
-        // exist
+        // nickname had exist
         if (userService.checkNicknane(nickname) != null){
-            json.put("msg","duplicate");
-            return json.toString();
+            map.put("msg","duplicate");
+        }else {
+            map.put("msg","unique");
         }
 
-        json.put("msg","unique");
-        return json.toString();
+        try {
+            json = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return json;
     }
     
     
@@ -150,18 +174,26 @@ public class UserController {
     @RequestMapping("/check_email")
     @ResponseBody
     public String mail(@RequestParam("email") @RequestBody String email){
-        JSONObject json = new JSONObject();
+        String json = null;
+        Map map = new HashMap();
+        ObjectMapper objectMapper = new ObjectMapper();
 
         System.out.println(email);
 
-        // exist
+        // email had exist
         if (userService.checkEmail(email) != null){
-            json.put("msg","duplicate");
-            return json.toString();
+            map.put("msg","duplicate");
+        }else {
+            map.put("msg","unique");
         }
-        
-        json.put("msg","unique");
-        return json.toString();
+
+        try {
+            json = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return json;
     }
     
     
@@ -213,7 +245,9 @@ public class UserController {
         HttpSession session = request.getSession();
 
         System.out.println("img : "+img);
-        JSONObject json = new JSONObject();
+        String json = null;
+        Map map = new HashMap();
+        ObjectMapper objectMapper = new ObjectMapper();
 
         User user = (User) session.getAttribute("user");
 
@@ -225,15 +259,18 @@ public class UserController {
 
         if (imgName == null){
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            json.put("msg","failed");
-            return json.toString();
+            map.put("msg","failed");
+        }else {
+            map.put("msg","success");
+            map.put("path",path+imgName);
         }
 
-
-        json.put("msg","success");
-        json.put("path",path+imgName);
-
-        return json.toString();
+        try {
+            json = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 设置为ActivityDao接口方法提供sql语句配置 -->
-<mapper namespace="com.xd.mapper.PostMapper">
+<mapper namespace="com.xd.dao.PostDao">
     <resultMap id="basePost" type="com.xd.pojo.Post">
         <id     property="id"           column="id"           jdbcType="INTEGER"/>
         <result property="content"      column="content"      jdbcType="VARCHAR"/>
@@ -36,7 +36,7 @@
 
 
 
-    <select id="getAllPosts" resultMap="basePost">
+    <select id="getAllPostsHot" resultMap="basePost">
         SELECT post.* , block.* , `user`.* , block.`id` 'blockid' , user.`id`  'userid'
         from post
             left join block

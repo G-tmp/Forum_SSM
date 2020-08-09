@@ -36,7 +36,7 @@
     				<div>
 
     					<ul class="nav navbar-nav">
-    						<li><a href="<%=path%>/new">New</a></li>
+    						<li><a href="<%=path%>/hot">Hot</a></li>
     						<li class="dropdown">
     							<a href="#" class="dropdown-toggle" data-toggle="dropdown">list<b class="caret"></b></a>
     							<ul class="dropdown-menu">

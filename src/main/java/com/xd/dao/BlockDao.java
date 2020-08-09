@@ -1,10 +1,13 @@
-package com.xd.mapper;
+package com.xd.dao;
 
 import com.xd.pojo.Block;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface BlockMapper {
+
+@Repository
+public interface BlockDao {
 
     // list all block
     List<Block> getAllBlock();

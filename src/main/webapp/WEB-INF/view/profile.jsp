@@ -64,7 +64,8 @@
             <h2 >${user.nickname }</h2>
             <h3 >email：${user.email}</h3>
 
-            <h3>创建于: <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></h3>
+<%--            <h3>创建于: <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></h3>--%>
+            <h3>创建于: ${user.registerTime}</h3>
             <h3>自我介绍: ${user.bio}</h3>
 
             <%--    <form role="form"  id="uploadForm" action="uploadImg" method="post" enctype="multipart/form-data">--%>

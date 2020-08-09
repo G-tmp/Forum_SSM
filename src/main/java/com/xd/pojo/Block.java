@@ -3,7 +3,7 @@ package com.xd.pojo;
 import java.io.Serializable;
 import java.util.List;
 
-public class Block implements Serializable {
+public class Block  {
     private Integer id;
     private String name;
     private String ename;

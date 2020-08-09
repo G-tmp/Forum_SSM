@@ -41,7 +41,8 @@
 <%--                <h3>状态：封禁</h3>--%>
 <%--            </c:if>--%>
 
-            <h3>创建于: <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></h3>
+<%--            <h3>创建于: <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></h3>--%>
+            <h3>创建于: ${user.registerTime}</h3>
             <h3>自我介绍: ${user.bio}</h3>
         </div>
     </div>
