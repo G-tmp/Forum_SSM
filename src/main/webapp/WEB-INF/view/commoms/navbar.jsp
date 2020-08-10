@@ -38,7 +38,7 @@
     					<ul class="nav navbar-nav">
     						<li><a href="<%=path%>/hot">Hot</a></li>
     						<li class="dropdown">
-    							<a href="#" class="dropdown-toggle" data-toggle="dropdown">list<b class="caret"></b></a>
+    							<a href="#" class="dropdown-toggle" data-toggle="dropdown">blocks<b class="caret"></b></a>
     							<ul class="dropdown-menu">
     								<c:forEach items="${blocks}" var="block">
 										<li class="divider"></li>
