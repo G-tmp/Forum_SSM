@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:config/spring-mybatis.xml")
+@ContextConfiguration({"classpath:spring/spring-dao.xml","classpath:spring/spring-service.xml"})
 public class d {
     
     @Autowired
@@ -96,4 +96,9 @@ public class d {
         System.out.println(block);
     }
 
+    @Test
+    public void dfggcfgx(){
+
+        System.out.println(postService.getAllPostsNew());
+    }
 }
