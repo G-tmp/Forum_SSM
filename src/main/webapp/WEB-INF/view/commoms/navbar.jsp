@@ -42,7 +42,7 @@
     							<ul class="dropdown-menu">
     								<c:forEach items="${blocks}" var="block">
 										<li class="divider"></li>
-										<li><a href="<%=path%>/b/${block.ename}">${block.name }</a></li>
+										<li><a href="<%=path%>/block/${block.ename}">${block.name }</a></li>
     								</c:forEach>
     							</ul>
     						</li>

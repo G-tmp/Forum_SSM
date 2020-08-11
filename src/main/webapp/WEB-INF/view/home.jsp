@@ -101,7 +101,7 @@
                     <div style="width: 900px; height: 50px;">
                         <a href="<%=path%>/post/${post.id}" style="font-size: 19px; color: #000000"> ${post.title }</a>
                         <blockquote class="pull-right">
-                            <a href="<%=path%>/u/${post.user.nickname }">${post.user.nickname }</a>
+                            <a href="<%=path%>/user/${post.user.nickname }">${post.user.nickname }</a>
                             <small><cite  title="Source Title">
                                         ${post.lastReplyTime }
 <%--                                        <fmt:formatDate value="${post.lastReplyTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>--%>
@@ -114,7 +114,7 @@
                         <div style="float: left; width: 100px;padding-left: 200px;padding-top: 10px;">
 								<span class="label label-info">
                                     <a style="font-size: 12px; color: #222222;"
-                                        href="<%=path%>/b/${post.block.ename}"
+                                        href="<%=path%>/block/${post.block.ename}"
                                         class="text-info">${post.block.name }
                                     </a>
                                 </span>

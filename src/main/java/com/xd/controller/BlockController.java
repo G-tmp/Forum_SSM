@@ -21,7 +21,7 @@ public class BlockController {
 
     
     
-    @RequestMapping(value = "b/{ename}",method = RequestMethod.GET)
+    @RequestMapping(value = "block/{ename}",method = RequestMethod.GET)
     public String getBlockByEname(Model model,@PathVariable String ename){
 
         Block block = blockService.getBlockByEname(ename);

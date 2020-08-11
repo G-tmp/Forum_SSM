@@ -195,7 +195,7 @@ public class UserController {
     
     
     
-    @RequestMapping(value = "/u/{nickname}",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{nickname}",method = RequestMethod.GET)
     public String profiles(Model model,@PathVariable String nickname){
         
         User u = userService.getUserByNickname(nickname);

@@ -173,7 +173,7 @@
 
             <div class="media">
                 <div class="media-body">
-                    <h3><a href="<%=path%>/b/${post.block.ename}">${post.block.name}</a></h3>
+                    <h3><a href="<%=path%>/block/${post.block.ename}">${post.block.name}</a></h3>
                     <h2 class="media-heading">${post.title }</h2>
 
                     <c:if test="${sessionScope.user != null}">
@@ -184,7 +184,7 @@
 
                     <blockquote class="pull-right">
                         <cite title="Source Title">
-                            <a href="../u/${post.user.nickname}">${post.user.nickname}</a>
+                            <a href="../user/${post.user.nickname}">${post.user.nickname}</a>
                         </cite>
                         <small><cite title="Source Title">
                             ${post.publishTime }
@@ -270,7 +270,7 @@
 
                     <div style="height: 40px;width: 999px;" >
                         <div style="float: left;width: 90%;">
-                            <a href="<%=path%>/u/${reply.user.nickname}">${reply.user.nickname  }</a>
+                            <a href="<%=path%>/user/${reply.user.nickname}">${reply.user.nickname  }</a>
 <%--                            |<fmt:formatDate value="${reply.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>--%>
                             |${reply.publishTime }
                             |<a onclick="return confirm_report()" href="report_reply?pid=${post.id}&rid=${reply.id}">report</a>
@@ -352,11 +352,11 @@
 
     <!-- ---------   pagination   ------------->
     <ul class="pagination pagination-lg" >
-        <li><a href="<%=path%>/post/${post.id}?p=1">first</a></li>
+        <li><a href="<%=path%>/post/${post.id}?page=1">first</a></li>
 
         <!-- 上一页 -->
         <c:if test="${replyPage.cur != 1 }">
-            <li><a href="<%=path%>/post/${post.id }?p=${replyPage.cur-1}">&laquo;</a></li>
+            <li><a href="<%=path%>/post/${post.id }?page=${replyPage.cur-1}">&laquo;</a></li>
         </c:if>
 
 
@@ -375,7 +375,7 @@
         <!-- 显示(begin~end) -->
         <c:forEach begin="${begin}" end="${end }" var="i">
             <c:if test="${replyPage.cur != i}">
-                <li><a href="<%=path%>/post/${post.id}?p=${i}">${i }</a></li>
+                <li><a href="<%=path%>/post/${post.id}?page=${i}">${i}</a></li>
             </c:if>
             <c:if test="${replyPage.cur == i }">
                 <li class="active"><a>${i }</a></li>
@@ -385,11 +385,11 @@
 
         <!-- 下一页 -->
         <c:if test="${replyPage.totalPage != replyPage.cur }">
-            <li><a href="<%=path%>/post/${post.id }?p=${replyPage.cur+1}">&raquo;</a></li>
+            <li><a href="<%=path%>/post/${post.id }?page=${replyPage.cur+1}">&raquo;</a></li>
         </c:if>
 
 
-        <li><a href="<%=path%>/post/${post.id}?p=${replyPage.totalPage}">last</a></li>
+        <li><a href="<%=path%>/post/${post.id}?page=${replyPage.totalPage}">last</a></li>
     </ul>
 
 </div>
