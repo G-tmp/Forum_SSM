@@ -105,8 +105,8 @@ public class PostController {
 
 
         post.setUser(u);
-        post.setTitle(FilterUtil.filter(post.getTitle()));
-        post.setContent(FilterUtil.filter(post.getContent()));
+//        post.setTitle(FilterUtil.filter(post.getTitle()));
+//        post.setContent(FilterUtil.filter(post.getContent()));
 
         postService.publishPost(post);
 

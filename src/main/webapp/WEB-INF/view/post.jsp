@@ -10,7 +10,9 @@
 </head>
 <body>
 
+<script src="<%=path%>/resources/script/common.js" type="text/javascript"></script>
 <script>
+
 
     function submit_button() {
         // document.getElementById('reply_form').submit();
@@ -25,6 +27,8 @@
             alert("内容不能为空");
             return;
         }
+
+        // content = common.stringFilter.url2Link(content);
 
         var reply = {
             post : postid,

@@ -58,7 +58,7 @@ public class ReplyController {
 
 
         reply.setUser(u);
-        reply.setContent(FilterUtil.filter(reply.getContent()));
+//        reply.setContent(FilterUtil.filter(reply.getContent()));
 
         String path = "resources/img/";
         try {
