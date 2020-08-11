@@ -5,10 +5,14 @@ import com.xd.dao.ReplyDao;
 import com.xd.pojo.Reply;
 import com.xd.service.ReplyService;
 import com.xd.utils.Page;
+import com.xd.utils.UploadImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -76,6 +80,23 @@ public class ReplyServiceImpl  implements ReplyService {
     @Override
     public Integer deleteReply(Integer rid) {
         return replyDao.deleteReply(rid);
+    }
+
+    @Override
+    public String uploadImg(Reply reply, MultipartFile img, String savePath, HttpSession session) throws IOException {
+        String path = session.getServletContext().getRealPath(savePath);
+        String imgName = null;
+
+
+        imgName = UploadImageUtil.upload(img,path);
+
+        // upload faild
+        if (imgName == null){
+            return null;
+        }
+
+        // upload success
+        return imgName;
     }
 
 

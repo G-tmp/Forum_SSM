@@ -1,8 +1,12 @@
 package com.xd.service;
 
 import com.xd.pojo.Reply;
+import com.xd.pojo.User;
 import com.xd.utils.Page;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 public interface ReplyService {
@@ -30,4 +34,7 @@ public interface ReplyService {
     List<Reply > getReportReply();
 
     Integer deleteReply(Integer rid);
+
+    String uploadImg(Reply reply, MultipartFile img, String savePath, HttpSession session) throws IOException;
+
 }

@@ -3,12 +3,13 @@ package com.xd.service.impl;
 import com.xd.dao.UserDao;
 import com.xd.pojo.User;
 import com.xd.service.UserService;
-import com.xd.utils.UploadImage;
+import com.xd.utils.UploadImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -52,9 +53,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updateProfileImg(User user, MultipartFile img, String savePath, HttpSession session) {
+    public String updateProfileImg(User user, MultipartFile img, String savePath, HttpSession session) throws IOException {
         String path = session.getServletContext().getRealPath(savePath);
-        String imgName = UploadImage.upload(img,path);
+        String imgName = UploadImageUtil.upload(img,path);
 
         if (imgName == null){
             return null;

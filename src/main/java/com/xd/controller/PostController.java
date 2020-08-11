@@ -10,12 +10,14 @@ import com.xd.pojo.User;
 import com.xd.service.BlockService;
 import com.xd.service.PostService;
 import com.xd.service.ReplyService;
+import com.xd.utils.FilterUtil;
 import com.xd.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.Filter;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +40,7 @@ public class PostController {
 
 
 
-    @RequestMapping("/home")
+    @RequestMapping({"","/home"})
     public String home(Model model){
 
         List<Post> posts = postService.getAllPostsNew();
@@ -103,6 +105,8 @@ public class PostController {
 
 
         post.setUser(u);
+        post.setTitle(FilterUtil.filter(post.getTitle()));
+        post.setContent(FilterUtil.filter(post.getContent()));
 
         postService.publishPost(post);
 

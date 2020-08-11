@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 
-public class UploadImage {
+public class UploadImageUtil {
 
 
     /**
@@ -23,12 +23,14 @@ public class UploadImage {
      * @param path
      * @return
      */
-    public static String upload(MultipartFile file , String path)  {
+    public static String upload(MultipartFile file , String path) throws IOException {
 
         if (file != null){
 //            String path = session.getServletContext().getRealPath("resources/img_profile");
             String originalFile = file.getOriginalFilename();
+            // file format
             String suffix = originalFile.substring(originalFile.lastIndexOf('.'));
+            // timestamp
             String fileName = System.currentTimeMillis()+suffix;
 //            String savePath = path+"/"+fileName;
 
@@ -39,15 +41,7 @@ public class UploadImage {
             }
             System.out.println(saveFile);
 
-            try {
-                file.transferTo(saveFile);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("我日你妈");
-
-                return  null;
-            }
+            file.transferTo(saveFile);
 
             System.out.println("成了");
             return fileName;

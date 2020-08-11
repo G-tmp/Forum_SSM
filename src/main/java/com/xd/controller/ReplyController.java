@@ -8,12 +8,15 @@ import com.xd.pojo.Reply;
 import com.xd.pojo.User;
 import com.xd.service.PostService;
 import com.xd.service.ReplyService;
+import com.xd.utils.FilterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,10 +30,13 @@ public class ReplyController {
     @Autowired
     private PostService postService;
     
-    
+
+
     @ResponseBody
     @RequestMapping("/publishReply")
-    public String publishReply(@RequestBody  Reply reply, HttpSession session){
+    public String publishReply(@RequestBody  Reply reply, @RequestParam(value = "img",required = false) MultipartFile img, HttpSession session){
+        System.out.println(img);
+
         ObjectMapper objectMapper = new ObjectMapper();
         Map map = new HashMap();
         String json = null;
@@ -52,6 +58,14 @@ public class ReplyController {
 
 
         reply.setUser(u);
+        reply.setContent(FilterUtil.filter(reply.getContent()));
+
+        String path = "resources/img/";
+        try {
+            String imgName = replyService.uploadImg(reply,img,path,session);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
 //        Reply r = new Reply();

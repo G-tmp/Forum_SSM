@@ -19,7 +19,7 @@
         //     return;
         // }
 
-        var formData = new FormData($("#uploadForm")[0]);   //创建一个forData
+        var formData = new FormData($("#uploadImgForm")[0]);   //创建一个forData
             // formData.append("img",$("#pic_img")[0].file[0]);    //把file添加进去  name命名为img
 
         // alert(formData);
@@ -70,7 +70,7 @@
 
             <%--    <form role="form"  id="uploadForm" action="uploadImg" method="post" enctype="multipart/form-data">--%>
             <div class="well">
-                <form role="form"  id="uploadForm">
+                <form role="form"  id="uploadImgForm">
                     <div class="form-group">
                         <label>上传头像</label>
                         <input type="file" id="pic_img" name="img" accept="*">

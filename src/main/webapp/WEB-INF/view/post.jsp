@@ -32,7 +32,14 @@
             replyTo : 0
         };
 
-        // alert(content);
+        // var img = new FormData($("#uploadImgForm")[0]);   //创建一个forData
+        //
+        // var data = {
+        //     reply : JSON.stringify(reply),
+        //     img : img
+        // };
+
+        // alert(data);
         //alert(JSON.stringify(reply));
 
 
@@ -42,6 +49,7 @@
             data : JSON.stringify(reply),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
+
 
             success : function (result) {
                 if (result["msg"] == "success") {
@@ -57,7 +65,6 @@
                 alert("error"+result);
             }
         });
-
     }
 
 
@@ -288,8 +295,8 @@
 <%--                    </c:if>--%>
 
                     <c:if test="${reply.isBanned == 0}">
-<%--                        <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>--%>
-                        <h4 style="width: 800px;"> ${reply.content } </h4>
+                        <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>
+<%--                        <h4 style="width: 800px;"> ${reply.content } </h4>--%>
                     </c:if>
                     <c:if test="${reply.isBanned != 0}">
                         <h4 style="width: 800px;"> 已被删除! </h4>
@@ -412,6 +419,13 @@
                     </form>
                 </div>
             </div>
+            <form role="form"  id="uploadImgForm">
+                <div class="form-group">
+                    <label>上传头像</label>
+                    <input type="file" id="selectImg" name="img" accept="*">
+                </div>
+                <%--        <input type="submit" class="btn btn-default" value="D">--%>
+            </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>

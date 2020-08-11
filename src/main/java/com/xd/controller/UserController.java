@@ -6,12 +6,10 @@ package com.xd.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xd.pojo.Post;
-import com.xd.pojo.Reply;
 import com.xd.pojo.User;
 import com.xd.service.PostService;
 import com.xd.service.ReplyService;
 import com.xd.service.UserService;
-import com.xd.utils.UploadImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -216,6 +213,7 @@ public class UserController {
     }
 
 
+
     @RequestMapping("/profile")
     public String myProfile(Model model,HttpSession session){
 
@@ -252,10 +250,14 @@ public class UserController {
         User user = (User) session.getAttribute("user");
 
         String path = "resources/img_profile/";
+        String imgName = null;
+        try {
+            imgName = userService.updateProfileImg(user,img,path,session);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        String imgName = userService.updateProfileImg(user,img,path,session);
-
-        System.out.println("controller" + imgName);
+        System.out.println("imgName : " + imgName);
 
         if (imgName == null){
             System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
@@ -270,6 +272,7 @@ public class UserController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+
         return json;
     }
 

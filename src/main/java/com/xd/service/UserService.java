@@ -35,7 +35,7 @@ public interface UserService {
      * @param session
      * @return
      */
-    public String updateProfileImg(User user, MultipartFile img, String savePath, HttpSession session);
+    public String updateProfileImg(User user, MultipartFile img, String savePath, HttpSession session) throws IOException;
 
     Integer updateInfo(User user);
 
