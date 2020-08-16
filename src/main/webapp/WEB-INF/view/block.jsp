@@ -19,9 +19,9 @@
 
     function submit_button(){
 
-        var title = $("#title111").val().trim();
-        var content = $("#content111").val().trim();
-        var block = $("#block111").val();
+        var title = $("#title").val().trim();
+        var content = $("#content").val().trim();
+        var block = $("#blockName").val();
 
         if (content == null || content === ""){
             alert("标题不能为空");
@@ -31,12 +31,12 @@
         var data = {
             title:title,
             content:content,
-            block:block
+            block : block
         };
 
         $.ajax({
             type : "post",
-            url : "/<%=path%>/publishPost",
+            url : "<%=path%>/publishPost",
             data : JSON.stringify(data),
             dataType : "json",
             contentType : "application/json;charset=UTF-8",
@@ -149,17 +149,18 @@
             </div>
             <div class="modal-body">
                 <form action="#" name="post" role="form">
+                    <input type="hidden" id="blockName" value="${block.id}">
                     <div class="form-group">
                         <label>请输入标题(<small>50字以内</small>)</label>
-                        <textarea class="form-control" rows="2" cols="65" name="title" id="title111" required></textarea>
+                        <textarea class="form-control" rows="2" cols="65" name="title" id="title" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>请输入内容(<small>500字以内</small>)</label>
-                        <textarea class="form-control" rows="4" cols="65" name="content" id="content111"></textarea>
+                        <textarea class="form-control" rows="4" cols="65" name="content" id="content"></textarea>
                     </div>
                     <div class="form-group">
                         <label>版块</label>
-                        ${block.name}
+                        <span >${block.name}</span>
                     </div>
                 </form>
             </div>

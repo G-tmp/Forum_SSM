@@ -5,6 +5,7 @@ import com.xd.pojo.User;
 import com.xd.utils.Page;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
@@ -35,6 +36,6 @@ public interface ReplyService {
 
     Integer deleteReply(Integer rid);
 
-    String uploadImg(Reply reply, MultipartFile img, String savePath, HttpSession session) throws IOException;
+    String uploadImg( MultipartFile img, HttpServletRequest request) throws IOException;
 
 }

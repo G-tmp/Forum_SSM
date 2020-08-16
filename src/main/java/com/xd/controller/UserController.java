@@ -246,13 +246,13 @@ public class UserController {
         String json = null;
         Map map = new HashMap();
         ObjectMapper objectMapper = new ObjectMapper();
+        String path = "resources/img_profile/";
 
         User user = (User) session.getAttribute("user");
 
-        String path = "resources/img_profile/";
         String imgName = null;
         try {
-            imgName = userService.updateProfileImg(user,img,path,session);
+            imgName = userService.updateProfileImg(user,img,request);
         } catch (IOException e) {
             e.printStackTrace();
         }

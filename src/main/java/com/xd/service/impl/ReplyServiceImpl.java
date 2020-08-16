@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
@@ -83,12 +84,10 @@ public class ReplyServiceImpl  implements ReplyService {
     }
 
     @Override
-    public String uploadImg(Reply reply, MultipartFile img, String savePath, HttpSession session) throws IOException {
-        String path = session.getServletContext().getRealPath(savePath);
-        String imgName = null;
+    public String uploadImg(MultipartFile img, HttpServletRequest request) throws IOException {
+        String path = request.getServletContext().getRealPath("resources/image/");
 
-
-        imgName = UploadImageUtil.upload(img,path);
+        String imgName = UploadImageUtil.upload(img,path);
 
         // upload faild
         if (imgName == null){
@@ -96,7 +95,7 @@ public class ReplyServiceImpl  implements ReplyService {
         }
 
         // upload success
-        return imgName;
+        return "resources/image/"+imgName;
     }
 
 

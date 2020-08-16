@@ -11,6 +11,7 @@
         <result property="publishTime" column="publish_time" jdbcType="INTEGER"/>
         <result property="isBanned" column="is_banned" jdbcType="INTEGER"/>
         <result property="replyTo"  column="reply_id"  jdbcType="INTEGER"/>
+        <result property="imgPath"  column="image"      jdbcType="VARCHAR"/>
 
         <association property="user" javaType="com.xd.pojo.User" >
             <id     property="id"           column="userid"         jdbcType="INTEGER"/>
@@ -51,8 +52,8 @@
 
     <insert id="publishReply" parameterType="com.xd.pojo.Reply">
         insert into reply
-            (content,user_id,post_id,reply_id,publish_time,floor)
-            values (#{content},#{user.id},#{post.id},#{replyTo},#{publishTime},
+            (content,user_id,post_id,reply_id,publish_time,image,floor)
+            values (#{content},#{user.id},#{post.id},#{replyTo},#{publishTime},#{imgPath},
                 (select reply_count from post where id = #{post.id})
             );
     </insert>

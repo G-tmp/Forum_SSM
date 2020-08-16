@@ -9,12 +9,14 @@ import com.xd.pojo.User;
 import com.xd.service.PostService;
 import com.xd.service.ReplyService;
 import com.xd.utils.FilterUtil;
+import com.xd.vo.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,9 +36,11 @@ public class ReplyController {
 
     @ResponseBody
     @RequestMapping("/publishReply")
-    public String publishReply(@RequestBody  Reply reply, @RequestParam(value = "img",required = false) MultipartFile img, HttpSession session){
+    public String publishReply(ReplyVO replyVO, HttpServletRequest request){
+        MultipartFile img = replyVO.getImgFile();
         System.out.println(img);
 
+        HttpSession session = request.getSession();
         ObjectMapper objectMapper = new ObjectMapper();
         Map map = new HashMap();
         String json = null;
@@ -56,22 +60,29 @@ public class ReplyController {
             return json;
         }
 
+        Reply reply = new Reply();
 
         reply.setUser(u);
-//        reply.setContent(FilterUtil.filter(reply.getContent()));
+        reply.setContent(replyVO.getContent());
+        reply.setReplyTo(replyVO.getReplyTo());
+        reply.setPost(replyVO.getPost());
 
-        String path = "resources/img/";
-        try {
-            String imgName = replyService.uploadImg(reply,img,path,session);
-        } catch (IOException e) {
-            e.printStackTrace();
+        //        reply.setContent(FilterUtil.filter(reply.getContent()));
+
+        if (img!=null) {
+            try {
+                String imgPath = replyService.uploadImg(img, request);
+                reply.setImgPath(imgPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
 
 //        Reply r = new Reply();
 //        r.setId(0);
 //        reply.setReplyTo(r);
 
+        System.out.println(reply);
         replyService.publishReply(reply);
 
         System.out.println("************************************************************");

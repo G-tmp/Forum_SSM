@@ -39,11 +39,10 @@ public class UploadImageUtil {
             if (!saveFile.exists()){
                 saveFile.mkdirs();
             }
-            System.out.println(saveFile);
+            System.out.println("save file : "+saveFile);
 
             file.transferTo(saveFile);
 
-            System.out.println("成了");
             return fileName;
         }
 

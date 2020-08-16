@@ -35,7 +35,7 @@
 <%--                        <td><fmt:formatDate value="${user.registerTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>--%>
                         <td>${user.registerTime }</td>
                         <td>${user.isBanned}</td>
-                        <td>${user.isAdmin}</td>
+                        <td>${user.states}</td>
                     </tr>
                 </c:forEach>
 

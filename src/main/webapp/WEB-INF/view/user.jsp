@@ -29,7 +29,7 @@
             <h2>
                 ${user.nickname }
                 <c:if test="${ sessionScope.user != null}">
-                    <c:if test="${ sessionScope.user.isAdmin != 0}">
+                    <c:if test="${ sessionScope.user.states != 0}">
                         <a onclick="return del()" href="../ban?uid=${user.id}"><button type="button" class="btn btn-danger">封禁</button></a>
                     </c:if>
                 </c:if>
@@ -66,7 +66,7 @@
                 </c:if>
                 <c:forEach var="post" items="${posts }">
                     <div class="panel-body">
-                        <a href="../post/${post.id}">${post.title }</a>
+                        <a href="<%=path%>/post/${post.id}">${post.title }</a>
                     </div>
                 </c:forEach>
             </div>

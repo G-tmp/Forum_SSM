@@ -12,17 +12,20 @@
 <body>
 
 <script>
-    function upload() {
+    function uploadImg() {
 
-        // if (($("#pic_img").val()){
-        //     alert("null");
-        //     return;
-        // }
+        if (!$("#select_img").val()){
+            alert("image null");
+            return;
+        }
 
-        var formData = new FormData($("#uploadImgForm")[0]);   //创建一个forData
-            // formData.append("img",$("#pic_img")[0].file[0]);    //把file添加进去  name命名为img
+        // var formData = new FormData($("#uploadImgForm")[0]);   //创建一个forData
 
-        // alert(formData);
+        var formData = new FormData();
+        var img = $("#select_img")[0].files[0];
+        formData.append("img",img);
+
+        // alert(JSON.stringify(formData));
 
         $.ajax({
             type : "POST",
@@ -39,6 +42,7 @@
                 if (result.msg == "success"){
                     alert("success");
                     $("#image").attr("src",result.path);
+                    console.log(result.path);
                 }else {
                     alert("failed");
                 }
@@ -73,10 +77,10 @@
                 <form role="form"  id="uploadImgForm">
                     <div class="form-group">
                         <label>上传头像</label>
-                        <input type="file" id="pic_img" name="img" accept="*">
+                        <input type="file" id="select_img" name="img" accept="*">
                     </div>
                     <%--        <input type="submit" class="btn btn-default" value="D">--%>
-                    <button type="button" class="btn btn-default" onclick="upload()">upload</button>
+                    <button type="button" class="btn btn-default" onclick="uploadImg()">upload</button>
                 </form>
             </div>
 
@@ -101,7 +105,7 @@
             <div id="collapseOne" class="panel-collapse collapse">
                 <c:forEach var="post" items="${posts }">
                     <div class="panel-body">
-                        <a href="../post/${post.id}">${post.title }</a>
+                        <a href="<%=path%>/post/${post.id}">${post.title }</a>
                     </div>
                 </c:forEach>
             </div>

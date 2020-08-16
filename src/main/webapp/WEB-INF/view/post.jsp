@@ -36,26 +36,34 @@
             replyTo : 0
         };
 
-        // var img = new FormData($("#uploadImgForm")[0]);   //创建一个forData
-        //
-        // var data = {
-        //     reply : JSON.stringify(reply),
-        //     img : img
-        // };
+        var formData = new FormData();   //创建一个forData
+        var image = $("#selectImg")[0].files[0];
 
-        // alert(data);
-        //alert(JSON.stringify(reply));
+        if (image != null){
+            formData.append("imgFile",image);
+        }
+
+        formData.append("post",postid);
+        formData.append("content",content);
+        formData.append("replyTo",0);
 
 
         $.ajax({
             type : "POST",
             url : "<%=path%>/publishReply",
-            data : JSON.stringify(reply),
+            // data : JSON.stringify(reply),
+            data : formData,
+            encrypt : "multipart/form-data",
             dataType : "json",
-            contentType : "application/json;charset=UTF-8",
-
+            // contentType : "application/json;charset=UTF-8",
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            processData: false, // Don't process the files
+            cache : false,
 
             success : function (result) {
+                console.log(result);
+                console.log(JSON.stringify(result));
+
                 if (result["msg"] == "success") {
                     alert("回复成功");
                     window.location.href = "/forum/post/"+postid;
@@ -143,7 +151,6 @@
     function appear_reply(obj,obj_this,content,time,username){
         var top=obj_this.getBoundingClientRect().top;
         var left=obj_this.getBoundingClientRect().left;
-
 
         obj.style.display="";
         obj.style.top=parseInt(top)+"px";
@@ -299,6 +306,10 @@
 <%--                    </c:if>--%>
 
                     <c:if test="${reply.isBanned == 0}">
+                        <c:if test="${reply.imgPath != null}">
+                            <img width="200px" height="200px" src="<%=path%>/${reply.imgPath}" > <p>
+                        </c:if>
+
                         <h4 style="width: 800px;white-space: pre-wrap ;"> ${reply.content } </h4>
 <%--                        <h4 style="width: 800px;"> ${reply.content } </h4>--%>
                     </c:if>
@@ -425,7 +436,7 @@
             </div>
             <form role="form"  id="uploadImgForm">
                 <div class="form-group">
-                    <label>上传头像</label>
+                    <label>上传图片</label>
                     <input type="file" id="selectImg" name="img" accept="*">
                 </div>
                 <%--        <input type="submit" class="btn btn-default" value="D">--%>

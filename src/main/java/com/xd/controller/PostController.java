@@ -4,6 +4,7 @@ package com.xd.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xd.pojo.Block;
 import com.xd.pojo.Post;
 import com.xd.pojo.Reply;
 import com.xd.pojo.User;
@@ -103,6 +104,7 @@ public class PostController {
             return json;
         }
 
+        System.out.println(post.getBlock());
 
         post.setUser(u);
 //        post.setTitle(FilterUtil.filter(post.getTitle()));
