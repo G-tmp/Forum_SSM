@@ -15,8 +15,10 @@ public class Post  {
     private Integer replyCount;
     private User user;
     private Block block;
-    private Long publishTime;
-    private Long lastReplyTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+    private Date publishTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+    private Date lastReplyTime;
     private Integer isBanned;
 
     
@@ -111,19 +113,19 @@ public class Post  {
     }
 
 
-    public Long getPublishTime() {
-        return publishTime;
-    }
-
-    public void setPublishTime(Long publishTime) {
-        this.publishTime = publishTime;
-    }
-
-    public Long getLastReplyTime() {
+    public Date getLastReplyTime() {
         return lastReplyTime;
     }
 
-    public void setLastReplyTime(Long lastReplyTime) {
+    public void setLastReplyTime(Date lastReplyTime) {
         this.lastReplyTime = lastReplyTime;
+    }
+
+    public Date getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
     }
 }

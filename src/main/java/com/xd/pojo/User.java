@@ -3,6 +3,7 @@ package com.xd.pojo;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class User  {
@@ -12,19 +13,21 @@ public class User  {
     private String nickname;
     private String profile;
     private String bio;
-    private Long registerTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+    private Date registerTime;
     // Ban:-1   unactivate:0    normal:0~6  admin:7
     private Integer states;
 
-    
-    
+
     @Override
     public String toString() {
-        return String.format("%s[id=%d,nickname=%s]",this.getClass().getName(),id,nickname);
+        return "User{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", registerTime=" + registerTime +
+                '}';
     }
 
-    
-    
     public Integer getId() {
         return id;
     }
@@ -82,11 +85,11 @@ public class User  {
     }
 
 
-    public Long getRegisterTime() {
+    public Date getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Long registerTime) {
+    public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
     }
 }

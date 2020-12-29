@@ -21,17 +21,22 @@
 
         var title = $("#title").val().trim();
         var content = $("#content").val().trim();
-        var block = $("#blockName").val();
+        var blockid = $("#blockid").val();
+        var blockename = $("#blockename").val();
 
         if (content == null || content === ""){
             alert("标题不能为空");
             return;
         }
 
+
         var data = {
             title:title,
             content:content,
-            block : block
+            block : {
+                id:blockid,
+                ename:blockename
+            }
         };
 
         $.ajax({
@@ -106,8 +111,8 @@
                         <blockquote class="pull-right">
                             <a href="<%=path%>/user/${post.user.nickname }">${post.user.nickname }</a>
                             <small><cite  title="Source Title">
-                                    ${post.lastReplyTime }
-<%--                                <fmt:formatDate value="${post.lastReplyTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>--%>
+<%--                                    ${post.lastReplyTime }--%>
+                                <fmt:formatDate value="${post.lastReplyTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                             </cite></small>
                         </blockquote>
                     </div>
@@ -149,7 +154,8 @@
             </div>
             <div class="modal-body">
                 <form action="#" name="post" role="form">
-                    <input type="hidden" id="blockName" value="${block.id}">
+                    <input type="hidden" id="blockid" value="${block.id}">
+                    <input type="hidden" id="blockename" value="${block.ename}">
                     <div class="form-group">
                         <label>请输入标题(<small>50字以内</small>)</label>
                         <textarea class="form-control" rows="2" cols="65" name="title" id="title" required></textarea>

@@ -60,12 +60,18 @@ public class PostController {
         return "home";
     }
 
-    private static int PAGESIZE = 10;
+    private final static int PAGESIZE = 10;
 
     @RequestMapping(value = "/post/{pid}",method = RequestMethod.GET)
     public String post(Model model, @PathVariable(value = "pid") Integer pid ,@RequestParam(value = "page",required = false) Integer page){
 
         Post post = postService.getPostById(pid);
+        if(post == null){
+            model.addAttribute("error","404 Not Found");
+            return "error";
+        }
+
+
         model.addAttribute("post",post);
 
 //        List<Reply> replies = replyService.getReplysByPostid(pid);

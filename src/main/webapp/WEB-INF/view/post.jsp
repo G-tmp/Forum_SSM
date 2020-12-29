@@ -30,11 +30,11 @@
 
         // content = common.stringFilter.url2Link(content);
 
-        var reply = {
-            post : postid,
-            content : content,
-            replyTo : 0
-        };
+        // var reply = {
+        //     post : postid,
+        //     content : content,
+        //     replyTo : 0
+        // };
 
         var formData = new FormData();   //创建一个forData
         var image = $("#selectImg")[0].files[0];
@@ -61,9 +61,6 @@
             cache : false,
 
             success : function (result) {
-                console.log(result);
-                console.log(JSON.stringify(result));
-
                 if (result["msg"] == "success") {
                     alert("回复成功");
                     window.location.href = "/forum/post/"+postid;
@@ -198,8 +195,8 @@
                             <a href="../user/${post.user.nickname}">${post.user.nickname}</a>
                         </cite>
                         <small><cite title="Source Title">
-                            ${post.publishTime }
-<%--                            <fmt:formatDate value="${post.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>--%>
+<%--                            ${post.publishTime }--%>
+                            <fmt:formatDate value="${post.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                         </cite></small>
                     </blockquote>
                 </div>
@@ -282,8 +279,8 @@
                     <div style="height: 40px;width: 999px;" >
                         <div style="float: left;width: 90%;">
                             <a href="<%=path%>/user/${reply.user.nickname}">${reply.user.nickname  }</a>
-<%--                            |<fmt:formatDate value="${reply.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>--%>
-                            |${reply.publishTime }
+                            |<fmt:formatDate value="${reply.publishTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+<%--                            |${reply.publishTime }--%>
                             |<a onclick="return confirm_report()" href="report_reply?pid=${post.id}&rid=${reply.id}">report</a>
                             |<a onclick="return confirm_delete()" href="del_reply?pid=${post.id}&rid=${reply.id}">delete</a>
                         </div>

@@ -8,7 +8,7 @@
         <id property="id"           column="id"        jdbcType="INTEGER"/>
         <result property="content"  column="content"   jdbcType="VARCHAR"/>
         <result property="floor"    column="floor"     jdbcType="INTEGER"/>
-        <result property="publishTime" column="publish_time" jdbcType="INTEGER"/>
+        <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP"/>
         <result property="isBanned" column="is_banned" jdbcType="INTEGER"/>
         <result property="replyTo"  column="reply_id"  jdbcType="INTEGER"/>
         <result property="imgPath"  column="image"      jdbcType="VARCHAR"/>
@@ -16,7 +16,7 @@
         <association property="user" javaType="com.xd.pojo.User" >
             <id     property="id"           column="userid"         jdbcType="INTEGER"/>
             <result property="states"      column="states"          jdbcType="INTEGER" />
-            <result property="registerTime" column="register_time"  jdbcType="INTEGER"/>
+            <result property="registerTime" column="register_time"  jdbcType="TIMESTAMP"/>
             <result property="nickname"     column="nickname"       jdbcType="VARCHAR" />
             <result property="bio"          column="bio"            jdbcType="VARCHAR" />
             <result property="email"        column="email"          jdbcType="VARCHAR" />
@@ -29,10 +29,10 @@
             <result property="content"      column="content"      jdbcType="VARCHAR"/>
             <result property="hit"          column="hit"          jdbcType="INTEGER"/>
             <result property="isBanned"     column="is_banned"    jdbcType="INTEGER"/>
-            <result property="publishTime"  column="publish_time" jdbcType="INTEGER"/>
+            <result property="publishTime"  column="publish_time" jdbcType="TIMESTAMP"/>
             <result property="title"        column="title"        jdbcType="VARCHAR"/>
             <result property="replyCount"   column="reply_count"  jdbcType="INTEGER"/>
-            <result property="lastReplyTime"   column="last_reply_time"  jdbcType="INTEGER"/>
+            <result property="lastReplyTime"   column="last_reply_time"  jdbcType="TIMESTAMP"/>
         </association>
 
 
@@ -52,8 +52,8 @@
 
     <insert id="publishReply" parameterType="com.xd.pojo.Reply">
         insert into reply
-            (content,user_id,post_id,reply_id,publish_time,image,floor)
-            values (#{content},#{user.id},#{post.id},#{replyTo},#{publishTime},#{imgPath},
+            (content,user_id,post_id,reply_id,image,floor)
+            values (#{content},#{user.id},#{post.id},#{replyTo},#{imgPath},
                 (select reply_count from post where id = #{post.id})
             );
     </insert>

@@ -6,6 +6,7 @@ package com.xd.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xd.pojo.Post;
+import com.xd.pojo.Reply;
 import com.xd.pojo.User;
 import com.xd.service.PostService;
 import com.xd.service.ReplyService;
@@ -199,6 +200,7 @@ public class UserController {
     public String profiles(Model model,@PathVariable String nickname){
         
         User u = userService.getUserByNickname(nickname);
+        System.out.println(u);
 
         List<Post> posts = postService.getPostsByUserId(u.getId());
         model.addAttribute("posts",posts);

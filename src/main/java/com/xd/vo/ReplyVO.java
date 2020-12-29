@@ -4,6 +4,8 @@ import com.xd.pojo.Post;
 import com.xd.pojo.User;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 public class ReplyVO {
     private Integer id;
     private String content;
@@ -11,7 +13,7 @@ public class ReplyVO {
     private Post post;
     private Integer floor;
     private Integer replyTo;
-    private Long publishTime;
+    private Date publishTime;
     private Integer isBanned;
     private String imgPath;
     private MultipartFile imgFile;
@@ -67,13 +69,6 @@ public class ReplyVO {
         this.replyTo = replyTo;
     }
 
-    public Long getPublishTime() {
-        return publishTime;
-    }
-
-    public void setPublishTime(Long publishTime) {
-        this.publishTime = publishTime;
-    }
 
     public Integer getIsBanned() {
         return isBanned;
@@ -97,5 +92,13 @@ public class ReplyVO {
 
     public void setImgFile(MultipartFile imgFile) {
         this.imgFile = imgFile;
+    }
+
+    public Date getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
     }
 }

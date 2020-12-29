@@ -103,8 +103,8 @@
                         <blockquote class="pull-right">
                             <a href="<%=path%>/user/${post.user.nickname }">${post.user.nickname }</a>
                             <small><cite  title="Source Title">
-                                        ${post.lastReplyTime }
-<%--                                        <fmt:formatDate value="${post.lastReplyTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>--%>
+<%--                                        ${post.lastReplyTime }--%>
+                                        <fmt:formatDate value="${post.lastReplyTime }" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
                                     </cite>
                             </small>
                         </blockquote>

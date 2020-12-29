@@ -41,8 +41,8 @@
 <%--                <h3>状态：封禁</h3>--%>
 <%--            </c:if>--%>
 
-<%--            <h3>创建于: <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></h3>--%>
-            <h3>创建于: ${user.registerTime}</h3>
+            <h3>创建于: <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></h3>
+<%--            <h3>创建于: ${user.registerTime}</h3>--%>
             <h3>自我介绍: ${user.bio}</h3>
         </div>
     </div>
@@ -75,28 +75,28 @@
 
 
     <!-- 历史回复 -->
-<%--    <div class="panel-group" id="accordion">--%>
-<%--        <div class="panel panel-default">--%>
-<%--            <div class="panel-heading">--%>
-<%--                <h4 class="panel-title">--%>
-<%--                    <a data-toggle="collapse" data-parent="#accordion"--%>
-<%--                       href="#collapseTwo">--%>
-<%--                        点击我展开回复记录--%>
-<%--                    </a>--%>
-<%--                </h4>--%>
-<%--            </div>--%>
-<%--            <div id="collapseTwo" class="panel-collapse collapse">--%>
-<%--                <c:if test="${replies==null }">--%>
-<%--                    <small>无记录</small>--%>
-<%--                </c:if>--%>
-<%--                <c:forEach var="reply" items="${replies }">--%>
-<%--                    <div class="panel-body">--%>
-<%--                        <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 800px;">${reply.content }	</p>--%>
-<%--                    </div>--%>
-<%--                </c:forEach>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseTwo">
+                        点击我展开回复记录
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <c:if test="${replies==null }">
+                    <small>无记录</small>
+                </c:if>
+                <c:forEach var="reply" items="${replies }">
+                    <div class="panel-body">
+                        <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 800px;">${reply.content }	</p>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
 
 
 </div>

@@ -16,16 +16,26 @@ public class Block  {
     }
 
     //发布帖子时调用
+//    public Block(String bid,String ename){
+//        this.id=Integer.parseInt(bid);
+//        this.ename = ename;
+//    }
+
     public Block(String bid){
         this.id=Integer.parseInt(bid);
     }
-    
+
     @Override
     public String toString() {
-        return String.format("%s[id=%d,name=%s]",this.getClass().getName(),id,name);
+        return "Block{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ename='" + ename + '\'' +
+                ", description='" + description + '\'' +
+                ", posts=" + posts +
+                '}';
     }
-    
-    
+
     public List<Post> getPosts() {
         return posts;
     }

@@ -44,7 +44,7 @@ public class AdminController {
         User user = (User) session.getAttribute("user");
 
 //        //not admin
-//        if (user==null || user.getIsAdmin()==0){
+//        if (user==null || user.getStates()==0){
 //            model.addAttribute("error","无权限🙏🙏");
 //            return  "error";
 //        }

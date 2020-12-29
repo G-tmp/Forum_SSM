@@ -37,10 +37,9 @@ public class ReplyServiceImpl  implements ReplyService {
     @Transactional      //事务
     @Override
     public Integer publishReply(Reply reply) {
-        long now = System.currentTimeMillis();
-        reply.setPublishTime(now);
 
-        return postDao.IncreaseReplyCount(reply.getPost().getId(),now)   &  replyDao.publishReply(reply);
+
+        return postDao.IncreaseReplyCount(reply.getPost().getId())   &  replyDao.publishReply(reply);
     }
 
     @Override

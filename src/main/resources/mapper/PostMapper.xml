@@ -87,12 +87,12 @@
     </select>
 
     <insert id="publishPost" parameterType="com.xd.pojo.Post" >
-        insert into `post` (title,content,user_id,block_id,publish_time,last_reply_time)
-         values (#{title},#{content},#{user.id},#{block.id},#{publishTime},#{lastReplyTime} )
+        insert into `post` (title,content,user_id,block_id)
+         values (#{title},#{content},#{user.id},#{block.id} )
     </insert>
 
     <update id="IncreaseReplyCount" parameterType="com.xd.pojo.Post">
-        update `post` set reply_count=reply_count+1 , last_reply_time = #{timestrmp} where id=#{id};
+        update `post` set reply_count=reply_count+1 ,last_reply_time=now() where id=#{id};
     </update>
 
     <select id="pagePostNew" resultMap="basePost">

@@ -38,7 +38,7 @@
                 <result property="nickname"     column="nickname"     jdbcType="VARCHAR" />
                 <result property="profile"      column="profile"      jdbcType="VARCHAR" />
                 <result property="states"        column="states"        jdbcType="INTEGER" />
-                <result property="registerTime" column="register_time" jdbcType="INTEGER" />
+                <result property="registerTime" column="register_time" jdbcType="TIMESTAMP" />
             </association>
         </collection>
     </resultMap>
@@ -58,7 +58,8 @@
             ON block.`id` = post.`block_id`
         LEFT JOIN `user`
             ON user.`id` = post.`user_id`
-        where block.ename = #{ename} ;
+        where block.ename = #{ename}
+        order by post.last_reply_time desc ;
     </select>
 
     <insert id="addBlock" parameterType="com.xd.pojo.Block">

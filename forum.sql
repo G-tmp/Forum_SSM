@@ -30,7 +30,7 @@ CREATE TABLE `block` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `ename` (`ename`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,12 +49,11 @@ CREATE TABLE `post` (
   `reply_count` int(11) NOT NULL DEFAULT '0' COMMENT '回复数',
   `user_id` int(11) NOT NULL COMMENT '用户_id',
   `block_id` int(11) NOT NULL COMMENT '板块_id',
-  `publish_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
-  `last_reply_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最新回复时间',
+  `publish_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_reply_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_banned` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否被ban',
-  `reported` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,11 +70,12 @@ CREATE TABLE `reply` (
   `post_id` int(11) NOT NULL COMMENT '帖子_id',
   `reply_id` int(11) NOT NULL DEFAULT '0' COMMENT '回复回复',
   `floor` int(10) unsigned NOT NULL DEFAULT '0',
-  `publish_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
+  `publish_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_banned` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否被ban',
   `reported` tinyint(4) NOT NULL DEFAULT '0',
+  `image` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,13 +92,12 @@ CREATE TABLE `user` (
   `nickname` varchar(50) NOT NULL COMMENT '昵称',
   `profile` varchar(50) NOT NULL DEFAULT '' COMMENT '头像',
   `bio` varchar(500) NOT NULL DEFAULT '' COMMENT '自我介绍',
-  `is_banned` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否被封',
-  `is_admin` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否管理员',
-  `register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',
+  `register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `states` tinyint(2) NOT NULL DEFAULT '0' COMMENT 'states',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nickname` (`nickname`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -110,4 +109,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-10  9:59:39
+-- Dump completed on 2020-12-29 22:03:05

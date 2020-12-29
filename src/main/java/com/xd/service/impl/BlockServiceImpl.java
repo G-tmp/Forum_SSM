@@ -30,8 +30,14 @@ public class BlockServiceImpl implements BlockService {
 
     public List<Block> getAllBlock() {      //TODO
         String key = "blocks:";
+        Jedis jedis = null;
 
-        Jedis jedis = jedisPool.getResource();
+        try{
+            jedis = jedisPool.getResource();
+        }catch(Exception e){
+            logger.error("reids resources error",e);
+        }
+
 
         // cache hit
         if (jedis.exists(key)){
@@ -47,6 +53,7 @@ public class BlockServiceImpl implements BlockService {
 
             return blockCache;
         }
+
 
         // cache miss
         List<Block> blocks = blockDao.getAllBlock();
@@ -65,8 +72,14 @@ public class BlockServiceImpl implements BlockService {
 
     @Override
     public Block getBlockByEname(String ename) {
-        Jedis jedis = jedisPool.getResource();
         String key = "block:"+ename;
+        Jedis jedis = null;
+
+        try{
+            jedis = jedisPool.getResource();
+        }catch(Exception e){
+            logger.error("reids resources error",e);
+        }
 
         // cache hit
         if (jedis.exists(key)){
@@ -90,11 +103,10 @@ public class BlockServiceImpl implements BlockService {
 
     @Override
     public Integer addBlock(Block block) {
-        String key = "blocks:";
 
         // clear cache
         try (Jedis jedis = jedisPool.getResource()){
-            jedis.del(key);
+            jedis.del("blocks:");
         }
 
         return blockDao.addBlock(block);
@@ -103,11 +115,10 @@ public class BlockServiceImpl implements BlockService {
 
     @Override
     public Integer updateBlock(Block block) {
-        String key = "blocks:";
 
         // clear cache
         try (Jedis jedis = jedisPool.getResource()){
-            jedis.del(key);
+            jedis.del("blocks:");
             jedis.del("block:"+block.getEname());
         }
 

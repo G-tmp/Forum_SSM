@@ -23,7 +23,7 @@ public interface PostDao {
     Integer publishPost(Post post);
 
     // increase one
-    Integer IncreaseReplyCount(@Param("id") Integer id, @Param("timestrmp") Long timestrmp);
+    Integer IncreaseReplyCount(@Param("id") Integer id);
 
     List<Post> pagePost(Integer start,Integer size);
 

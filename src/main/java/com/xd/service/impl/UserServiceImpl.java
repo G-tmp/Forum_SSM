@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer register(User user) {
-        user.setRegisterTime(System.currentTimeMillis());
         return userDao.register(user);
     }
 

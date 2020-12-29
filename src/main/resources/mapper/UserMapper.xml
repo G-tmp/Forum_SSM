@@ -12,8 +12,9 @@
         <result property="nickname" column="nickname" jdbcType="VARCHAR" />
         <result property="profile" column="profile" jdbcType="VARCHAR" />
         <result property="states" column="states" jdbcType="INTEGER" />
-        <result property="registerTime" column="register_time" jdbcType="INTEGER" />
+        <result property="registerTime" column="register_time"  jdbcType="TIMESTAMP"/>
     </resultMap>
+
 
     <select id="login" resultMap="baseUser" parameterType="com.xd.pojo.User">
         select * from `user` where binary email=#{email} ;

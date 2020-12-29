@@ -14,7 +14,8 @@ public class Reply  {
     private Post post;
     private Integer floor;
     private Integer replyTo;
-    private Long publishTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
+    private Date publishTime;
     private Integer isBanned;
     private String imgPath;
 
@@ -94,13 +95,6 @@ public class Reply  {
     }
 
 
-    public Long getPublishTime() {
-        return publishTime;
-    }
-
-    public void setPublishTime(Long publishTime) {
-        this.publishTime = publishTime;
-    }
 
     public String getImgPath() {
         return imgPath;
@@ -110,4 +104,11 @@ public class Reply  {
         this.imgPath = imgPath;
     }
 
+    public Date getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Date publishTime) {
+        this.publishTime = publishTime;
+    }
 }

@@ -3,8 +3,12 @@ package com.xd.service.impl;
 import com.xd.dao.PostDao;
 import com.xd.pojo.Post;
 import com.xd.service.PostService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 
@@ -14,11 +18,13 @@ public class PostServiceImpl implements PostService {
     private static final int ONE_DAY_IN_SECONDS = 86400;
     private static final int VOTE_SCORE = 4320;
 
-    @Autowired 
+    @Autowired
     private PostDao postDao;
-    
 
+    @Autowired
+    private JedisPool jedisPool;
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     
     @Override
@@ -38,15 +44,26 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Integer publishPost(Post post) {
-        post.setLastReplyTime(System.currentTimeMillis());
-        post.setPublishTime(System.currentTimeMillis());
+        String key = "block:" + post.getBlock().getEname();
+        Jedis jedis = null;
+        System.out.println(key);
+        try{
+            jedis = jedisPool.getResource();
+        }catch(Exception e){
+            logger.error("reids resources error",e);
+        }
+
+        if (jedis.exists(key)) {
+            System.out.println("block exists");
+            jedis.del(key);
+        }
 
         return postDao.publishPost(post);
     }
 
     @Override
-    public Integer IncreaseReplyCount(Integer id,Long timestamp) {
-        return postDao.IncreaseReplyCount(id,timestamp);
+    public Integer IncreaseReplyCount(Integer id) {
+        return postDao.IncreaseReplyCount(id);
     }
 
     @Override
